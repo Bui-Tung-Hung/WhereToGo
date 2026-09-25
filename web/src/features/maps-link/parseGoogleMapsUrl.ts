@@ -3,6 +3,8 @@ import { InvalidMapsLinkError } from '../../lib/errors';
 /** Kết quả phân tích một link Google Maps. */
 export interface ParsedMapsLink {
   name?: string;
+  /** Địa chỉ (hiện chỉ có ở link chỉ đường, lấy từ `daddr`). */
+  address?: string;
   latitude?: number;
   longitude?: number;
   placeRef?: string;
@@ -14,6 +16,19 @@ const GOOGLE_MAPS_HOST_PATTERN = /^(?:www\.|maps\.)?google\.[a-z]{2,3}(?:\.[a-z]
 
 /** `lat,lng` (khoảng trắng tuỳ ý sau dấu phẩy). */
 const LAT_LNG_PATTERN = /^(-?\d{1,3}(?:\.\d+)?),\s*(-?\d{1,3}(?:\.\d+)?)$/;
+
+/** Toạ độ nằm ngay trong path: `/maps/search/<lat>,<lng>` hoặc `/maps/place/<lat>,<lng>`. */
+const PATH_LAT_LNG_PATTERN =
+  /\/maps\/(?:search|place)\/(-?\d{1,3}(?:\.\d+)?),[+\s]*(-?\d{1,3}(?:\.\d+)?)(?:[/?#]|$)/;
+
+/** Query cho biết một URL `google.<tld>` (không có path `/maps`) là link bản đồ. */
+const MAPS_QUERY_KEYS = ['q', 'query', 'cid', 'll', 'ftid', 'daddr'];
+
+/** Tag protobuf trong tham số `geocode`: 0x15 = vĩ độ, 0x1d = kinh độ (int32 LE, ×1e6). */
+const GEOCODE_LAT_TAG = 0x15;
+const GEOCODE_LNG_TAG = 0x1d;
+/** Tag 64-bit (ftid/cid) trong `geocode`, được bỏ qua. */
+const GEOCODE_FIXED64_TAGS = new Set([0x29, 0x31]);
 
 function tryParseUrl(url: string): URL | null {
   try {
@@ -75,7 +90,7 @@ export function isSupportedMapsUrl(url: string): boolean {
   if (parsed.pathname.startsWith('/maps')) {
     return true;
   }
-  return parsed.searchParams.has('q') || parsed.searchParams.has('cid');
+  return MAPS_QUERY_KEYS.some((key) => parsed.searchParams.has(key));
 }
 
 /** Đoạn path ngay sau `/place/`, đổi `+` thành khoảng trắng rồi decode. */
@@ -86,10 +101,30 @@ function extractNameFromPath(pathname: string): string | undefined {
     return undefined;
   }
   try {
-    return decodeURIComponent(segment.replace(/\+/g, ' '));
+    const name = decodeURIComponent(segment.replace(/\+/g, ' '));
+    // `/maps/place/<lat>,<lng>` là một ghim toạ độ, không phải tên địa điểm.
+    return parseLatLngPair(name) ? undefined : name;
   } catch {
     return undefined;
   }
+}
+
+/**
+ * Nơi đến của link chỉ đường (`daddr`), tách thành tên (trước dấu phẩy đầu
+ * tiên) và địa chỉ (phần còn lại). Bỏ qua khi `daddr` chỉ là toạ độ.
+ */
+function splitDestination(url: URL): { name?: string; address?: string } {
+  const destination = url.searchParams.get('daddr')?.trim();
+  if (!destination || parseLatLngPair(destination)) {
+    return {};
+  }
+  const commaIndex = destination.indexOf(',');
+  if (commaIndex === -1) {
+    return { name: destination };
+  }
+  const name = destination.slice(0, commaIndex).trim();
+  const address = destination.slice(commaIndex + 1).trim();
+  return { name: name || undefined, address: address || undefined };
 }
 
 /** Query `query` hoặc `q`, chỉ khi giá trị đó không phải là một cặp toạ độ. */
@@ -104,10 +139,70 @@ function extractNameFromQuery(url: URL): string | undefined {
 }
 
 function extractName(url: URL): string | undefined {
-  return extractNameFromPath(url.pathname) ?? extractNameFromQuery(url);
+  return extractNameFromPath(url.pathname) ?? extractNameFromQuery(url) ?? splitDestination(url).name;
 }
 
-/** Toạ độ theo thứ tự ưu tiên: `!3d..!4d..`, rồi `@lat,lng`, rồi query `q`/`query`/`ll`. */
+/**
+ * Toạ độ nơi đến giấu trong tham số `geocode` của link chỉ đường (định dạng
+ * nội bộ của Google, không có tài liệu): lấy đoạn CUỐI (nơi đến; đoạn đầu là
+ * điểm xuất phát = vị trí của người chia sẻ), giải base64 rồi đọc tag protobuf
+ * 0x15/0x1d. Sai định dạng → `null` (bỏ qua toạ độ, không ném lỗi).
+ */
+function decodeGeocodeDestination(url: URL): { latitude: number; longitude: number } | null {
+  const geocode = url.searchParams.get('geocode');
+  if (!geocode) {
+    return null;
+  }
+  const lastSegment = geocode.split(';').pop();
+  if (!lastSegment) {
+    return null;
+  }
+
+  let bytes: Uint8Array;
+  try {
+    // URLSearchParams đổi `+` thành khoảng trắng; trả lại `+` cho base64.
+    const binary = atob(lastSegment.replace(/ /g, '+'));
+    bytes = Uint8Array.from(binary, (char) => char.charCodeAt(0));
+  } catch {
+    return null;
+  }
+
+  const view = new DataView(bytes.buffer);
+  let latitude: number | undefined;
+  let longitude: number | undefined;
+  let offset = 0;
+  while (offset < bytes.length) {
+    const tag = bytes[offset];
+    offset += 1;
+    if (tag === GEOCODE_LAT_TAG || tag === GEOCODE_LNG_TAG) {
+      if (offset + 4 > bytes.length) {
+        break;
+      }
+      const value = view.getInt32(offset, true) / 1e6;
+      if (tag === GEOCODE_LAT_TAG) {
+        latitude = value;
+      } else {
+        longitude = value;
+      }
+      offset += 4;
+    } else if (tag !== undefined && GEOCODE_FIXED64_TAGS.has(tag)) {
+      offset += 8;
+    } else {
+      break;
+    }
+  }
+
+  if (latitude === undefined || longitude === undefined || !isValidLatLng(latitude, longitude)) {
+    return null;
+  }
+  return { latitude, longitude };
+}
+
+/**
+ * Toạ độ theo thứ tự ưu tiên: `!3d..!4d..`, rồi `@lat,lng`, rồi toạ độ trong
+ * path `/maps/search|place/<lat>,<lng>`, rồi query `q`/`query`/`ll`, rồi nơi
+ * đến trong `geocode`. KHÔNG dùng `saddr` (điểm xuất phát = vị trí người chia sẻ).
+ */
 function extractCoordinates(url: URL): { latitude: number; longitude: number } | null {
   const dataPatternMatch = url.href.match(/!3d(-?\d+(?:\.\d+)?)!4d(-?\d+(?:\.\d+)?)/);
   if (dataPatternMatch) {
@@ -127,6 +222,21 @@ function extractCoordinates(url: URL): { latitude: number; longitude: number } |
     }
   }
 
+  let decodedPath: string | null = null;
+  try {
+    decodedPath = decodeURIComponent(url.pathname);
+  } catch {
+    decodedPath = null;
+  }
+  const pathMatch = decodedPath?.match(PATH_LAT_LNG_PATTERN);
+  if (pathMatch) {
+    const latitude = Number(pathMatch[1]);
+    const longitude = Number(pathMatch[2]);
+    if (isValidLatLng(latitude, longitude)) {
+      return { latitude, longitude };
+    }
+  }
+
   for (const key of ['q', 'query', 'll']) {
     const value = url.searchParams.get(key);
     if (value) {
@@ -137,7 +247,7 @@ function extractCoordinates(url: URL): { latitude: number; longitude: number } |
     }
   }
 
-  return null;
+  return decodeGeocodeDestination(url);
 }
 
 /**
@@ -198,6 +308,7 @@ export function parseGoogleMapsUrl(url: string): ParsedMapsLink {
 
   return {
     name: extractName(parsed),
+    address: splitDestination(parsed).address,
     latitude: coordinates?.latitude,
     longitude: coordinates?.longitude,
     placeRef: extractPlaceRef(parsed),

@@ -30,7 +30,7 @@ Quy ước: `[USER]` = bước chỉ người dùng làm được (tài khoản,
 | D18 | Giờ mở cửa | MẶC ĐỊNH: bảng tuần T2–CN, mỗi ngày tối đa 3 khung giờ, chọn giờ bằng bánh xe (bước 5 phút), có "Mở 24h", "Áp dụng cho cả tuần", "Chưa rõ giờ"; đóng cửa sau nửa đêm được hiểu là qua ngày hôm sau |
 | D19 | Lọc theo loại | MẶC ĐỊNH: chọn nhiều nhãn = hiện địa điểm có ÍT NHẤT MỘT nhãn đã chọn |
 | D20 | Giá | 2 số nguyên VNĐ (từ/đến), hiển thị `150.000 ₫ – 300.000 ₫` |
-| D21 | Dán link Maps | Chỉ điền tên nếu ô tên đang trống; luôn điền toạ độ, link, mã địa điểm |
+| D21 | Dán link Maps | Chỉ điền tên nếu ô tên đang trống; chỉ điền địa chỉ nếu ô địa chỉ đang trống và link có địa chỉ (link chỉ đường); luôn điền toạ độ, link, mã địa điểm |
 | D22 | Địa chỉ | Nhập tay (không tự suy từ GPS — dữ liệu OSM ở VN không ổn định) |
 | D23 | Ảnh / địa điểm | MẶC ĐỊNH: tối đa 20 ảnh, mỗi file ≤ 25 MB. Chọn vượt số chỗ còn lại → chỉ upload đủ số ảnh còn chỗ (theo thứ tự chọn), phần dư báo lỗi "Chỉ thêm được N ảnh (giới hạn 20 ảnh/địa điểm)" |
 | D25 | Nút "Dùng vị trí hiện tại" | Luôn ghi đè toạ độ đang có, không hỏi lại |
@@ -558,11 +558,12 @@ Cách áp dụng: `[USER]` dán lần lượt 3 file vào Supabase Dashboard →
 **maps-link**
 - `parseGoogleMapsUrl.ts` (hàm thuần):
   - `isShortMapsLink(url)`: host `maps.app.goo.gl`, hoặc `goo.gl` với path `/maps…`.
-  - `isSupportedMapsUrl(url)`: short link, hoặc host Google (`google.<tld>`, `www.google.<tld>`, `maps.google.<tld>`) với path `/maps…` hoặc có query `q`/`cid`.
-  - `parseGoogleMapsUrl(url): ParsedMapsLink { name?, latitude?, longitude?, placeRef?, url }`:
+  - `isSupportedMapsUrl(url)`: short link, hoặc host Google (`google.<tld>`, `www.google.<tld>`, `maps.google.<tld>`) với path `/maps…` hoặc có một trong các query `q`, `query`, `cid`, `ll`, `ftid`, `daddr`.
+  - `parseGoogleMapsUrl(url): ParsedMapsLink { name?, address?, latitude?, longitude?, placeRef?, url }`:
     - `url` không hỗ trợ → `InvalidMapsLinkError`; short link → `InvalidMapsLinkError('needs_resolve')`.
-    - `name`: đoạn path sau `/place/` (đổi `+` thành khoảng trắng, `decodeURIComponent`); nếu không có thì lấy query `query`/`q` khi giá trị không phải toạ độ.
-    - Toạ độ, lấy nguồn đầu tiên có theo thứ tự: cặp `!3d<lat>!4d<lng>`; `@<lat>,<lng>`; query `q`/`query`/`ll` dạng `lat,lng`. Chỉ nhận toạ độ hợp lệ.
+    - `name`: đoạn path sau `/place/` (đổi `+` thành khoảng trắng, `decodeURIComponent`; bỏ qua nếu đó là toạ độ); nếu không có thì lấy query `query`/`q` khi giá trị không phải toạ độ; nếu vẫn không có thì lấy phần trước dấu phẩy đầu tiên của `daddr` (link chỉ đường).
+    - `address`: phần sau dấu phẩy đầu tiên của `daddr` (chỉ link chỉ đường có).
+    - Toạ độ, lấy nguồn đầu tiên có theo thứ tự: cặp `!3d<lat>!4d<lng>`; `@<lat>,<lng>`; đoạn path `/maps/search/<lat>,<lng>` hoặc `/maps/place/<lat>,<lng>` (cho phép `+`/khoảng trắng sau dấu phẩy); query `q`/`query`/`ll` dạng `lat,lng`; đoạn CUỐI của `geocode` (link chỉ đường — giải base64, đọc tag protobuf `0x15` = vĩ độ, `0x1d` = kinh độ, int32 little-endian ÷ 1e6; bỏ qua tag `0x29`/`0x31` 8 byte; sai định dạng thì bỏ qua). Chỉ nhận toạ độ hợp lệ. KHÔNG BAO GIỜ dùng `saddr` (điểm xuất phát = vị trí của người chia sẻ).
     - `placeRef`, lấy nguồn đầu tiên có theo thứ tự:
       1. ftid `0x…:0x…` từ `!1s` hoặc query `ftid`.
       2. `query_place_id` / `place_id:`.
@@ -772,7 +773,7 @@ Cách áp dụng: `[USER]` dán lần lượt 3 file vào Supabase Dashboard →
   - `hours` null → unknown; mảng rỗng → closed.
   - `validateWeek` bắt lỗi: phút 07, khung chồng nhau, 4 khung trong 1 ngày.
   - `formatRanges`: đủ 3 trường hợp.
-- `parseGoogleMapsUrl.test.ts` với 8 URL:
+- `parseGoogleMapsUrl.test.ts` với 11 URL:
   1. `https://www.google.com/maps/place/Ph%E1%BB%9F+Th%C3%ACn/@21.0169,105.8497,17z/data=!3m1!4b1!4m6!3m5!1s0x3135ab8e0a0f0e8b:0x5e7c6b1d5d5f0b0!8m2!3d21.016943!4d105.852277!16s%2Fg%2F11b6` → tên "Phở Thìn", lat 21.016943, lng 105.852277, placeRef `0x3135ab8e0a0f0e8b:0x5e7c6b1d5d5f0b0`.
   2. `https://www.google.com/maps/@10.7769,106.7009,15z` → không có tên, có toạ độ.
   3. `https://maps.google.com/?q=10.7769,106.7009` → toạ độ.
@@ -781,6 +782,9 @@ Cách áp dụng: `[USER]` dán lần lượt 3 file vào Supabase Dashboard →
   6. `https://maps.app.goo.gl/AbCd123` → `isShortMapsLink` true, `parse` ném lỗi `needs_resolve`.
   7. `https://example.com/maps/place/x` → ném `InvalidMapsLinkError`.
   8. `https://www.google.com.vn/maps/place/Ch%E1%BB%A3+B%E1%BA%BFn+Th%C3%A0nh/@10.772,106.698,17z` → tên "Chợ Bến Thành", toạ độ lấy từ `@`.
+  9. Link chỉ đường `maps.google.com/?geocode=…;…&daddr=…&saddr=…&ftid=…` (dữ liệu mẫu công khai: Chợ Bến Thành) → tên và địa chỉ tách từ `daddr`, toạ độ nơi đến giải từ `geocode` (khác `saddr`), placeRef từ `ftid`.
+  10. `https://www.google.com/maps/search/21.034699,+105.852143?…` → toạ độ lấy từ path, không có tên.
+  11. `https://www.google.com/maps/place/Thang+Long+Water+Puppet+Theatre/@…!3d21.0316826!4d105.8533466` → tên từ path, toạ độ từ `!3d!4d`.
 - `placeFilters.test.ts`:
   - Tìm "pho" khớp "Phở Thìn".
   - Lọc nhiều nhãn theo kiểu HOẶC.

@@ -77,4 +77,42 @@ describe('parseGoogleMapsUrl', () => {
     expect(result.latitude).toBeCloseTo(10.772, 3);
     expect(result.longitude).toBeCloseTo(106.698, 3);
   });
+
+  it('9. link chỉ đường (daddr + geocode): tên/địa chỉ từ daddr, toạ độ nơi đến từ geocode, KHÔNG dùng saddr', () => {
+    // Cấu trúc giống hệt link "Chia sẻ" màn hình chỉ đường của app Google Maps iOS
+    // (sau khi resolve maps.app.goo.gl), nhưng thay vị trí bằng địa điểm công khai.
+    const url =
+      'https://maps.google.com/?geocode=FURxpAAdZCBcBg%3D%3D;Fe1fpAAdRxVcBiklCz06Oy91MTGBcG9eTTwrGg%3D%3D' +
+      '&daddr=Ch%E1%BB%A3+B%E1%BA%BFn+Th%C3%A0nh,+L%C3%AA+L%E1%BB%A3i,+Ph%C6%B0%E1%BB%9Dng+B%E1%BA%BFn+Th%C3%A0nh,+Qu%E1%BA%ADn+1,+Th%C3%A0nh+ph%E1%BB%91+H%E1%BB%93+Ch%C3%AD+Minh' +
+      '&saddr=10.7769000,106.7009000&dirflg=df&ftid=0x31752f3b3a3d0b25:0x1a2b3c4d5e6f7081&g_st=ic';
+    const result = parseGoogleMapsUrl(url);
+
+    expect(result.name).toBe('Chợ Bến Thành');
+    expect(result.address).toBe('Lê Lợi, Phường Bến Thành, Quận 1, Thành phố Hồ Chí Minh');
+    expect(result.latitude).toBeCloseTo(10.772461, 6);
+    expect(result.longitude).toBeCloseTo(106.698055, 6);
+    expect(result.latitude).not.toBeCloseTo(10.7769, 4);
+    expect(result.placeRef).toBe('0x31752f3b3a3d0b25:0x1a2b3c4d5e6f7081');
+  });
+
+  it('10. link ghim toạ độ /maps/search/<lat>,+<lng>', () => {
+    const url =
+      'https://www.google.com/maps/search/21.034699,+105.852143?entry=tts&g_ep=EgoyMDI1MTAyMi4wIPu8ASoASAFQAw%3D%3D';
+    const result = parseGoogleMapsUrl(url);
+
+    expect(result.name).toBeUndefined();
+    expect(result.latitude).toBeCloseTo(21.034699, 6);
+    expect(result.longitude).toBeCloseTo(105.852143, 6);
+  });
+
+  it('11. link /place/ thật: tên từ path, toạ độ ưu tiên !3d/!4d thay vì @', () => {
+    const url =
+      'https://www.google.com/maps/place/Thang+Long+Water+Puppet+Theatre/@21.031911,105.850415,17z/data=!4m7!3m6!1s0x3135abc013454289:0x4e5ea7a5d23aad1c!8m2!3d21.0316826!4d105.8533466';
+    const result = parseGoogleMapsUrl(url);
+
+    expect(result.name).toBe('Thang Long Water Puppet Theatre');
+    expect(result.latitude).toBeCloseTo(21.0316826, 6);
+    expect(result.longitude).toBeCloseTo(105.8533466, 6);
+    expect(result.placeRef).toBe('0x3135abc013454289:0x4e5ea7a5d23aad1c');
+  });
 });
