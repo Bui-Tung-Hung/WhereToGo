@@ -696,13 +696,13 @@ Cách áp dụng: `[USER]` dán lần lượt 3 file vào Supabase Dashboard →
 
 ## 8. CI/CD
 - `ci.yml`: chạy khi push hoặc pull_request lên mọi nhánh. Gồm 3 job:
-  - `web` (working-directory `web`, Node 22, cache npm): `npm ci` → `npm run lint` → `npm run typecheck` → `npm run test` → `npm run build` (env giả: `VITE_SUPABASE_URL=https://example.supabase.co`, `VITE_SUPABASE_PUBLISHABLE_KEY=sb_publishable_ci`, `VITE_API_BASE_URL=https://example.invalid`).
+  - `web` (working-directory `web`, Node 24, cache npm): `npm ci` → `npm run lint` → `npm run typecheck` → `npm run test` → `npm run build` (env giả: `VITE_SUPABASE_URL=https://example.supabase.co`, `VITE_SUPABASE_PUBLISHABLE_KEY=sb_publishable_ci`, `VITE_API_BASE_URL=https://example.invalid`).
   - `server` (Python 3.12, `cd server`): `python -m pip install --upgrade "pip>=25.1"` (cờ `--group` cần pip ≥ 25.1) → `pip install -e . --group dev` → `ruff check .` → `ruff format --check .` → `pytest -q`.
   - `jobs` (Python 3.12): `pip install ./server -r jobs/requirements-dev.txt` → `pytest -q jobs/tests`.
 - `deploy-web.yml`:
   - Kích hoạt khi push lên `main` có thay đổi trong `web/**` hoặc chính file workflow này, và `workflow_dispatch`.
   - `permissions`: `contents: read`, `pages: write`, `id-token: write`; `concurrency: pages`.
-  - Job `build`: checkout → setup-node 22 → `npm ci` → `npm run build`, env lấy từ `vars.VITE_SUPABASE_URL`, `vars.VITE_SUPABASE_PUBLISHABLE_KEY`, `vars.VITE_API_BASE_URL` → `configure-pages` → `upload-pages-artifact` (path `web/dist`).
+  - Job `build`: checkout → setup-node 24 → `npm ci` → `npm run build`, env lấy từ `vars.VITE_SUPABASE_URL`, `vars.VITE_SUPABASE_PUBLISHABLE_KEY`, `vars.VITE_API_BASE_URL` → `configure-pages` → `upload-pages-artifact` (path `web/dist`).
   - Job `deploy`: `deploy-pages`.
   - Phiên bản các action: dùng major mới nhất được hướng dẫn trong tài liệu GitHub "Using custom workflows with GitHub Pages" tại thời điểm thực hiện.
 - `keepalive.yml`: `schedule: cron '23 1 * * *'` (08:23 giờ VN) + `workflow_dispatch`; Python 3.12; `pip install ./server`; `python -m wheretogo_jobs.keepalive` (working-directory `jobs`, `PYTHONPATH=.`); env lấy từ secrets.
@@ -942,12 +942,12 @@ IMPLEMENTATION CHECKLIST:
     - Cách chạy local: `npm run dev`; `uvicorn app:app --reload --port 8000`; `cloudflared tunnel --url http://localhost:5173`. Lưu ý: khi test qua tunnel phải dùng API trên Vercel.
     - Cách bật lại workflow có lịch chạy bị tự tắt.
     - Bước kiểm D24.
-47. `git add -A` và commit "Giai đoạn A: nền móng, server, jobs, spike" (kèm dòng Co-Authored-By).
+47. `git add -A` các file của Giai đoạn A. Bạn tự commit và push (tôi không chạy `git commit`/`git push`).
 48. **[GATE A]** Dừng. Báo bạn làm `docs/SETUP.md` bước 1–9, rồi gửi lại cho tôi 3 giá trị KHÔNG bí mật: GitHub username, URL Vercel, project ref Supabase. Chờ bạn cho phép push.
 
 **Giai đoạn B — Deploy & Spike**
 
-49. `git remote add origin https://github.com/<username>/WhereToGo.git` và `git push -u origin main` — chỉ làm khi bạn đã cho phép rõ ràng.
+49. Bạn tự tạo remote `origin` và `git push -u origin main` (đã làm: repo `Bui-Tung-Hung/WhereToGo`).
 50. Kiểm tra trên GitHub Actions: `ci` xanh và `deploy-web` xanh. Lỗi → sửa rồi commit/push lại (vẫn trong phạm vi spec).
 51. Gọi `GET https://<vercel-url>/api/health` → `{"status":"ok"}`. Mở `https://<username>.github.io/WhereToGo/` → thấy trang đăng nhập.
 52. **[USER]** Trên iPhone: mở URL bằng Safari → Chia sẻ → Thêm vào MH chính → mở từ icon → chạy S1–S7. Trên Chrome PC → chạy S8. Báo kết quả.
@@ -976,7 +976,7 @@ IMPLEMENTATION CHECKLIST:
     - Bỏ route `#/spike`.
 69. Xoá thư mục `web/src/features/spike/`.
 70. Chạy `npm run lint`, `typecheck`, `test`, `build` trong `web/`; chạy lại `pytest` cho server và jobs → tất cả đạt.
-71. Commit "Giai đoạn C: tính năng MVP", rồi `git push` (vẫn hỏi bạn trước khi push).
+71. Tôi `git add` các file của Giai đoạn C; bạn tự commit "Giai đoạn C: tính năng MVP" và push.
 72. Kiểm `ci` và `deploy-web` xanh; mở URL Pages trên PC để kiểm nhanh luồng đăng nhập và danh sách.
 
 **Giai đoạn D — Nghiệm thu (bạn làm)**
