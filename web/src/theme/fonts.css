@@ -1,0 +1,11 @@
+/* Be Vietnam Pro — nội dung (400 thường, 500 vừa, 600 đậm), đủ subset Latin + Vietnamese */
+@import '@fontsource/be-vietnam-pro/latin-400.css';
+@import '@fontsource/be-vietnam-pro/vietnamese-400.css';
+@import '@fontsource/be-vietnam-pro/latin-500.css';
+@import '@fontsource/be-vietnam-pro/vietnamese-500.css';
+@import '@fontsource/be-vietnam-pro/latin-600.css';
+@import '@fontsource/be-vietnam-pro/vietnamese-600.css';
+
+/* Playfair Display — tiêu đề (chỉ cần 600) */
+@import '@fontsource/playfair-display/latin-600.css';
+@import '@fontsource/playfair-display/vietnamese-600.css';

@@ -1,0 +1,78 @@
+/**
+ * Kiểu chữ, khoảng cách và các lớp dùng chung cho giao diện
+ * "Đơn giản mà sang trọng" (mục 6.3 PLAN.md). Không dùng box-shadow;
+ * mọi khối card dùng viền mảnh 1px.
+ */
+
+body {
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.wtg-display {
+  font-family: 'Playfair Display', serif;
+  font-weight: 600;
+  font-size: 28px;
+  line-height: 1.2;
+  margin: 0;
+}
+
+.wtg-heading {
+  font-family: 'Playfair Display', serif;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 1.2;
+  margin: 0;
+}
+
+.wtg-caption {
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.wtg-group-title {
+  font-size: 12px;
+  line-height: 1.4;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ion-color-medium);
+  margin: 0 0 8px;
+}
+
+/* IonTitle lớn (ion-header collapse="condense") dùng cùng kiểu chữ .wtg-display */
+ion-title.title-large::part(native) {
+  font-family: 'Playfair Display', serif;
+  font-weight: 600;
+}
+
+.wtg-card {
+  background: var(--ion-card-background);
+  border: 1px solid var(--ion-border-color);
+  border-radius: 16px;
+  box-shadow: none;
+}
+
+.wtg-page {
+  padding: 16px;
+}
+
+.wtg-group + .wtg-group {
+  margin-top: 24px;
+}
+
+.wtg-list-thumb {
+  width: 88px;
+  height: 88px;
+  border-radius: 12px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+/* Mọi vùng bấm tối thiểu 44x44 px */
+.wtg-tap-target {
+  min-width: 44px;
+  min-height: 44px;
+}
+
+/* Tab đang chọn dùng icon filled, chưa chọn dùng icon outline
+   (áp dụng bằng cách đổi icon trong Tabs.tsx theo tab đang active) */

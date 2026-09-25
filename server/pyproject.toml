@@ -1,0 +1,38 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "wheretogo-api"
+version = "0.1.0"
+description = "WhereToGo backend API (FastAPI on Vercel)"
+requires-python = ">=3.10"
+dependencies = [
+  "fastapi",
+  "httpx",
+  "pyjwt[crypto]",
+  "cryptography",
+  "pydantic-settings",
+]
+
+[dependency-groups]
+dev = [
+  "pytest",
+  "respx",
+  "ruff",
+  "uvicorn",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["wheretogo_api"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+# This ruff version's zero-config default enables a very large rule surface
+# (pydocstyle, bandit, pylint, etc.) that is not a practical fit for a small
+# internal API. Pin to the widely-used "core" set instead: pycodestyle errors,
+# pyflakes, and import sorting.
+[tool.ruff.lint]
+select = ["E", "F", "I"]

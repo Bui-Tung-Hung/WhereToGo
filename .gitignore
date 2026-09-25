@@ -1,0 +1,26 @@
+# Dependencies & build output
+node_modules/
+dist/
+dev-dist/
+coverage/
+
+# Environment files (secrets) — keep only the examples
+.env
+.env.*
+.env.example
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+.pytest_cache/
+.ruff_cache/
+
+# Tooling
+.vercel/
+*.log
+
+
+client_secret_1069082529119-9b1scum2kpplctcssn4b6d3scq1ds2rm.apps.googleusercontent.com.json
+
+recovery-codes.txt

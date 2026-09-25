@@ -1,0 +1,110 @@
+/**
+ * Bảng màu "Đơn giản mà sang trọng": trắng ngà / đen than / vàng đồng.
+ * Sáng trên :root; tối trong @media (prefers-color-scheme: dark).
+ * -shade = trộn 12% đen, -tint = trộn 10% trắng (công thức chuẩn của Ionic).
+ * Tương phản đã đo (mục 6.3 PLAN.md): đều đạt tối thiểu 4.5:1.
+ */
+
+:root {
+  --ion-font-family: 'Be Vietnam Pro', system-ui, sans-serif;
+
+  --ion-background-color: #fafaf9;
+  --ion-text-color: #0c0a09;
+  --ion-card-background: #ffffff;
+  --ion-item-background: #ffffff;
+  --ion-border-color: #e7e5e4;
+
+  --ion-color-primary: #1c1917;
+  --ion-color-primary-rgb: 28, 25, 23;
+  --ion-color-primary-contrast: #ffffff;
+  --ion-color-primary-contrast-rgb: 255, 255, 255;
+  --ion-color-primary-shade: #191614;
+  --ion-color-primary-tint: #33302e;
+
+  --ion-color-secondary: #44403c;
+  --ion-color-secondary-rgb: 68, 64, 60;
+  --ion-color-secondary-contrast: #ffffff;
+  --ion-color-secondary-contrast-rgb: 255, 255, 255;
+  --ion-color-secondary-shade: #3c3835;
+  --ion-color-secondary-tint: #575350;
+
+  --ion-color-tertiary: #a16207;
+  --ion-color-tertiary-rgb: 161, 98, 7;
+  --ion-color-tertiary-contrast: #ffffff;
+  --ion-color-tertiary-contrast-rgb: 255, 255, 255;
+  --ion-color-tertiary-shade: #8e5606;
+  --ion-color-tertiary-tint: #aa7220;
+
+  --ion-color-success: #15803d;
+  --ion-color-success-rgb: 21, 128, 61;
+  --ion-color-success-contrast: #ffffff;
+  --ion-color-success-contrast-rgb: 255, 255, 255;
+  --ion-color-success-shade: #127136;
+  --ion-color-success-tint: #2c8d50;
+
+  --ion-color-danger: #dc2626;
+  --ion-color-danger-rgb: 220, 38, 38;
+  --ion-color-danger-contrast: #ffffff;
+  --ion-color-danger-contrast-rgb: 255, 255, 255;
+  --ion-color-danger-shade: #c22121;
+  --ion-color-danger-tint: #e03c3c;
+
+  --ion-color-medium: #57534e;
+  --ion-color-medium-rgb: 87, 83, 78;
+  --ion-color-medium-contrast: #ffffff;
+  --ion-color-medium-contrast-rgb: 255, 255, 255;
+  --ion-color-medium-shade: #4d4945;
+  --ion-color-medium-tint: #686460;
+
+  --ion-color-light: #f5f5f4;
+  --ion-color-light-rgb: 245, 245, 244;
+  --ion-color-light-contrast: #0c0a09;
+  --ion-color-light-contrast-rgb: 12, 10, 9;
+  --ion-color-light-shade: #d8d8d7;
+  --ion-color-light-tint: #f6f6f5;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ion-background-color: #0c0a09;
+    --ion-text-color: #fafaf9;
+    --ion-card-background: #1c1917;
+    --ion-item-background: #1c1917;
+    --ion-border-color: #44403c;
+
+    --ion-color-primary: #fafaf9;
+    --ion-color-primary-rgb: 250, 250, 249;
+    --ion-color-primary-contrast: #0c0a09;
+    --ion-color-primary-contrast-rgb: 12, 10, 9;
+    --ion-color-primary-shade: #dcdcdb;
+    --ion-color-primary-tint: #fbfbfa;
+
+    --ion-color-tertiary: #eab308;
+    --ion-color-tertiary-rgb: 234, 179, 8;
+    --ion-color-tertiary-contrast: #0c0a09;
+    --ion-color-tertiary-contrast-rgb: 12, 10, 9;
+    --ion-color-tertiary-shade: #ce9e07;
+    --ion-color-tertiary-tint: #ecbb21;
+
+    --ion-color-success: #4ade80;
+    --ion-color-success-rgb: 74, 222, 128;
+    --ion-color-success-contrast: #0c0a09;
+    --ion-color-success-contrast-rgb: 12, 10, 9;
+    --ion-color-success-shade: #41c371;
+    --ion-color-success-tint: #5ce18d;
+
+    --ion-color-danger: #f87171;
+    --ion-color-danger-rgb: 248, 113, 113;
+    --ion-color-danger-contrast: #0c0a09;
+    --ion-color-danger-contrast-rgb: 12, 10, 9;
+    --ion-color-danger-shade: #da6363;
+    --ion-color-danger-tint: #f97f7f;
+
+    --ion-color-medium: #a8a29e;
+    --ion-color-medium-rgb: 168, 162, 158;
+    --ion-color-medium-contrast: #0c0a09;
+    --ion-color-medium-contrast-rgb: 12, 10, 9;
+    --ion-color-medium-shade: #948f8b;
+    --ion-color-medium-tint: #b1aba8;
+  }
+}
