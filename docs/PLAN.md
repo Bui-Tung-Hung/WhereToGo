@@ -135,6 +135,7 @@ WhereToGo/
    ├─ .env.example
    ├─ public/
    │  ├─ logo.svg
+   │  ├─ privacy.html          (chính sách quyền riêng tư, Google yêu cầu khi publish OAuth)
    │  └─ (icon PNG do pwa-assets-generator sinh ra)
    └─ src/
       ├─ main.tsx
@@ -721,7 +722,7 @@ Cách áp dụng: `[USER]` dán lần lượt 3 file vào Supabase Dashboard →
    - Kiểm tra Data API đang bật, schema `public` được expose.
 3. **Google Cloud:**
    - Tạo project `WhereToGo` (không cần billing), bật "Google Drive API".
-   - Google Auth Platform → Branding: tên app `WhereToGo`, email hỗ trợ.
+   - Google Auth Platform → Branding: tên app `WhereToGo`, email hỗ trợ, home page `https://<github-user>.github.io/WhereToGo/`, privacy policy `https://<github-user>.github.io/WhereToGo/privacy.html`, authorized domains `<github-user>.github.io` và `<project-ref>.supabase.co`.
    - Audience: External, bấm Publish → In production.
    - Data Access: thêm các scope `openid`, `.../auth/userinfo.email`, `.../auth/userinfo.profile`, `.../auth/drive.file`.
    - Clients → Create → Web application `WhereToGo Web`:

@@ -35,7 +35,12 @@ Tài liệu này dành cho **bạn** (chủ app) làm một lần. Thực hiện
 1. Vào https://console.cloud.google.com → tạo project mới tên `WhereToGo`. Không cần bật billing.
 2. **APIs & Services → Library** → tìm "Google Drive API" → **Enable**.
 3. **Google Auth Platform** (hoặc "OAuth consent screen"):
-   - **Branding:** App name `WhereToGo`; User support email và Developer contact là email của bạn.
+   - **Branding:** điền đủ các mục sau (thiếu mục nào thì nút *Publish app* bị khoá):
+     - **App name:** `WhereToGo`
+     - **User support email** và **Developer contact:** email của bạn
+     - **Application home page:** `https://<github-user>.github.io/WhereToGo/`
+     - **Application privacy policy link:** `https://<github-user>.github.io/WhereToGo/privacy.html`
+     - **Authorized domains:** `<github-user>.github.io` và `<project-ref>.supabase.co`
    - **Audience:** User type **External** → bấm **Publish app** để chuyển sang **In production**. Đây là điều kiện để refresh token không hết hạn sau 7 ngày. Quyền `drive.file` không cần Google xét duyệt.
    - **Data Access → Add or remove scopes:** chọn
      - `openid`
