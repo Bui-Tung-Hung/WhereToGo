@@ -530,7 +530,7 @@ Cách áp dụng: `[USER]` dán lần lượt 3 file vào Supabase Dashboard →
     1. "Google Maps": `PasteMapsLinkButton` + ô URL; blur ô URL thì cũng parse.
     2. "Tên" *.
     3. "Địa chỉ".
-    4. "Vị trí": nút "Dùng vị trí hiện tại" (luôn ghi đè toạ độ đang có — D25), hiển thị toạ độ dạng `21.01694, 105.85228`, nút "Xoá vị trí".
+    4. "Vị trí": nút "Dùng vị trí hiện tại" (luôn ghi đè toạ độ đang có — D25), hiển thị toạ độ dạng `21.01694, 105.85228`, nút "Xoá vị trí". Khi vừa dán một link Maps mà kết quả parse không có toạ độ (và vị trí đang trống), hiện dòng gợi ý nhỏ ngay dưới nhóm này: "Link này không có toạ độ — bấm 'Dùng vị trí hiện tại' khi đang ở đó, hoặc dán link chia sẻ từ màn hình Chỉ đường." (B1)
     5. "Ảnh": ảnh đã có + ảnh chờ upload (xem trước qua `URL.createObjectURL`), `PhotoPicker`.
     6. "Loại": `TagPicker`.
     7. "Trạng thái": `IonSegment` 3 lựa chọn.
@@ -561,8 +561,10 @@ Cách áp dụng: `[USER]` dán lần lượt 3 file vào Supabase Dashboard →
   - `isSupportedMapsUrl(url)`: short link, hoặc host Google (`google.<tld>`, `www.google.<tld>`, `maps.google.<tld>`) với path `/maps…` hoặc có một trong các query `q`, `query`, `cid`, `ll`, `ftid`, `daddr`.
   - `parseGoogleMapsUrl(url): ParsedMapsLink { name?, address?, latitude?, longitude?, placeRef?, url }`:
     - `url` không hỗ trợ → `InvalidMapsLinkError`; short link → `InvalidMapsLinkError('needs_resolve')`.
-    - `name`: đoạn path sau `/place/` (đổi `+` thành khoảng trắng, `decodeURIComponent`; bỏ qua nếu đó là toạ độ); nếu không có thì lấy query `query`/`q` khi giá trị không phải toạ độ; nếu vẫn không có thì lấy phần trước dấu phẩy đầu tiên của `daddr` (link chỉ đường).
-    - `address`: phần sau dấu phẩy đầu tiên của `daddr` (chỉ link chỉ đường có).
+    - `name` và `address`, lấy theo thứ tự ưu tiên:
+      1. Đoạn path sau `/place/` (đổi `+` thành khoảng trắng, `decodeURIComponent`; bỏ qua nếu đó là toạ độ). Loại link này không có `address`.
+      2. Query `query`/`q` khi giá trị không phải toạ độ (link "Chia sẻ" từ trang địa điểm trên iOS có dạng `q=<tên>, <địa chỉ>&ftid=…`): tách tại dấu phẩy đầu tiên → `name` là phần trước, `address` là phần sau.
+      3. `daddr` của link chỉ đường: tách giống hệt mục 2.
     - Toạ độ, lấy nguồn đầu tiên có theo thứ tự: cặp `!3d<lat>!4d<lng>`; `@<lat>,<lng>`; đoạn path `/maps/search/<lat>,<lng>` hoặc `/maps/place/<lat>,<lng>` (cho phép `+`/khoảng trắng sau dấu phẩy); query `q`/`query`/`ll` dạng `lat,lng`; đoạn CUỐI của `geocode` (link chỉ đường — giải base64, đọc tag protobuf `0x15` = vĩ độ, `0x1d` = kinh độ, int32 little-endian ÷ 1e6; bỏ qua tag `0x29`/`0x31` 8 byte; sai định dạng thì bỏ qua). Chỉ nhận toạ độ hợp lệ. KHÔNG BAO GIỜ dùng `saddr` (điểm xuất phát = vị trí của người chia sẻ).
     - `placeRef`, lấy nguồn đầu tiên có theo thứ tự:
       1. ftid `0x…:0x…` từ `!1s` hoặc query `ftid`.
@@ -773,7 +775,7 @@ Cách áp dụng: `[USER]` dán lần lượt 3 file vào Supabase Dashboard →
   - `hours` null → unknown; mảng rỗng → closed.
   - `validateWeek` bắt lỗi: phút 07, khung chồng nhau, 4 khung trong 1 ngày.
   - `formatRanges`: đủ 3 trường hợp.
-- `parseGoogleMapsUrl.test.ts` với 11 URL:
+- `parseGoogleMapsUrl.test.ts` với 12 URL:
   1. `https://www.google.com/maps/place/Ph%E1%BB%9F+Th%C3%ACn/@21.0169,105.8497,17z/data=!3m1!4b1!4m6!3m5!1s0x3135ab8e0a0f0e8b:0x5e7c6b1d5d5f0b0!8m2!3d21.016943!4d105.852277!16s%2Fg%2F11b6` → tên "Phở Thìn", lat 21.016943, lng 105.852277, placeRef `0x3135ab8e0a0f0e8b:0x5e7c6b1d5d5f0b0`.
   2. `https://www.google.com/maps/@10.7769,106.7009,15z` → không có tên, có toạ độ.
   3. `https://maps.google.com/?q=10.7769,106.7009` → toạ độ.
@@ -785,6 +787,7 @@ Cách áp dụng: `[USER]` dán lần lượt 3 file vào Supabase Dashboard →
   9. Link chỉ đường `maps.google.com/?geocode=…;…&daddr=…&saddr=…&ftid=…` (dữ liệu mẫu công khai: Chợ Bến Thành) → tên và địa chỉ tách từ `daddr`, toạ độ nơi đến giải từ `geocode` (khác `saddr`), placeRef từ `ftid`.
   10. `https://www.google.com/maps/search/21.034699,+105.852143?…` → toạ độ lấy từ path, không có tên.
   11. `https://www.google.com/maps/place/Thang+Long+Water+Puppet+Theatre/@…!3d21.0316826!4d105.8533466` → tên từ path, toạ độ từ `!3d!4d`.
+  12. `https://maps.google.com?q=Morin+-+Flowers+and+Tea,+1/2/27+Võ+Oanh,…&ftid=0x31752900786ca413:0x41c26f1e7c95fb3e&entry=gps` (link chia sẻ trang địa điểm trên iOS) → tên "Morin - Flowers and Tea", địa chỉ "1/2/27 Võ Oanh, Thạnh Mỹ Tây, Hồ Chí Minh", không có toạ độ, placeRef từ `ftid`.
 - `placeFilters.test.ts`:
   - Tìm "pho" khớp "Phở Thìn".
   - Lọc nhiều nhãn theo kiểu HOẶC.

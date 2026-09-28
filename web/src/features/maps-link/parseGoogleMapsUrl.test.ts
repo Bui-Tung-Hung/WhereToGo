@@ -115,4 +115,17 @@ describe('parseGoogleMapsUrl', () => {
     expect(result.longitude).toBeCloseTo(105.8533466, 6);
     expect(result.placeRef).toBe('0x3135abc013454289:0x4e5ea7a5d23aad1c');
   });
+
+  it('12. link "Chia sẻ" từ trang địa điểm (iOS): q = "tên, địa chỉ" + ftid, không có toạ độ', () => {
+    const url =
+      'https://maps.google.com?q=Morin+-+Flowers+and+Tea,+1/2/27+V%C3%B5+Oanh,+Th%E1%BA%A1nh+M%E1%BB%B9+T%C3%A2y,+H%E1%BB%93+Ch%C3%AD+Minh' +
+      '&ftid=0x31752900786ca413:0x41c26f1e7c95fb3e&entry=gps&g_st=ic';
+    const result = parseGoogleMapsUrl(url);
+
+    expect(result.name).toBe('Morin - Flowers and Tea');
+    expect(result.address).toBe('1/2/27 Võ Oanh, Thạnh Mỹ Tây, Hồ Chí Minh');
+    expect(result.latitude).toBeUndefined();
+    expect(result.longitude).toBeUndefined();
+    expect(result.placeRef).toBe('0x31752900786ca413:0x41c26f1e7c95fb3e');
+  });
 });

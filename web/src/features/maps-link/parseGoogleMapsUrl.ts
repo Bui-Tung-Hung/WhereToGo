@@ -110,25 +110,25 @@ function extractNameFromPath(pathname: string): string | undefined {
 }
 
 /**
- * Nơi đến của link chỉ đường (`daddr`), tách thành tên (trước dấu phẩy đầu
- * tiên) và địa chỉ (phần còn lại). Bỏ qua khi `daddr` chỉ là toạ độ.
+ * Tách chuỗi dạng "tên, địa chỉ" tại dấu phẩy đầu tiên. Bỏ qua khi chuỗi rỗng
+ * hoặc chỉ là toạ độ.
  */
-function splitDestination(url: URL): { name?: string; address?: string } {
-  const destination = url.searchParams.get('daddr')?.trim();
-  if (!destination || parseLatLngPair(destination)) {
+function splitNameAndAddress(text: string | null | undefined): { name?: string; address?: string } {
+  const value = text?.trim();
+  if (!value || parseLatLngPair(value)) {
     return {};
   }
-  const commaIndex = destination.indexOf(',');
+  const commaIndex = value.indexOf(',');
   if (commaIndex === -1) {
-    return { name: destination };
+    return { name: value };
   }
-  const name = destination.slice(0, commaIndex).trim();
-  const address = destination.slice(commaIndex + 1).trim();
+  const name = value.slice(0, commaIndex).trim();
+  const address = value.slice(commaIndex + 1).trim();
   return { name: name || undefined, address: address || undefined };
 }
 
-/** Query `query` hoặc `q`, chỉ khi giá trị đó không phải là một cặp toạ độ. */
-function extractNameFromQuery(url: URL): string | undefined {
+/** Query `query` hoặc `q` đầu tiên có giá trị không phải là một cặp toạ độ. */
+function extractQueryText(url: URL): string | undefined {
   for (const key of ['query', 'q']) {
     const value = url.searchParams.get(key);
     if (value && !parseLatLngPair(value)) {
@@ -138,8 +138,22 @@ function extractNameFromQuery(url: URL): string | undefined {
   return undefined;
 }
 
-function extractName(url: URL): string | undefined {
-  return extractNameFromPath(url.pathname) ?? extractNameFromQuery(url) ?? splitDestination(url).name;
+/**
+ * Tên và địa chỉ, theo thứ tự ưu tiên:
+ * 1. path `/place/<tên>` (loại link này không có địa chỉ);
+ * 2. query `query`/`q` — link "Chia sẻ" từ trang địa điểm có dạng "tên, địa chỉ";
+ * 3. `daddr` — nơi đến của link chỉ đường, cũng dạng "tên, địa chỉ".
+ */
+function extractNameAndAddress(url: URL): { name?: string; address?: string } {
+  const pathName = extractNameFromPath(url.pathname);
+  if (pathName) {
+    return { name: pathName };
+  }
+  const queryText = extractQueryText(url);
+  if (queryText) {
+    return splitNameAndAddress(queryText);
+  }
+  return splitNameAndAddress(url.searchParams.get('daddr'));
 }
 
 /**
@@ -305,10 +319,11 @@ export function parseGoogleMapsUrl(url: string): ParsedMapsLink {
   }
 
   const coordinates = extractCoordinates(parsed);
+  const { name, address } = extractNameAndAddress(parsed);
 
   return {
-    name: extractName(parsed),
-    address: splitDestination(parsed).address,
+    name,
+    address,
     latitude: coordinates?.latitude,
     longitude: coordinates?.longitude,
     placeRef: extractPlaceRef(parsed),
