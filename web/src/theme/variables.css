@@ -106,5 +106,13 @@
     --ion-color-medium-contrast-rgb: 12, 10, 9;
     --ion-color-medium-shade: #948f8b;
     --ion-color-medium-tint: #b1aba8;
+
+    /* "light" là màu nền phụ (ô ảnh trống, nền bánh xe IonDatetime) — ở chế độ tối phải tối. */
+    --ion-color-light: #292524;
+    --ion-color-light-rgb: 41, 37, 36;
+    --ion-color-light-contrast: #fafaf9;
+    --ion-color-light-contrast-rgb: 250, 250, 249;
+    --ion-color-light-shade: #242120;
+    --ion-color-light-tint: #3e3b3a;
   }
 }

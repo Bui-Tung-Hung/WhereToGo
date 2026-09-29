@@ -145,6 +145,16 @@ export function PlaceListPage({ mode }: PlaceListPageProps): React.JSX.Element {
       );
     }
 
+    if (mode === 'nearby' && sorted.length === 0 && withoutCoordsCount > 0) {
+      return (
+        <EmptyState
+          icon={locationOutline}
+          title="Chưa có địa điểm nào có vị trí"
+          message={`${withoutCoordsCount} địa điểm chưa có vị trí. Mở địa điểm → Sửa → bấm "Dùng vị trí hiện tại" khi đang ở đó, hoặc dán link chia sẻ từ màn hình Chỉ đường của Google Maps.`}
+        />
+      );
+    }
+
     if (sorted.length === 0) {
       return (
         <EmptyState

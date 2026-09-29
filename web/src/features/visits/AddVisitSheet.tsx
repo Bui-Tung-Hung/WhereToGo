@@ -3,9 +3,10 @@ import {
   IonButtons,
   IonContent,
   IonDatetime,
-  IonFooter,
+  IonHeader,
   IonModal,
   IonTextarea,
+  IonTitle,
   IonToolbar,
   useIonAlert,
   type TextareaCustomEvent,
@@ -83,6 +84,27 @@ export function AddVisitSheet({
       breakpoints={[0, 0.75]}
       initialBreakpoint={0.75}
     >
+      {/* Nút đặt ở đầu sheet: footer của sheet modal nằm dưới phần bị che khi sheet chưa kéo hết. */}
+      <IonHeader>
+        <IonToolbar>
+          <IonButtons slot="start">
+            <IonButton className="wtg-tap-target" onClick={resetAndDismiss}>
+              Huỷ
+            </IonButton>
+          </IonButtons>
+          <IonTitle>Thêm lần đi</IonTitle>
+          <IonButtons slot="end">
+            <IonButton
+              className="wtg-tap-target"
+              strong
+              disabled={!isOnline || addVisit.isPending}
+              onClick={() => void handleSave()}
+            >
+              Lưu
+            </IonButton>
+          </IonButtons>
+        </IonToolbar>
+      </IonHeader>
       <IonContent className="wtg-page">
         <IonDatetime
           presentation="date"
@@ -102,25 +124,6 @@ export function AddVisitSheet({
           onIonInput={(event: TextareaCustomEvent) => setNote(event.detail.value ?? '')}
         />
       </IonContent>
-      <IonFooter>
-        <IonToolbar>
-          <IonButtons slot="start">
-            <IonButton className="wtg-tap-target" onClick={resetAndDismiss}>
-              Huỷ
-            </IonButton>
-          </IonButtons>
-          <IonButtons slot="end">
-            <IonButton
-              className="wtg-tap-target"
-              strong
-              disabled={!isOnline || addVisit.isPending}
-              onClick={() => void handleSave()}
-            >
-              Lưu
-            </IonButton>
-          </IonButtons>
-        </IonToolbar>
-      </IonFooter>
     </IonModal>
   );
 }

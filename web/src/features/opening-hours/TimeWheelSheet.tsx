@@ -3,7 +3,7 @@ import {
   IonButtons,
   IonContent,
   IonDatetime,
-  IonFooter,
+  IonHeader,
   IonModal,
   IonToolbar,
 } from '@ionic/react';
@@ -80,22 +80,8 @@ export function TimeWheelSheet({
       breakpoints={[0, 0.5]}
       initialBreakpoint={0.5}
     >
-      <IonContent>
-        <IonDatetime
-          presentation="time"
-          hourCycle="h23"
-          minuteValues={MINUTE_VALUES}
-          locale="vi-VN"
-          value={isoValue}
-          onIonChange={(event) => {
-            const nextValue = event.detail.value;
-            if (typeof nextValue === 'string') {
-              setIsoValue(nextValue);
-            }
-          }}
-        />
-      </IonContent>
-      <IonFooter>
+      {/* Nút đặt ở đầu sheet: footer của sheet modal nằm dưới phần bị che ở breakpoint 0.5. */}
+      <IonHeader>
         <IonToolbar>
           <IonButtons slot="start">
             <IonButton className="wtg-tap-target" onClick={onDismiss}>
@@ -113,7 +99,22 @@ export function TimeWheelSheet({
             </IonButton>
           </IonButtons>
         </IonToolbar>
-      </IonFooter>
+      </IonHeader>
+      <IonContent>
+        <IonDatetime
+          presentation="time"
+          hourCycle="h23"
+          minuteValues={MINUTE_VALUES}
+          locale="vi-VN"
+          value={isoValue}
+          onIonChange={(event) => {
+            const nextValue = event.detail.value;
+            if (typeof nextValue === 'string') {
+              setIsoValue(nextValue);
+            }
+          }}
+        />
+      </IonContent>
     </IonModal>
   );
 }
