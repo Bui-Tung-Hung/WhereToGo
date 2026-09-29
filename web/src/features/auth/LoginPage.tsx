@@ -2,11 +2,12 @@ import { IonButton, IonContent, IonPage } from '@ionic/react';
 import { useState } from 'react';
 import { toUserMessage } from '../../lib/errors';
 import { logger } from '../../lib/logger';
+import { getAuthRedirectErrorMessage } from './authRedirectError';
 import { signInWithGoogle } from './authService';
 
 /** Trang đăng nhập — điểm vào duy nhất khi chưa có session (mục 6.6 PLAN.md). */
 export function LoginPage(): React.JSX.Element {
-  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [errorMessage, setErrorMessage] = useState<string | null>(getAuthRedirectErrorMessage);
   const [isSigningIn, setIsSigningIn] = useState(false);
 
   async function handleSignIn(): Promise<void> {

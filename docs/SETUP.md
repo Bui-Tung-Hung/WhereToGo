@@ -153,7 +153,7 @@ Vào repo → **Settings → Secrets and variables → Actions**.
 
 1. Đăng nhập app bằng tài khoản Google của bạn ít nhất một lần.
 2. Supabase → **Authentication → Settings** (hoặc Sign In / Providers → User Signups) → **TẮT** "Allow new users to sign up".
-3. **Kiểm tra:** mở app ở cửa sổ ẩn danh, đăng nhập bằng **một tài khoản Google khác**. Phải bị từ chối, thường kèm thông báo kiểu "Signups not allowed". Tài khoản của bạn vẫn đăng nhập bình thường.
+3. **Kiểm tra:** mở app ở cửa sổ ẩn danh, đăng nhập bằng **một tài khoản Google khác**. Phải bị từ chối, trang Đăng nhập hiện thông báo "Tài khoản Google này không có quyền dùng WhereToGo…". Tài khoản của bạn vẫn đăng nhập bình thường.
 
 ---
 

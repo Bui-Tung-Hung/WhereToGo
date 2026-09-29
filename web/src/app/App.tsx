@@ -27,7 +27,8 @@ const persister = createPersister();
  * qua cache cũ đã persist thay vì cố phục hồi dữ liệu có thể không còn khớp
  * hình dạng mới. Route đầy đủ theo mục 6.4: `#/login`, `#/tabs/*` (3 tab con,
  * xem `Tabs.tsx`), `#/places/new`, `#/places/:id`, `#/places/:id/edit`,
- * `#/settings/tags`; `/` chuyển về `#/tabs/explore`. Route `#/spike` của
+ * `#/settings/tags`; `/` chuyển về `#/tabs/explore`; hash không khớp route
+ * nào chuyển về `/` (không bao giờ ra màn hình trắng). Route `#/spike` của
  * Giai đoạn B đã bị xoá (bước 69).
  */
 export function App(): React.JSX.Element {
@@ -82,6 +83,7 @@ export function App(): React.JSX.Element {
                 }
               />
               <Route path="/" element={<Navigate to="/tabs/explore" replace />} />
+              <Route path="*" element={<Navigate to="/" replace />} />
             </IonRouterOutlet>
           </IonReactHashRouter>
         </AuthProvider>

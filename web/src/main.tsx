@@ -16,6 +16,7 @@ import './theme/global.css';
 
 import { createRoot } from 'react-dom/client';
 import { App } from './app/App';
+import { captureAuthRedirectError } from './features/auth/authRedirectError';
 import { initializeAuth } from './features/auth/authService';
 
 setupIonicReact({
@@ -24,11 +25,13 @@ setupIonicReact({
 });
 
 /**
- * Khởi động app: xử lý `?code=` (đăng nhập OAuth PKCE) TRƯỚC khi router
- * render, để tránh điều hướng sai trong lúc supabase-js còn đang đổi code
- * lấy session (mục 6.1 PLAN.md), rồi mới render `<App />`.
+ * Khởi động app: bắt lỗi đăng nhập Supabase trả về qua URL (vd. đăng ký bị
+ * tắt) và đưa URL về `#/login`, xử lý `?code=` (đăng nhập OAuth PKCE) TRƯỚC
+ * khi router render, để tránh điều hướng sai trong lúc supabase-js còn đang
+ * đổi code lấy session (mục 6.1 PLAN.md), rồi mới render `<App />`.
  */
 async function bootstrap(): Promise<void> {
+  captureAuthRedirectError();
   await initializeAuth();
 
   const container = document.getElementById('root');

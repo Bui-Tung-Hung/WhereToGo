@@ -360,6 +360,7 @@ Cách áp dụng: `[USER]` dán lần lượt 3 file vào Supabase Dashboard →
 - `#/places/:id/edit` → `PlaceFormPage` (sửa)
 - `#/spike` → `SpikePage` (chỉ Giai đoạn B)
 - `/` → chuyển `#/tabs/explore`
+- Hash không khớp route nào → chuyển về `/`
 - Mọi route trừ `#/login` bọc `RequireAuth` (chưa đăng nhập → `#/login`).
 - `Tabs.tsx`: `IonTabs` + `IonRouterOutlet` + `IonTabBar slot="bottom"` với 3 nút: Khám phá (`compassOutline`/`compass`), Gần tôi (`locationOutline`/`location`), Cài đặt (`settingsOutline`/`settings`).
 - Cú pháp route theo tài liệu chính thức "Ionic React Navigation" cho React Router v6 của Ionic 9.
@@ -410,7 +411,8 @@ Cách áp dụng: `[USER]` dán lần lượt 3 file vào Supabase Dashboard →
   - `forwardProviderRefreshToken(session)` (nội bộ): nếu `session.provider_refresh_token` tồn tại và chưa gửi trong phiên này (Set trong module) → `storeRefreshToken()`; lỗi → `logger.error('refresh_token_forward_failed')` và giữ trạng thái để UI báo "cần kết nối lại Drive".
 - `AuthProvider.tsx`: context `{ session, user, status: 'loading'|'signed_in'|'signed_out', driveLinked: boolean|null }`; khi chuyển sang `signed_in` thì gọi `seedDefaultTags()` một lần mỗi lần mở app rồi invalidate `['tags']`.
 - `useAuth.ts`, `RequireAuth.tsx`.
-- `LoginPage.tsx`: logo, chữ "WhereToGo" (`.wtg-display`), dòng phụ "Kho địa điểm của riêng bạn", nút "Tiếp tục với Google" (primary, rộng hết), chú thích "App sẽ xin quyền lưu ảnh vào một thư mục riêng trên Google Drive của bạn."
+- `authRedirectError.ts`: `parseAuthRedirectError(search, hash)` đọc `error`/`error_code` từ query rồi hash (bỏ qua hash bắt đầu bằng `/`); `authRedirectErrorMessage()` (`signup_disabled` → "Tài khoản Google này không có quyền dùng WhereToGo. Hãy đăng nhập bằng tài khoản của chủ app.", còn lại → "Đăng nhập Google không thành công. Vui lòng thử lại."); `captureAuthRedirectError()` gọi đầu `bootstrap()` ở `main.tsx`, có lỗi thì lưu thông báo, `logger.warn('auth_redirect_error')` và `replaceState` về `#/login`; `getAuthRedirectErrorMessage()`.
+- `LoginPage.tsx`: logo, chữ "WhereToGo" (`.wtg-display`), dòng phụ "Kho địa điểm của riêng bạn", nút "Tiếp tục với Google" (primary, rộng hết), chú thích "App sẽ xin quyền lưu ảnh vào một thư mục riêng trên Google Drive của bạn."; hiện lỗi đăng nhập Supabase trả về qua URL (khởi tạo state lỗi bằng `getAuthRedirectErrorMessage`).
 
 **google**
 - `googleTokenService.ts`: `storeRefreshToken(token)` → `POST /api/google/credentials`; `getDriveAccessToken(): Promise<string>` (cache trong bộ nhớ tới `expires_at − 60s`, gộp các lời gọi đồng thời vào một promise); `clearDriveAccessToken()`.
@@ -878,7 +880,7 @@ Nghiệm thu Giai đoạn D:
 - **D-10:** Chế độ tối hiển thị đúng; chữ tiếng Việt có dấu hiển thị đúng font; không có chỗ nào bị tai thỏ hoặc thanh vuốt che.
 - **D-11:** Xoá địa điểm → mọi ảnh của nó biến mất khỏi Drive.
 - **D-12:** Chạy tay workflow "backup" → có file `wheretogo-backup-YYYY-MM-DD.json` trong thư mục "WhereToGo Backups". Chạy tay "keepalive" → thành công.
-- **D-13:** Sau khi tắt đăng ký (D24), đăng nhập bằng tài khoản Google khác → bị từ chối.
+- **D-13:** Sau khi tắt đăng ký (D24), đăng nhập bằng tài khoản Google khác → bị từ chối và trang Đăng nhập hiện thông báo không có quyền.
 
 ---
 
@@ -992,4 +994,8 @@ IMPLEMENTATION CHECKLIST:
 73. **[USER]** Làm `docs/SETUP.md` bước 10: tắt "Allow new users to sign up" rồi kiểm bằng một tài khoản Google khác (D-13).
 74. **[USER]** GitHub → Actions → chạy tay `keepalive` và `backup` (D-12).
 75. **[USER]** Chạy nghiệm thu D-1 đến D-11 trên iPhone (app ở màn hình chính) và Chrome PC; báo kết quả.
+75a. (Sửa sau nghiệm thu D-13) Tạo `web/src/features/auth/authRedirectError.ts` (+ `.test.ts` 6 ca); gọi `captureAuthRedirectError()` đầu `bootstrap()` ở `main.tsx`; `LoginPage` khởi tạo state lỗi bằng `getAuthRedirectErrorMessage`; thêm route `*` → `/` ở `App.tsx`.
+75b. Chạy `lint`, `typecheck`, `test`, `build` trong `web/`; kiểm bằng dev server: URL lỗi `signup_disabled` → trang Đăng nhập hiện thông báo, hash lạ → về `#/login`.
+75c. Tôi `git add`; bạn tự commit và push; kiểm `ci` và `deploy-web` xanh.
+75d. **[USER]** Làm lại D-13 bằng cửa sổ ẩn danh trên PC; chạy tay `backup` sau khi đã có dữ liệu (D-12).
 76. **[GATE D]** Tất cả đạt → xong MVP. Có lỗi → tôi ghi lại và quay về PLAN nếu cách sửa vượt ngoài spec.
