@@ -1,5 +1,6 @@
 import { del } from 'idb-keyval';
 import type { Session } from '@supabase/supabase-js';
+import { clearActiveQueryClient } from '../../app/queryClient';
 import { AuthRequiredError } from '../../lib/errors';
 import { logger } from '../../lib/logger';
 import { supabase } from '../../lib/supabaseClient';
@@ -91,12 +92,14 @@ export async function signInWithGoogle(): Promise<void> {
 
 /**
  * Đăng xuất và dọn mọi dữ liệu đã lưu tạm của phiên trước (ảnh thu nhỏ,
- * access token Drive, cache truy vấn đã persist).
+ * access token Drive, cache TanStack Query trong bộ nhớ lẫn bản đã persist
+ * trong IndexedDB — carry-over ghi nhận từ Giai đoạn A, xem PLAN.md bước 68).
  */
 export async function signOut(): Promise<void> {
   await supabase.auth.signOut();
   await clearThumbnails();
   clearDriveAccessToken();
+  clearActiveQueryClient();
   try {
     await del(QUERY_CACHE_PERSIST_KEY);
   } catch (error) {

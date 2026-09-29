@@ -20,7 +20,11 @@ const RETRY_DELAY_MS = 5000;
 
 /** Mở file ảnh gốc trên Google Drive trong tab mới. */
 function openInDrive(driveFileId: string): void {
-  window.open(`https://drive.google.com/file/d/${driveFileId}/view`, '_blank', 'noopener,noreferrer');
+  window.open(
+    `https://drive.google.com/file/d/${driveFileId}/view`,
+    '_blank',
+    'noopener,noreferrer',
+  );
 }
 
 /**
@@ -28,7 +32,12 @@ function openInDrive(driveFileId: string): void {
  * tải khi phần tử lọt vào màn hình. Ảnh chưa có bản xem trước (Drive chưa
  * xử lý xong) tự thử lại tối đa 3 lần, cách nhau 5 giây (mục 6.6 PLAN.md).
  */
-export function AuthedImage({ driveFileId, size, alt, className }: AuthedImageProps): React.JSX.Element {
+export function AuthedImage({
+  driveFileId,
+  size,
+  alt,
+  className,
+}: AuthedImageProps): React.JSX.Element {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const [isVisible, setIsVisible] = useState(false);
   const [state, setState] = useState<LoadState>('loading');
@@ -123,14 +132,16 @@ export function AuthedImage({ driveFileId, size, alt, className }: AuthedImagePr
     <div ref={containerRef} className={className}>
       {state === 'loading' && <IonSkeletonText animated aria-label="Đang tải ảnh" />}
       {state === 'loaded' && objectUrl && <img src={objectUrl} alt={alt} />}
-      {state === 'error' && (
-        <IonIcon icon={imageOutline} aria-label="Không tải được ảnh" />
-      )}
+      {state === 'error' && <IonIcon icon={imageOutline} aria-label="Không tải được ảnh" />}
       {state === 'not_ready' && (
         <button
           type="button"
           className="wtg-tap-target"
-          onClick={() => openInDrive(driveFileId)}
+          onClick={(event) => {
+            // Không để cú chạm lan lên thẻ cha (vd. PlaceCard) làm mở cả trang chi tiết.
+            event.stopPropagation();
+            openInDrive(driveFileId);
+          }}
           aria-label="Chưa có ảnh xem trước, chạm để mở trên Google Drive"
         >
           <IonIcon icon={imageOutline} />

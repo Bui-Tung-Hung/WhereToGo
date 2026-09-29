@@ -36,6 +36,21 @@ async function readErrorBody(response: Response): Promise<ApiErrorBody> {
   }
 }
 
+const googleReauthListeners = new Set<() => void>();
+
+/**
+ * Đăng ký nhận thông báo mỗi khi một lời gọi API bất kỳ trả
+ * `GoogleReauthRequiredError` (để UI hiện banner "Cần kết nối lại Google Drive").
+ *
+ * @returns Hàm huỷ đăng ký.
+ */
+export function onGoogleReauthRequired(listener: () => void): () => void {
+  googleReauthListeners.add(listener);
+  return () => {
+    googleReauthListeners.delete(listener);
+  };
+}
+
 /** Ánh xạ một response lỗi (status ngoài 2xx) sang lớp lỗi tương ứng của app. */
 async function throwForErrorResponse(response: Response): Promise<never> {
   const body = await readErrorBody(response);
@@ -45,6 +60,7 @@ async function throwForErrorResponse(response: Response): Promise<never> {
     throw new AuthRequiredError();
   }
   if (response.status === 409 && code === 'google_reauth_required') {
+    googleReauthListeners.forEach((listener) => listener());
     throw new GoogleReauthRequiredError();
   }
   throw new ApiError(response.status, code, body.message);

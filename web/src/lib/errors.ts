@@ -1,3 +1,5 @@
+import type { PostgrestError } from '@supabase/supabase-js';
+
 /**
  * Lỗi nghiệp vụ cơ sở của app: mọi lỗi đã phân loại đều là `AppError`
  * (hoặc lớp con), mang theo `code` ổn định để so khớp trong logic và UI.
@@ -90,6 +92,23 @@ export class OfflineError extends AppError {
 }
 
 /**
+ * Đổi một lỗi PostgREST/Postgres (từ một lời gọi supabase-js tới bảng dữ
+ * liệu của app: `places`, `tags`, `place_tags`, `photos`, `visits`) sang
+ * `ApiError` dùng chung, giữ nguyên mã lỗi gốc (`error.code`, ví dụ mã lỗi
+ * Postgres `23505` hay mã PostgREST `PGRST116`) để logic/UI so khớp khi cần.
+ *
+ * Dùng ở mọi repository gọi supabase-js (`tagRepository`, `placeRepository`,
+ * `photoRepository`, `visitRepository`) thay vì bắt lỗi kiểu bắt-tất (silent
+ * catch-all) — xem quy tắc chất lượng mã của dự án.
+ *
+ * @param error - Lỗi trả về trong trường `error` của một lời gọi supabase-js.
+ * @param status - Mã trạng thái HTTP gần đúng nhất (mặc định 500 khi không rõ).
+ */
+export function mapPostgrestError(error: PostgrestError, status = 500): ApiError {
+  return new ApiError(status, error.code || 'postgrest_error', error.message, error);
+}
+
+/**
  * Đổi một lỗi bất kỳ (đã phân loại hay chưa) thành câu thông báo tiếng Việt
  * hiển thị được cho người dùng.
  *
@@ -144,7 +163,10 @@ export function toUserMessage(error: unknown): string {
     return error.message || 'Dữ liệu không hợp lệ.';
   }
   if (error instanceof ApiError) {
-    return 'Đã có lỗi xảy ra, vui lòng thử lại.';
+    // 23505 = unique_violation của Postgres (vd. trùng tên nhãn).
+    return error.code === '23505'
+      ? 'Dữ liệu này đã tồn tại.'
+      : 'Đã có lỗi xảy ra, vui lòng thử lại.';
   }
   if (error instanceof AppError) {
     return 'Đã có lỗi xảy ra, vui lòng thử lại.';
