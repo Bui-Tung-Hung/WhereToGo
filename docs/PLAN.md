@@ -243,7 +243,9 @@ Quy tắc chung: cài bằng `npm install <pkg>@<range>`; ghi range dạng `^` t
 - Hàm `public.seed_default_tags()` returns void, `language sql`, `security invoker`, `set search_path = public`: insert 4 dòng (`Ăn uống`, `Vui chơi`, `Du lịch`, `Hẹn hò`) với `user_id = auth.uid()`, `on conflict (user_id, lower(name)) do nothing`.
 - `revoke execute on function public.seed_default_tags() from public, anon`; `grant execute ... to authenticated`.
 
-Cách áp dụng: `[USER]` dán lần lượt 3 file vào Supabase Dashboard → SQL Editor → Run. File trong repo là nguồn chuẩn.
+- `20260929000100_seed_default_tags_once.sql` (sửa sau nghiệm thu D-9): `create or replace` lại `seed_default_tags()` với cùng chữ ký và thiết lập, chỉ insert 4 nhãn mặc định khi `not exists (select 1 from public.tags where user_id = auth.uid())`, vẫn giữ `on conflict (user_id, lower(name)) do nothing`; lặp lại revoke/grant như trên. Nhờ vậy nhãn mặc định đã xoá hoặc đổi tên không quay lại khi mở app.
+
+Cách áp dụng: `[USER]` dán lần lượt 4 file (3 file trên và `20260929000100_seed_default_tags_once.sql`) vào Supabase Dashboard → SQL Editor → Run. File trong repo là nguồn chuẩn.
 
 ---
 
@@ -546,7 +548,7 @@ Cách áp dụng: `[USER]` dán lần lượt 3 file vào Supabase Dashboard →
   - Rời trang khi có thay đổi chưa lưu → `IonAlert` hỏi "Bỏ thay đổi?".
 
 **tags**
-- `tagRepository.ts`: `listTags()` (sắp theo tên, collation mặc định), `createTag(name)`, `renameTag(id, name)`, `deleteTag(id)`, `seedDefaultTags()` (rpc).
+- `tagRepository.ts`: `listTags()` (sắp theo tên, collation mặc định), `createTag(name)`, `renameTag(id, name)`, `deleteTag(id)`, `seedDefaultTags()` (rpc; chỉ tạo 4 nhãn mặc định khi user chưa có nhãn nào, nhãn mặc định đã xoá hoặc đổi tên không bị tạo lại).
 - `tagQueries.ts`: `useTags()`, `useCreateTag()`, `useRenameTag()`, `useDeleteTag()`. Mọi mutation invalidate `['tags']` và `['places']`.
 - `TagPicker({ value, onChange })`:
   - Chip bật/tắt cho từng nhãn, và chip "＋ Nhãn mới".
@@ -876,7 +878,7 @@ Nghiệm thu Giai đoạn D:
   - Ảnh đã xem trước đó vẫn hiện.
   - Các nút ＋, "Sửa", "Thêm lần đi" bị ẩn.
 - **D-8:** Sửa trên Chrome PC → iPhone kéo để làm mới thì thấy thay đổi, và làm ngược lại.
-- **D-9:** Quản lý nhãn: đổi tên, xoá (nhãn biến mất khỏi các địa điểm).
+- **D-9:** Quản lý nhãn: đổi tên, xoá (nhãn biến mất khỏi các địa điểm); đóng và mở lại app thì nhãn đã xoá không quay lại.
 - **D-10:** Chế độ tối hiển thị đúng; chữ tiếng Việt có dấu hiển thị đúng font; không có chỗ nào bị tai thỏ hoặc thanh vuốt che.
 - **D-11:** Xoá địa điểm → mọi ảnh của nó biến mất khỏi Drive.
 - **D-12:** Chạy tay workflow "backup" → có file `wheretogo-backup-YYYY-MM-DD.json` trong thư mục "WhereToGo Backups". Chạy tay "keepalive" → thành công.
@@ -998,4 +1000,8 @@ IMPLEMENTATION CHECKLIST:
 75b. Chạy `lint`, `typecheck`, `test`, `build` trong `web/`; kiểm bằng dev server: URL lỗi `signup_disabled` → trang Đăng nhập hiện thông báo, hash lạ → về `#/login`.
 75c. Tôi `git add`; bạn tự commit và push; kiểm `ci` và `deploy-web` xanh.
 75d. **[USER]** Làm lại D-13 bằng cửa sổ ẩn danh trên PC; chạy tay `backup` sau khi đã có dữ liệu (D-12).
+75e. (Sửa sau nghiệm thu D-9) Tạo `supabase/migrations/20260929000100_seed_default_tags_once.sql` (4.3); sửa JSDoc `seedDefaultTags` trong `tagRepository.ts`; thêm file vào `docs/SETUP.md` bước 5.
+75f. Chạy `lint`, `typecheck`, `test`, `build` trong `web/`; tôi `git add`; bạn tự commit và push; kiểm `ci` và `deploy-web` xanh.
+75g. **[USER]** Supabase → SQL Editor → chạy file migration mới → không lỗi.
+75h. **[USER]** Làm lại D-9: xoá nhãn mặc định không cần → tắt hẳn rồi mở lại app 2 lần → nhãn không quay lại.
 76. **[GATE D]** Tất cả đạt → xong MVP. Có lỗi → tôi ghi lại và quay về PLAN nếu cách sửa vượt ngoài spec.

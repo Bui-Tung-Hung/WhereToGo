@@ -70,6 +70,7 @@ Vào **SQL Editor → New query**. Chạy lần lượt từng file dưới đâ
 1. `supabase/migrations/20260924000100_init_schema.sql`
 2. `supabase/migrations/20260924000200_rls_and_grants.sql`
 3. `supabase/migrations/20260924000300_functions.sql`
+4. `supabase/migrations/20260929000100_seed_default_tags_once.sql`
 
 ## Bước 6 — Khoá mã hoá refresh token
 

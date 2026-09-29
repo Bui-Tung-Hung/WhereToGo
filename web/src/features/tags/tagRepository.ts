@@ -91,8 +91,8 @@ export async function deleteTag(id: string): Promise<void> {
 }
 
 /**
- * Tạo 4 nhãn mặc định cho user hiện tại nếu chưa có (RPC `seed_default_tags`,
- * an toàn gọi nhiều lần — `on conflict ... do nothing` ở phía SQL).
+ * Tạo 4 nhãn mặc định khi user chưa có nhãn nào (RPC `seed_default_tags`);
+ * nhãn mặc định đã xoá hoặc đổi tên không bị tạo lại. An toàn gọi nhiều lần.
  */
 export async function seedDefaultTags(): Promise<void> {
   const { error } = await supabase.rpc('seed_default_tags');
