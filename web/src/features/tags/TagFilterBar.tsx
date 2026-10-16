@@ -1,4 +1,4 @@
-import { IonChip, IonLabel } from '@ionic/react';
+import { ToggleChip } from '../../shared/components/ToggleChip';
 import { useTags } from './tagQueries';
 
 export interface TagFilterBarProps {
@@ -26,29 +26,14 @@ export function TagFilterBar({ selected, onChange }: TagFilterBarProps): React.J
 
   return (
     <div style={{ display: 'flex', gap: 8, overflowX: 'auto', padding: '8px 0' }}>
-      {tags.map((tag) => {
-        const isSelected = selected.includes(tag.id);
-        return (
-          <IonChip
-            key={tag.id}
-            className="wtg-tap-target"
-            color={isSelected ? 'primary' : undefined}
-            outline={!isSelected}
-            role="button"
-            tabIndex={0}
-            aria-pressed={isSelected}
-            onClick={() => toggle(tag.id)}
-            onKeyDown={(event: React.KeyboardEvent) => {
-              if (event.key === 'Enter' || event.key === ' ') {
-                event.preventDefault();
-                toggle(tag.id);
-              }
-            }}
-          >
-            <IonLabel>{tag.name}</IonLabel>
-          </IonChip>
-        );
-      })}
+      {tags.map((tag) => (
+        <ToggleChip
+          key={tag.id}
+          label={tag.name}
+          selected={selected.includes(tag.id)}
+          onToggle={() => toggle(tag.id)}
+        />
+      ))}
     </div>
   );
 }

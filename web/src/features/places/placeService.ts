@@ -1,19 +1,15 @@
-import { OfflineError } from '../../lib/errors';
+import { assertOnline } from '../../lib/onlineGuard';
 import { addPhotos, removePhoto, type PhotoUploadFailure } from '../photos/photoService';
 import {
   deletePlaceRow,
   getPlace,
   insertPlace,
+  replacePlaceCategories,
   replacePlaceTags,
   updatePlace as updatePlaceRow,
+  updatePlaceFavorite,
 } from './placeRepository';
 import type { Place, PlaceInput, PhotoRef, PlaceWithRelations } from './types';
-
-function assertOnline(): void {
-  if (!navigator.onLine) {
-    throw new OfflineError();
-  }
-}
 
 /** Tiến độ tải ảnh lên: chỉ số file (0-based trong lần gọi này) và phần trăm hoàn thành (0–1). */
 export type PhotoUploadProgress = (fileIndex: number, fraction: number) => void;
@@ -26,7 +22,7 @@ export interface SavePlaceResult {
 }
 
 /**
- * Tạo một địa điểm mới: chèn dòng `places` → gắn nhãn → thêm ảnh (mục 6.6
+ * Tạo một địa điểm mới: chèn dòng `places` → gắn nhãn → gắn nhóm → thêm ảnh (mục 6.6
  * PLAN.md). Ảnh lỗi không làm hỏng việc tạo địa điểm (D23).
  *
  * @throws {OfflineError} Khi đang offline (D13).
@@ -39,12 +35,13 @@ export async function createPlace(
   assertOnline();
   const place = await insertPlace(input);
   await replacePlaceTags(place.id, input.tagIds);
+  await replacePlaceCategories(place.id, input.categoryIds);
   const { errors } = await addPhotos(place.id, photos, [], onProgress);
   return { place, photoErrors: errors };
 }
 
 /**
- * Cập nhật một địa điểm đã có: cập nhật các cột → đồng bộ nhãn → xoá các
+ * Cập nhật một địa điểm đã có: cập nhật các cột → đồng bộ nhãn → đồng bộ nhóm → xoá các
  * ảnh bị gỡ → thêm ảnh mới (mục 6.6 PLAN.md). Vị trí cho ảnh mới được tính
  * dựa trên danh sách ảnh còn lại SAU khi đã xoá (đọc lại từ server để luôn
  * đúng, không dựa vào trạng thái phía client).
@@ -61,6 +58,7 @@ export async function updatePlace(
   assertOnline();
   const place = await updatePlaceRow(id, input);
   await replacePlaceTags(id, input.tagIds);
+  await replacePlaceCategories(id, input.categoryIds);
   for (const photo of removedPhotos) {
     await removePhoto(photo);
   }
@@ -83,4 +81,15 @@ export async function deletePlace(place: PlaceWithRelations): Promise<void> {
     await removePhoto(photo);
   }
   await deletePlaceRow(place.id);
+}
+
+/**
+ * Đặt hoặc bỏ Yêu thích cho một địa điểm (U24).
+ *
+ * @returns Giá trị `favoritedAt` server đã lưu (`null` khi bỏ Yêu thích).
+ * @throws {OfflineError} Khi đang offline (D13).
+ */
+export async function setFavorite(id: string, favorited: boolean): Promise<string | null> {
+  assertOnline();
+  return updatePlaceFavorite(id, favorited ? new Date().toISOString() : null);
 }

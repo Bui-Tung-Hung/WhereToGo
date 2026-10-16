@@ -1,5 +1,7 @@
 import {
+  IonBackButton,
   IonButton,
+  IonButtons,
   IonContent,
   IonHeader,
   IonIcon,
@@ -24,8 +26,9 @@ import { clearThumbnails } from '../photos/thumbnailCache';
 const TOAST_DURATION_MS = 2000;
 
 /**
- * Trang Cài đặt (mục 6.6 PLAN.md): tài khoản, quản lý dữ liệu (nhãn, ảnh
- * lưu tạm), thông tin ứng dụng, và đăng xuất.
+ * Trang Cài đặt (mục 6.6 PLAN.md): tài khoản, quản lý dữ liệu (nhóm, nhãn,
+ * ảnh lưu tạm), thông tin ứng dụng, và đăng xuất. Mở từ avatar ở trang chủ
+ * và trang vuốt thẻ (U2), có nút quay lại trang chủ.
  */
 export function SettingsPage(): React.JSX.Element {
   const { user } = useAuth();
@@ -66,16 +69,13 @@ export function SettingsPage(): React.JSX.Element {
     <IonPage>
       <IonHeader>
         <IonToolbar>
+          <IonButtons slot="start">
+            <IonBackButton defaultHref="/home" text="" />
+          </IonButtons>
           <IonTitle>Cài đặt</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent>
-        <IonHeader collapse="condense">
-          <IonToolbar>
-            <IonTitle size="large">Cài đặt</IonTitle>
-          </IonToolbar>
-        </IonHeader>
-
         <div className="wtg-page">
           <DriveReauthBanner />
 
@@ -99,6 +99,15 @@ export function SettingsPage(): React.JSX.Element {
           <div className="wtg-group">
             <p className="wtg-group-title">Dữ liệu</p>
             <IonList inset>
+              <IonItem
+                lines="none"
+                button
+                className="wtg-tap-target"
+                onClick={() => navigate('/settings/categories')}
+              >
+                <IonLabel>Quản lý nhóm</IonLabel>
+                <IonIcon icon={chevronForwardOutline} slot="end" aria-hidden="true" />
+              </IonItem>
               <IonItem lines="none" button className="wtg-tap-target" onClick={() => navigate('/settings/tags')}>
                 <IonLabel>Quản lý nhãn</IonLabel>
                 <IonIcon icon={chevronForwardOutline} slot="end" aria-hidden="true" />

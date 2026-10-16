@@ -1,0 +1,422 @@
+/* Trang chủ (mục 6.3 PLAN-UI-1.md). Màu lấy từ .wtg-theme-home (theme/themes.css). */
+
+/* Tiêu đề "WhereToGo" căn trái trong toolbar */
+ion-title.wtg-home-title {
+  position: static;
+  padding: 0 0 0 16px;
+  text-align: start;
+  font-family: var(--wtg-font-display);
+  font-weight: 800;
+  font-size: 20px;
+  letter-spacing: -0.04em;
+  color: var(--wtg-text);
+}
+
+.wtg-home-icon-button {
+  --padding-start: 0;
+  --padding-end: 0;
+  width: 44px;
+  height: 44px;
+  margin: 0;
+  --color: var(--wtg-text);
+}
+
+.wtg-home-icon-button ion-icon {
+  font-size: 22px;
+}
+
+.wtg-home-header-end {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding-right: 8px;
+}
+
+/* Danh sách thẻ */
+.wtg-home-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 0 16px 24px;
+}
+
+.wtg-home-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+  border: 1px solid var(--wtg-border);
+  border-radius: 24px;
+  background: var(--wtg-surface);
+  box-shadow: var(--wtg-shadow-card);
+  color: var(--wtg-text);
+  cursor: pointer;
+  transition: transform 200ms ease;
+}
+
+.wtg-home-card:active {
+  transform: scale(0.98);
+}
+
+.wtg-home-card__main {
+  width: 58.3333%;
+  min-width: 0;
+  padding-right: 8px;
+}
+
+.wtg-home-card__label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0 0 4px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--wtg-text-muted);
+}
+
+.wtg-home-card__label ion-icon {
+  flex-shrink: 0;
+  font-size: 16px;
+}
+
+.wtg-home-card__label span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.wtg-home-card__prompt {
+  display: -webkit-box;
+  margin: 0;
+  overflow: hidden;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.375;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+}
+
+.wtg-home-card__aside {
+  display: flex;
+  justify-content: flex-end;
+  width: 41.6667%;
+}
+
+.wtg-home-card__empty {
+  margin: 0;
+  font-size: 12px;
+  color: var(--wtg-text-muted);
+}
+
+/* Cụm 5 ảnh tròn (P21) */
+.wtg-cluster {
+  position: relative;
+  isolation: isolate;
+  width: 112px;
+  height: 96px;
+  flex-shrink: 0;
+}
+
+.wtg-cluster-photo {
+  position: absolute;
+  overflow: hidden;
+  border: 2px solid var(--wtg-ring);
+  border-radius: 50%;
+  background: var(--wtg-chip-bg);
+}
+
+.wtg-cluster-photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.wtg-cluster-photo--1 {
+  top: 28px;
+  left: 28px;
+  width: 44px;
+  height: 44px;
+  z-index: 3;
+}
+
+.wtg-cluster-photo--2 {
+  top: 0;
+  left: 24px;
+  width: 40px;
+  height: 40px;
+  z-index: 2;
+}
+
+.wtg-cluster-photo--3 {
+  top: 16px;
+  left: 0;
+  width: 36px;
+  height: 36px;
+  z-index: 1;
+}
+
+.wtg-cluster-photo--4 {
+  top: 20px;
+  right: 0;
+  width: 36px;
+  height: 36px;
+  z-index: 1;
+}
+
+.wtg-cluster-photo--5 {
+  bottom: 0;
+  left: 8px;
+  width: 32px;
+  height: 32px;
+  z-index: 2;
+}
+
+.wtg-cluster-fallback {
+  position: absolute;
+  top: 20px;
+  left: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--wtg-chip-bg);
+  color: var(--wtg-text-muted);
+}
+
+.wtg-cluster-fallback ion-icon {
+  font-size: 28px;
+}
+
+.wtg-cluster-pill {
+  position: absolute;
+  right: 8px;
+  bottom: 4px;
+  z-index: 4;
+  padding: 2px 8px;
+  border: 1px solid var(--wtg-ring);
+  border-radius: 999px;
+  background: var(--wtg-pill-bg);
+  color: var(--wtg-pill-text);
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+/* Thẻ Gần tôi */
+.wtg-nearby-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--wtg-chip-accent-bg);
+  color: var(--wtg-accent-text);
+}
+
+.wtg-nearby-icon ion-icon {
+  font-size: 24px;
+}
+
+/* Thẻ "Hôm nay thử quán này" */
+.wtg-daily-card {
+  flex-direction: column;
+  align-items: stretch;
+  gap: 6px;
+}
+
+.wtg-daily-card__label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--wtg-text-muted);
+}
+
+.wtg-daily-card__badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  border-radius: 4px;
+  background: var(--wtg-text);
+  color: var(--wtg-bg);
+}
+
+.wtg-daily-card__badge ion-icon {
+  font-size: 11px;
+}
+
+.wtg-daily-card__name {
+  display: -webkit-box;
+  margin: 0;
+  overflow: hidden;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.35;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+}
+
+.wtg-daily-card__bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.wtg-daily-card__place {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.wtg-daily-avatar {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  overflow: hidden;
+  border: 2px solid var(--wtg-ring);
+  border-radius: 50%;
+  background: var(--wtg-chip-bg);
+  color: var(--wtg-text-muted);
+}
+
+.wtg-daily-avatar img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.wtg-daily-avatar ion-icon {
+  font-size: 16px;
+}
+
+.wtg-daily-card__address {
+  margin: 0;
+  overflow: hidden;
+  font-size: 12px;
+  color: var(--wtg-text-muted);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+ion-button.wtg-daily-button {
+  --background: var(--wtg-accent);
+  --background-activated: var(--wtg-accent);
+  --color: var(--wtg-on-accent);
+  --border-radius: 999px;
+  --padding-start: 16px;
+  --padding-end: 16px;
+  --box-shadow: none;
+  flex-shrink: 0;
+  min-height: 44px;
+  margin: 0;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* Thanh dưới (dock) */
+.wtg-home-dock {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 24px calc(10px + var(--ion-safe-area-bottom, 0px));
+  border-top: 1px solid var(--wtg-border);
+  background: var(--wtg-dock-bg);
+}
+
+.wtg-dock-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--wtg-text);
+  cursor: pointer;
+}
+
+.wtg-dock-button ion-icon {
+  font-size: 24px;
+}
+
+.wtg-home-fab {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  margin-top: -28px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: var(--wtg-accent);
+  color: var(--wtg-on-accent);
+  cursor: pointer;
+}
+
+.wtg-home-fab ion-icon {
+  font-size: 28px;
+}
+
+.wtg-home-fab-spacer {
+  width: 56px;
+  height: 56px;
+}
+
+/* Hiệu ứng (P32): fill-mode backwards để hiệu ứng nhấn scale(0.98) vẫn chạy */
+@keyframes wtg-fade-in-up {
+  0% {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.wtg-cascade {
+  animation: wtg-fade-in-up 0.55s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+}
+
+@keyframes wtg-fab-breathing {
+  0%,
+  100% {
+    box-shadow:
+      0 10px 25px -3px rgba(0, 113, 227, 0.38),
+      0 0 0 0 rgba(0, 113, 227, 0.25);
+  }
+  50% {
+    box-shadow:
+      0 14px 28px -3px rgba(0, 113, 227, 0.48),
+      0 0 0 8px rgba(0, 113, 227, 0.08);
+  }
+}
+
+.wtg-fab-glow {
+  animation: wtg-fab-breathing 3s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wtg-cascade,
+  .wtg-fab-glow {
+    animation: none;
+  }
+}

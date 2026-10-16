@@ -2,24 +2,18 @@ import { IonBadge } from '@ionic/react';
 import {
   formatRanges,
   isOpenAt,
+  OPEN_STATUS_LABELS,
   WEEKDAYS,
   WEEKDAY_LABELS,
   weekdayOf,
   type OpeningHours,
+  type OpenStatus,
 } from './openingHours';
 
 export interface OpeningHoursViewProps {
   /** `null` nghĩa là "chưa rõ giờ". */
   hours: OpeningHours | null;
 }
-
-type OpenStatus = 'open' | 'closed' | 'unknown';
-
-const STATUS_LABEL: Record<OpenStatus, string> = {
-  open: 'Đang mở',
-  closed: 'Đã đóng',
-  unknown: 'Chưa rõ giờ',
-};
 
 const STATUS_COLOR: Record<OpenStatus, string> = {
   open: 'success',
@@ -39,7 +33,7 @@ export function OpeningHoursView({ hours }: OpeningHoursViewProps): React.JSX.El
   return (
     <div className="wtg-group">
       <p className="wtg-group-title">Giờ mở cửa</p>
-      <IonBadge color={STATUS_COLOR[status]}>{STATUS_LABEL[status]}</IonBadge>
+      <IonBadge color={STATUS_COLOR[status]}>{OPEN_STATUS_LABELS[status]}</IonBadge>
 
       {hours && (
         <table style={{ width: '100%', marginTop: 8, borderCollapse: 'collapse' }}>

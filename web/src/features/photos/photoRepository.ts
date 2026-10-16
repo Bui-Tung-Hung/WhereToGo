@@ -1,39 +1,23 @@
-import type { PostgrestError } from '@supabase/supabase-js';
-import { mapPostgrestError } from '../../lib/errors';
 import { supabase } from '../../lib/supabaseClient';
+import { assertNoError, unwrap } from '../../lib/supabaseResult';
 import type { PhotoRef } from '../places/types';
 
 interface PhotoRow {
   id: string;
   drive_file_id: string;
   position: number;
+  created_at: string;
 }
 
-const PHOTO_COLUMNS = 'id, drive_file_id, position';
+const PHOTO_COLUMNS = 'id, drive_file_id, position, created_at';
 
 function mapPhotoRow(row: PhotoRow): PhotoRef {
-  return { id: row.id, driveFileId: row.drive_file_id, position: row.position };
-}
-
-/** Đọc `{ data, error }` của supabase-js, ném `ApiError` (qua `mapPostgrestError`) nếu có lỗi. */
-async function unwrap<T>(
-  promise: PromiseLike<{ data: T | null; error: PostgrestError | null }>,
-): Promise<T> {
-  const { data, error } = await promise;
-  if (error) {
-    throw mapPostgrestError(error);
-  }
-  return data as T;
-}
-
-/** Chỉ kiểm tra lỗi của một lời gọi supabase-js không trả dữ liệu (ví dụ `delete`). */
-async function assertNoError(
-  promise: PromiseLike<{ error: PostgrestError | null }>,
-): Promise<void> {
-  const { error } = await promise;
-  if (error) {
-    throw mapPostgrestError(error);
-  }
+  return {
+    id: row.id,
+    driveFileId: row.drive_file_id,
+    position: row.position,
+    createdAt: row.created_at,
+  };
 }
 
 /** Danh sách ảnh của một địa điểm, sắp theo `position` tăng dần. */

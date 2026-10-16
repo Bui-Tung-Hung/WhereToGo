@@ -13,6 +13,7 @@ import '@ionic/react/css/palettes/dark.system.css';
 import './theme/fonts.css';
 import './theme/variables.css';
 import './theme/global.css';
+import './theme/themes.css';
 
 import { createRoot } from 'react-dom/client';
 import { App } from './app/App';

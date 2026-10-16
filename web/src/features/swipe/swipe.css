@@ -1,0 +1,452 @@
+/* Trang vuốt thẻ (mục 6.5 PLAN-UI-1.md). Màu lấy từ .wtg-theme-swipe (theme/themes.css). */
+
+/* Header */
+ion-back-button.wtg-swipe-back {
+  --background: var(--wtg-pill-bg);
+  --border-radius: 50%;
+  --color: var(--wtg-text);
+  --padding-start: 0;
+  --padding-end: 0;
+  --icon-margin-start: 0;
+  --icon-margin-end: 0;
+  width: 44px;
+  height: 44px;
+  margin-left: 8px;
+  border: 1px solid var(--wtg-border);
+  border-radius: 50%;
+}
+
+ion-title.wtg-swipe-title {
+  text-align: center;
+}
+
+.wtg-swipe-title__main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-family: var(--wtg-font-display);
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--wtg-text);
+}
+
+.wtg-swipe-title__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--wtg-accent);
+}
+
+.wtg-swipe-title__sub {
+  display: block;
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1.3;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--wtg-text-muted);
+}
+
+/* Bố cục trang: bộ lọc ở trên, phần bộ thẻ chiếm phần còn lại */
+.wtg-swipe-layout {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.wtg-swipe-filters {
+  padding: 0 16px;
+}
+
+.wtg-swipe-deck-view {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 8px;
+  min-height: 0;
+  padding: 0 16px calc(8px + var(--ion-safe-area-bottom, 0px));
+}
+
+.wtg-swipe-remaining {
+  margin: 0;
+  font-size: 11px;
+  font-weight: 500;
+  text-align: center;
+  color: var(--wtg-text-muted);
+}
+
+/* Chồng thẻ (P29, P31) */
+.wtg-swipe-stack {
+  position: relative;
+  height: clamp(280px, 44vh, 380px);
+}
+
+.wtg-swipe-card {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border: 1px solid var(--wtg-border);
+  border-radius: 28px;
+  background: var(--wtg-surface);
+  box-shadow: var(--wtg-shadow-card);
+  transition:
+    transform 300ms ease,
+    opacity 300ms ease;
+}
+
+.wtg-swipe-card--top {
+  z-index: 50;
+  touch-action: pan-y;
+}
+
+.wtg-swipe-card--second {
+  z-index: 40;
+  opacity: 0.92;
+  transform: translate3d(0, 12px, 0) scale(0.95);
+  pointer-events: none;
+}
+
+.wtg-swipe-card--third {
+  z-index: 30;
+  opacity: 0.75;
+  transform: translate3d(0, 24px, 0) scale(0.9);
+  pointer-events: none;
+}
+
+.wtg-swipe-card--flying {
+  z-index: 50;
+  pointer-events: none;
+}
+
+.wtg-swipe-card--fly-like,
+.wtg-swipe-card--fly-skip {
+  opacity: 0;
+  transition:
+    transform 450ms ease-out,
+    opacity 400ms ease-out;
+}
+
+.wtg-swipe-card--fly-like {
+  transform: translate3d(150%, 40px, 0) rotate(28deg);
+}
+
+.wtg-swipe-card--fly-skip {
+  transform: translate3d(-150%, 40px, 0) rotate(-28deg);
+}
+
+.wtg-swipe-card__photo {
+  position: absolute;
+  inset: 0;
+}
+
+.wtg-swipe-card__photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Không có ảnh (P16): biểu tượng nhóm đầu ở giữa */
+.wtg-swipe-card__fallback {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--wtg-text-muted);
+}
+
+.wtg-swipe-card__fallback ion-icon {
+  font-size: 48px;
+}
+
+/* Lớp phủ gradient cố định của Stitch (mục 6.1) */
+.wtg-swipe-card__shade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(20, 20, 19, 0.02) 0%,
+    rgba(20, 20, 19, 0.2) 50%,
+    rgba(20, 20, 19, 0.85) 80%,
+    #141413 98%
+  );
+}
+
+.wtg-swipe-stamp {
+  position: absolute;
+  top: 20px;
+  z-index: 2;
+  padding: 4px 12px;
+  border: 2px solid;
+  border-radius: 12px;
+  background: rgba(12, 10, 9, 0.85);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  opacity: 0;
+}
+
+.wtg-swipe-stamp--like {
+  left: 20px;
+  border-color: #34d399;
+  color: #6ee7b7;
+  transform: rotate(-12deg);
+}
+
+.wtg-swipe-stamp--skip {
+  right: 20px;
+  border-color: #f43f5e;
+  color: #fb7185;
+  transform: rotate(12deg);
+}
+
+.wtg-swipe-card__info {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 16px;
+}
+
+.wtg-swipe-card__chips {
+  display: flex;
+  gap: 6px;
+  overflow: hidden;
+}
+
+.wtg-swipe-card__name {
+  display: -webkit-box;
+  margin: 0;
+  overflow: hidden;
+  font-family: var(--wtg-font-display);
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 1.25;
+  color: #faf7ee;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+}
+
+.wtg-swipe-card__price,
+.wtg-swipe-card__address {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0;
+  font-size: 12px;
+}
+
+.wtg-swipe-card__price {
+  font-weight: 600;
+  color: #e8a359;
+}
+
+.wtg-swipe-card__address {
+  color: #d6d3d1;
+}
+
+.wtg-swipe-card__price ion-icon,
+.wtg-swipe-card__address ion-icon {
+  flex-shrink: 0;
+  font-size: 14px;
+}
+
+.wtg-swipe-card__address span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Thẻ "xem trước" dưới chồng thẻ */
+.wtg-swipe-teaser {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 12px;
+  overflow: hidden;
+  border: 1px solid var(--wtg-border);
+  border-radius: 16px;
+  background: var(--wtg-surface);
+  color: var(--wtg-text);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.wtg-swipe-teaser::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    color-mix(in srgb, var(--wtg-accent) 60%, transparent),
+    transparent
+  );
+}
+
+.wtg-swipe-teaser__main {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.wtg-swipe-teaser__meta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+}
+
+.wtg-swipe-teaser__price {
+  overflow: hidden;
+  font-size: 11px;
+  color: var(--wtg-text-muted);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.wtg-swipe-teaser__name {
+  overflow: hidden;
+  font-family: var(--wtg-font-display);
+  font-size: 16px;
+  font-weight: 600;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.wtg-swipe-teaser__line {
+  overflow: hidden;
+  font-size: 12px;
+  font-style: italic;
+  color: var(--wtg-text-muted);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.wtg-swipe-teaser__more {
+  display: flex;
+  flex-shrink: 0;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  font-size: 11px;
+  text-transform: uppercase;
+  color: var(--wtg-text-muted);
+}
+
+.wtg-swipe-teaser__ring {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border: 1px solid var(--wtg-border);
+  border-radius: 50%;
+  color: var(--wtg-accent-text);
+}
+
+.wtg-swipe-teaser__ring ion-icon {
+  font-size: 14px;
+}
+
+/* Hàng nút */
+.wtg-swipe-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  width: 100%;
+  max-width: 340px;
+  margin: 0 auto;
+  padding: 6px 16px;
+}
+
+.wtg-swipe-action {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 1px solid var(--wtg-border);
+  border-radius: 50%;
+  background: var(--wtg-surface);
+  color: var(--wtg-text);
+  cursor: pointer;
+  transition: transform 150ms ease;
+}
+
+.wtg-swipe-action:active:not(:disabled) {
+  transform: scale(0.9);
+}
+
+.wtg-swipe-action:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.wtg-swipe-action--small {
+  width: 44px;
+  height: 44px;
+}
+
+.wtg-swipe-action--small ion-icon {
+  font-size: 22px;
+}
+
+.wtg-swipe-action--large {
+  width: 56px;
+  height: 56px;
+}
+
+.wtg-swipe-action--large ion-icon {
+  font-size: 26px;
+}
+
+.wtg-swipe-action--pass {
+  border-color: var(--wtg-pass-border);
+  color: var(--wtg-pass);
+}
+
+.wtg-swipe-action--star {
+  border-color: var(--wtg-star-border);
+  color: var(--wtg-star);
+}
+
+.wtg-swipe-action--like {
+  border-color: transparent;
+  background: linear-gradient(135deg, var(--wtg-like-from), var(--wtg-like-to));
+  color: #0c0a09;
+}
+
+/* Trạng thái rỗng chiếm chỗ của chồng thẻ */
+.wtg-swipe-empty {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wtg-swipe-card,
+  .wtg-swipe-action {
+    transition: none !important;
+    animation: none !important;
+  }
+}

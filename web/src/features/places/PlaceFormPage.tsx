@@ -31,6 +31,7 @@ import { EmptyState } from '../../shared/components/EmptyState';
 import { PriceRangeInput, type PriceRangeValue } from '../../shared/components/PriceRangeInput';
 import { StarRatingInput } from '../../shared/components/StarRatingInput';
 import { useOnlineStatus } from '../../shared/hooks/useOnlineStatus';
+import { CategoryPicker } from '../categories/CategoryPicker';
 import { getCurrentPosition } from '../location/geolocation';
 import { extractFromMapsLink } from '../maps-link/mapsLinkService';
 import type { ParsedMapsLink } from '../maps-link/parseGoogleMapsUrl';
@@ -53,6 +54,7 @@ const STATUS_OPTIONS: { value: PlaceStatus; label: string }[] = [
 ];
 
 const NOTES_MAX_LENGTH = 5000;
+const STORY_MAX_LENGTH = 5000;
 const TOAST_DURATION_MS = 3000;
 
 /** Giá trị mặc định khi tạo địa điểm mới (D18: mặc định giờ 08:00–22:00 mọi ngày). */
@@ -68,9 +70,11 @@ function buildCreateDefaults(): PlaceFormValues {
     priceMinVnd: null,
     priceMaxVnd: null,
     notes: null,
+    story: null,
     status: 'not_visited',
     openingHours: createDefaultWeek(),
     tagIds: [],
+    categoryIds: [],
   };
 }
 
@@ -87,9 +91,11 @@ function buildEditDefaults(place: PlaceWithRelations): PlaceFormValues {
     priceMinVnd: place.priceMinVnd,
     priceMaxVnd: place.priceMaxVnd,
     notes: place.notes,
+    story: place.story,
     status: place.status,
     openingHours: place.openingHours,
     tagIds: place.tagIds,
+    categoryIds: place.categoryIds,
   };
 }
 
@@ -308,7 +314,7 @@ export function PlaceFormPage(): React.JSX.Element {
             void (async () => {
               try {
                 await deletePlaceMutation.mutateAsync(current);
-                navigate('/tabs/explore', { replace: true });
+                navigate('/home', { replace: true });
               } catch (error) {
                 void presentAlert({
                   header: 'Lỗi',
@@ -546,7 +552,23 @@ export function PlaceFormPage(): React.JSX.Element {
           </div>
 
           <div className="wtg-group">
-            <p className="wtg-group-title">Loại</p>
+            <p className="wtg-group-title">Nhóm *</p>
+            <Controller
+              control={control}
+              name="categoryIds"
+              render={({ field }) => (
+                <CategoryPicker value={field.value} onChange={field.onChange} />
+              )}
+            />
+            {formState.errors.categoryIds && (
+              <p className="wtg-caption" style={{ color: 'var(--ion-color-danger)' }}>
+                {formState.errors.categoryIds.message}
+              </p>
+            )}
+          </div>
+
+          <div className="wtg-group">
+            <p className="wtg-group-title">Nhãn</p>
             <Controller
               control={control}
               name="tagIds"
@@ -639,6 +661,31 @@ export function PlaceFormPage(): React.JSX.Element {
             {formState.errors.notes && (
               <p className="wtg-caption" style={{ color: 'var(--ion-color-danger)' }}>
                 {formState.errors.notes.message}
+              </p>
+            )}
+          </div>
+
+          <div className="wtg-group">
+            <p className="wtg-group-title">Câu chuyện</p>
+            <Controller
+              control={control}
+              name="story"
+              render={({ field }) => (
+                <IonTextarea
+                  autoGrow
+                  maxlength={STORY_MAX_LENGTH}
+                  counter
+                  value={field.value ?? ''}
+                  onIonInput={(event: TextareaCustomEvent) =>
+                    field.onChange(event.detail.value || null)
+                  }
+                  onIonBlur={field.onBlur}
+                />
+              )}
+            />
+            {formState.errors.story && (
+              <p className="wtg-caption" style={{ color: 'var(--ion-color-danger)' }}>
+                {formState.errors.story.message}
               </p>
             )}
           </div>

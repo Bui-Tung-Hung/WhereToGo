@@ -15,6 +15,10 @@ export interface PlaceFilterCriteria {
   tagIds: string[];
   /** `'all'` để bỏ qua lọc trạng thái. */
   status: StatusFilter;
+  /** Các id nhóm đã chọn — không truyền hoặc rỗng là không lọc theo nhóm; nhiều nhóm là kiểu HOẶC. */
+  categoryIds?: string[];
+  /** `true` thì chỉ giữ địa điểm đã Yêu thích (`favoritedAt` khác null). */
+  favoritesOnly?: boolean;
 }
 
 export interface SortResult {
@@ -23,24 +27,32 @@ export interface SortResult {
   withoutCoordsCount: number;
 }
 
-/** Chuỗi để so khớp tìm kiếm của một địa điểm: tên + địa chỉ + ghi chú + tên các nhãn, đã chuẩn hoá. */
+/**
+ * Chuỗi để so khớp tìm kiếm của một địa điểm: tên + địa chỉ + ghi chú + câu chuyện + tên các
+ * nhãn, đã chuẩn hoá.
+ */
 function buildSearchableText(
   place: PlaceWithRelations,
   tagNameById: ReadonlyMap<string, string>,
 ): string {
   const tagNames = place.tagIds.map((tagId) => tagNameById.get(tagId) ?? '').join(' ');
-  return normalizeVi([place.name, place.address ?? '', place.notes ?? '', tagNames].join(' '));
+  return normalizeVi(
+    [place.name, place.address ?? '', place.notes ?? '', place.story ?? '', tagNames].join(' '),
+  );
 }
 
 /**
- * Lọc danh sách địa điểm theo từ khoá tìm kiếm, nhãn và trạng thái (mục 6.6
- * PLAN.md):
+ * Lọc danh sách địa điểm theo từ khoá tìm kiếm, nhãn, trạng thái, nhóm và Yêu thích (mục 6.6
+ * PLAN.md, mục 4.6 PLAN-UI-1.md):
  * - `query`: chuẩn hoá (bỏ dấu/hoa thường), tách token theo khoảng trắng;
  *   MỌI token phải xuất hiện trong chuỗi tìm kiếm của địa điểm (tên + địa
- *   chỉ + ghi chú + tên nhãn).
+ *   chỉ + ghi chú + câu chuyện + tên nhãn).
  * - `tagIds`: rỗng thì bỏ qua; khi có, địa điểm phải mang ÍT NHẤT MỘT trong
  *   các nhãn đã chọn (D19 — kiểu HOẶC).
  * - `status`: `'all'` bỏ qua lọc; ngược lại chỉ giữ đúng trạng thái đó.
+ * - `categoryIds`: không truyền hoặc rỗng thì bỏ qua; khi có, địa điểm phải thuộc ÍT NHẤT MỘT
+ *   nhóm đã chọn.
+ * - `favoritesOnly`: `true` thì chỉ giữ địa điểm đã Yêu thích.
  *
  * @param tagNameById - Tra tên nhãn theo id, dùng để so khớp `query` với tên nhãn.
  */
@@ -61,6 +73,16 @@ export function filterPlaces(
       criteria.tagIds.length > 0 &&
       !place.tagIds.some((tagId) => criteria.tagIds.includes(tagId))
     ) {
+      return false;
+    }
+    const categoryIds = criteria.categoryIds ?? [];
+    if (
+      categoryIds.length > 0 &&
+      !place.categoryIds.some((categoryId) => categoryIds.includes(categoryId))
+    ) {
+      return false;
+    }
+    if (criteria.favoritesOnly && place.favoritedAt === null) {
       return false;
     }
     if (tokens.length > 0) {

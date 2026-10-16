@@ -15,7 +15,7 @@ const vndAmountSchema = z.number().int().min(0).nullable();
  * tránh hai định nghĩa kiểu trôi dạt khỏi nhau.
  *
  * Quy ước: các trường text tuỳ chọn (`address`, `googleMapsUrl`,
- * `googlePlaceRef`, `notes`) dùng `null` cho "chưa nhập", giống cột DB
+ * `googlePlaceRef`, `notes`, `story`) dùng `null` cho "chưa nhập", giống cột DB
  * tương ứng — nơi hiển thị (form) tự quy đổi `null` ⇄ `''` khi cần, cùng
  * cách `PriceRangeInput` đã làm với `number | null`.
  */
@@ -37,6 +37,7 @@ export const placeFormSchema = z
     priceMinVnd: vndAmountSchema,
     priceMaxVnd: vndAmountSchema,
     notes: z.string().max(5000, 'Ghi chú tối đa 5000 ký tự').nullable(),
+    story: z.string().max(5000, 'Câu chuyện tối đa 5000 ký tự').nullable(),
     status: z.enum(PLACE_STATUSES),
     openingHours: z
       .custom<OpeningHours | null>()
@@ -44,6 +45,7 @@ export const placeFormSchema = z
       .refine((value) => value === null || validateWeek(value), {
         message: 'Giờ mở cửa không hợp lệ',
       }),
+    categoryIds: z.array(z.string().uuid()).min(1, 'Chọn ít nhất một nhóm'),
     tagIds: z.array(z.string().uuid()),
   })
   .refine((data) => (data.latitude === null) === (data.longitude === null), {

@@ -1,11 +1,12 @@
 {
   "name": "wheretogo-web",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "tsc --noEmit && vite build",
+    "check:size": "node scripts/check-precache-size.mjs",
     "preview": "vite preview",
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
@@ -30,7 +31,9 @@
     "@hookform/resolvers": "^5.0.0",
     "zod": "^4.0.0",
     "@fontsource/be-vietnam-pro": "^5.0.0",
-    "@fontsource/playfair-display": "^5.0.0"
+    "@fontsource/playfair-display": "^5.0.0",
+    "@fontsource-variable/fraunces": "^5.3.0",
+    "@fontsource-variable/plus-jakarta-sans": "^5.3.0"
   },
   "devDependencies": {
     "vite": "^7.0.0",

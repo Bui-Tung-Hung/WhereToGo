@@ -166,6 +166,16 @@ export function validateWeek(week: OpeningHours): boolean {
   });
 }
 
+/** Trạng thái mở cửa tại một thời điểm, kết quả của {@link isOpenAt}. */
+export type OpenStatus = 'open' | 'closed' | 'unknown';
+
+/** Chữ hiển thị cho từng {@link OpenStatus} (dùng chung cho trang chi tiết và bảng trượt lên). */
+export const OPEN_STATUS_LABELS: Record<OpenStatus, string> = {
+  open: 'Đang mở',
+  closed: 'Đã đóng',
+  unknown: 'Chưa rõ giờ',
+};
+
 /**
  * Trạng thái mở cửa tại một thời điểm cụ thể.
  *
@@ -173,7 +183,7 @@ export function validateWeek(week: OpeningHours): boolean {
  * ngày đó, RỒI xét khung qua đêm của ngày hôm trước (có thể vẫn đang mở
  * vào sáng sớm hôm nay).
  */
-export function isOpenAt(hours: OpeningHours | null, date: Date): 'open' | 'closed' | 'unknown' {
+export function isOpenAt(hours: OpeningHours | null, date: Date): OpenStatus {
   if (!hours) {
     return 'unknown';
   }

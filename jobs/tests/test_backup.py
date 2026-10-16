@@ -15,7 +15,16 @@ _TOKEN_URL = "https://oauth2.googleapis.com/token"
 _FILES_URL = "https://www.googleapis.com/drive/v3/files"
 _UPLOAD_URL = "https://www.googleapis.com/upload/drive/v3/files"
 _USER_ID = "22222222-2222-2222-2222-222222222222"
-_TABLES = ("places", "tags", "place_tags", "photos", "visits")
+_TABLES = (
+    "places",
+    "tags",
+    "place_tags",
+    "photos",
+    "visits",
+    "categories",
+    "place_categories",
+    "swipe_events",
+)
 
 
 def _set_env(monkeypatch: pytest.MonkeyPatch, fernet_key: str) -> None:

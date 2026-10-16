@@ -1,8 +1,10 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { applyPlacePatch, withFavoritedAt } from './placeCache';
 import { getPlace, listPlaces } from './placeRepository';
 import {
   createPlace,
   deletePlace,
+  setFavorite,
   updatePlace,
   type PhotoUploadProgress,
   type SavePlaceResult,
@@ -11,14 +13,15 @@ import type { PhotoRef, PlaceInput, PlaceWithRelations } from './types';
 
 /**
  * Khoá truy vấn dùng chung cho toàn bộ cụm tính năng địa điểm (places, tags,
- * visits — mục 6.6 PLAN.md liệt kê cả 4 khoá dưới bullet `placeQueries.ts`).
- * `tagQueries.ts` và `visitQueries.ts` import từ đây thay vì tự viết lại
+ * categories, visits — mục 6.6 PLAN.md, mục 4.5 PLAN-UI-1.md).
+ * `tagQueries.ts`, `categoryQueries.ts` và `visitQueries.ts` import từ đây thay vì tự viết lại
  * chuỗi khoá, để tránh gõ nhầm/khoá trôi dạt giữa các file.
  */
 export const QUERY_KEYS = {
   places: ['places'] as const,
   place: (id: string) => ['places', id] as const,
   tags: ['tags'] as const,
+  categories: ['categories'] as const,
   visits: (placeId: string) => ['visits', placeId] as const,
 };
 
@@ -86,6 +89,52 @@ export function useDeletePlace() {
     mutationFn: (place) => deletePlace(place),
     onSuccess: () => {
       void queryClient.invalidateQueries({ queryKey: QUERY_KEYS.places });
+    },
+  });
+}
+
+/** Tham số cho `useSetFavorite`. */
+export interface SetFavoriteVariables {
+  id: string;
+  /** `true` = đặt Yêu thích, `false` = bỏ Yêu thích. */
+  favorited: boolean;
+}
+
+/** Bản cache cũ, giữ lại để trả về khi `useSetFavorite` lỗi. */
+interface SetFavoriteContext {
+  places: PlaceWithRelations[] | undefined;
+  place: PlaceWithRelations | undefined;
+}
+
+/**
+ * Đặt/bỏ Yêu thích với cập nhật lạc quan (P25 PLAN-UI-1.md): đổi cache ngay, lỗi thì trả lại
+ * bản cũ, thành công thì ghi giá trị server. `networkMode: 'always'` để lỗi offline ném ngay
+ * (`OfflineError`) thay vì tạm dừng.
+ */
+export function useSetFavorite() {
+  const queryClient = useQueryClient();
+  return useMutation<string | null, unknown, SetFavoriteVariables, SetFavoriteContext>({
+    networkMode: 'always',
+    mutationFn: ({ id, favorited }) => setFavorite(id, favorited),
+    onMutate: async ({ id, favorited }) => {
+      await queryClient.cancelQueries({ queryKey: QUERY_KEYS.places });
+      const previous: SetFavoriteContext = {
+        places: queryClient.getQueryData<PlaceWithRelations[]>(QUERY_KEYS.places),
+        place: queryClient.getQueryData<PlaceWithRelations>(QUERY_KEYS.place(id)),
+      };
+      const optimisticValue = favorited ? new Date().toISOString() : null;
+      applyPlacePatch(queryClient, id, (place) => withFavoritedAt(place, optimisticValue));
+      return previous;
+    },
+    onError: (_error, { id }, context) => {
+      if (!context) {
+        return;
+      }
+      queryClient.setQueryData(QUERY_KEYS.places, context.places);
+      queryClient.setQueryData(QUERY_KEYS.place(id), context.place);
+    },
+    onSuccess: (favoritedAt, { id }) => {
+      applyPlacePatch(queryClient, id, (place) => withFavoritedAt(place, favoritedAt));
     },
   });
 }

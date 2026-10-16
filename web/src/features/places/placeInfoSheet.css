@@ -1,0 +1,243 @@
+/* Bảng trượt lên dùng chung (mục 6.4 PLAN-UI-1.md). Màu lấy từ lớp .wtg-theme-* đặt trên ion-modal. */
+
+ion-modal.wtg-info-sheet {
+  --background: var(--wtg-sheet-bg);
+  --border-radius: 24px;
+  --border-color: var(--wtg-border);
+  --border-style: solid;
+  --border-width: 1px 0 0;
+}
+
+ion-modal.wtg-info-sheet.wtg-theme-swipe {
+  --border-radius: 36px;
+}
+
+ion-modal.wtg-info-sheet::part(handle) {
+  background: var(--wtg-handle);
+}
+
+ion-modal.wtg-info-sheet ion-content {
+  --background: var(--wtg-sheet-bg);
+}
+
+.wtg-info-sheet__body {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 16px 20px;
+  color: var(--wtg-text);
+}
+
+.wtg-info-sheet__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.wtg-info-sheet__label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--wtg-accent-text);
+}
+
+.wtg-info-sheet__label ion-icon {
+  font-size: 14px;
+}
+
+.wtg-info-close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--wtg-text);
+  cursor: pointer;
+}
+
+.wtg-info-close span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--wtg-chip-bg);
+}
+
+.wtg-info-close ion-icon {
+  font-size: 16px;
+}
+
+/* Hàng tiêu đề: ảnh + chip + tên + giá */
+.wtg-info-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.wtg-info-photo {
+  width: 80px;
+  height: 80px;
+  flex-shrink: 0;
+  border-radius: 16px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--wtg-chip-bg);
+  color: var(--wtg-text-muted);
+}
+
+.wtg-info-photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.wtg-info-photo ion-icon {
+  font-size: 32px;
+}
+
+.wtg-info-header__text {
+  min-width: 0;
+  flex: 1;
+}
+
+.wtg-info-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 4px;
+}
+
+.wtg-info-name {
+  margin: 0;
+  font-family: var(--wtg-font-display);
+  font-size: 20px;
+  line-height: 1.2;
+  color: var(--wtg-text);
+}
+
+.wtg-theme-home .wtg-info-name {
+  font-weight: 800;
+}
+
+.wtg-theme-swipe .wtg-info-name {
+  font-weight: 700;
+}
+
+.wtg-info-price {
+  margin: 2px 0 0;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--wtg-accent-text);
+}
+
+.wtg-info-address {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: 6px;
+}
+
+.wtg-info-address__text {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  min-width: 0;
+  margin: 0;
+  font-size: 13px;
+  color: var(--wtg-text-muted);
+}
+
+.wtg-info-address__text ion-icon {
+  flex-shrink: 0;
+  font-size: 14px;
+}
+
+.wtg-open-badge {
+  flex-shrink: 0;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 600;
+  white-space: nowrap;
+  background: var(--wtg-chip-bg);
+  color: var(--wtg-text-muted);
+}
+
+.wtg-open-badge--open {
+  background: var(--wtg-success-bg);
+  color: var(--wtg-success-text);
+}
+
+.wtg-open-badge--closed {
+  color: var(--wtg-danger-text);
+}
+
+/* Hai nút "Chỉ đường" / "Xem đầy đủ" */
+.wtg-info-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.wtg-info-button {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  height: 44px;
+  border-radius: 22px;
+  border: 1px solid var(--wtg-border);
+  background: transparent;
+  color: var(--wtg-text);
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.wtg-info-button--primary {
+  border-color: transparent;
+  background: var(--wtg-accent);
+  color: var(--wtg-on-accent);
+}
+
+/* Khối "Câu chuyện" */
+.wtg-story {
+  padding: 14px;
+  border-radius: 16px;
+  border: 1px solid var(--wtg-border);
+  background: var(--wtg-surface-2);
+}
+
+.wtg-story__title {
+  margin: 0 0 6px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--wtg-accent-text);
+}
+
+.wtg-story__text {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.6;
+  white-space: pre-line;
+  color: var(--wtg-text);
+}
+
+.wtg-story__text--empty {
+  color: var(--wtg-text-muted);
+}

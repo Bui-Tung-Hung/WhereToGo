@@ -1,0 +1,218 @@
+/**
+ * Token của 2 hệ thiết kế Stitch (mục 6.1 PLAN-UI-1.md): `.wtg-theme-home` (trang chủ) và
+ * `.wtg-theme-swipe` (trang vuốt thẻ). Hai lớp khai báo CÙNG tên biến; giá trị sáng mặc định,
+ * tối trong @media (prefers-color-scheme: dark). Đặt lớp trên IonPage của trang và trên IonModal
+ * (modal được đưa ra ngoài trang). Mọi cặp chữ/nền đã đo ≥ 4.5:1.
+ */
+
+.wtg-theme-home {
+  --wtg-bg: #f5f2e9;
+  --wtg-surface: #fbf9f4;
+  --wtg-surface-2: #f5f2e9;
+  --wtg-border: #eae5d9;
+  --wtg-text: #1c1917;
+  --wtg-text-muted: #57534e;
+  --wtg-accent: #0071e3;
+  --wtg-on-accent: #ffffff;
+  --wtg-accent-text: #0066cc;
+  --wtg-chip-accent-bg: rgba(0, 113, 227, 0.1);
+  --wtg-chip-accent-border: rgba(0, 113, 227, 0.25);
+  --wtg-chip-bg: #ede8dc;
+  --wtg-chip-border: #e2dcce;
+  --wtg-chip-text: #44403c;
+  --wtg-ring: #ffffff;
+  --wtg-pill-bg: rgba(229, 229, 229, 0.9);
+  --wtg-pill-text: #404040;
+  --wtg-dock-bg: rgba(245, 242, 233, 0.95);
+  --wtg-sheet-bg: #fbf9f4;
+  --wtg-handle: #a8a29e;
+  --wtg-shadow-card: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --wtg-success-bg: #dcfce7;
+  --wtg-success-text: #15803d;
+  --wtg-danger-text: #b91c1c;
+  --wtg-font-body: 'Be Vietnam Pro', system-ui, sans-serif;
+  --wtg-font-display: 'Playfair Display', Georgia, serif;
+
+  --ion-color-primary: #0071e3;
+  --ion-color-primary-rgb: 0, 113, 227;
+  --ion-color-primary-contrast: #ffffff;
+  --ion-color-primary-contrast-rgb: 255, 255, 255;
+  --ion-color-primary-shade: #0063c8;
+  --ion-color-primary-tint: #1a7fe6;
+  --ion-color-medium: #57534e;
+  --ion-color-medium-rgb: 87, 83, 78;
+}
+
+.wtg-theme-swipe {
+  --wtg-bg: #f2ece1;
+  --wtg-surface: #ffffff;
+  --wtg-surface-2: #f7f3ea;
+  --wtg-border: #e7e5e4;
+  --wtg-text: #1c1917;
+  --wtg-text-muted: #57534e;
+  --wtg-accent: #e8a359;
+  --wtg-on-accent: #0c0a09;
+  --wtg-accent-text: #9a5b13;
+  --wtg-chip-accent-bg: rgba(232, 163, 89, 0.18);
+  --wtg-chip-accent-border: rgba(154, 91, 19, 0.3);
+  --wtg-chip-bg: #f5f5f4;
+  --wtg-chip-border: #e7e5e4;
+  --wtg-chip-text: #44403c;
+  --wtg-ring: #ffffff;
+  --wtg-pill-bg: rgba(255, 255, 255, 0.85);
+  --wtg-pill-text: #1c1917;
+  --wtg-sheet-bg: #ffffff;
+  --wtg-handle: #a8a29e;
+  --wtg-shadow-card: 0 16px 36px -14px rgba(28, 25, 23, 0.35);
+  --wtg-success-bg: #dcfce7;
+  --wtg-success-text: #15803d;
+  --wtg-danger-text: #b91c1c;
+  --wtg-font-body: 'Plus Jakarta Sans Variable', system-ui, sans-serif;
+  --wtg-font-display: 'Fraunces Variable', Georgia, serif;
+  --wtg-pass: #be123c;
+  --wtg-pass-border: rgba(190, 18, 60, 0.3);
+  --wtg-star: #0e7490;
+  --wtg-star-border: rgba(14, 116, 144, 0.3);
+  --wtg-like-from: #e8a359;
+  --wtg-like-to: #f58853;
+
+  --ion-color-primary: #e8a359;
+  --ion-color-primary-rgb: 232, 163, 89;
+  --ion-color-primary-contrast: #0c0a09;
+  --ion-color-primary-contrast-rgb: 12, 10, 9;
+  --ion-color-primary-shade: #cc8f4e;
+  --ion-color-primary-tint: #eaac6a;
+  --ion-color-medium: #57534e;
+  --ion-color-medium-rgb: 87, 83, 78;
+}
+
+@media (prefers-color-scheme: dark) {
+  .wtg-theme-home {
+    --wtg-bg: #141311;
+    --wtg-surface: #1e1c19;
+    --wtg-surface-2: #26231f;
+    --wtg-border: #3a3631;
+    --wtg-text: #f5f2e9;
+    --wtg-text-muted: #a8a29e;
+    --wtg-accent-text: #4da3ff;
+    --wtg-chip-accent-bg: rgba(77, 163, 255, 0.15);
+    --wtg-chip-accent-border: rgba(77, 163, 255, 0.3);
+    --wtg-chip-bg: #2a2723;
+    --wtg-chip-border: #3a3631;
+    --wtg-chip-text: #e7e5e4;
+    --wtg-ring: #1e1c19;
+    --wtg-pill-bg: rgba(68, 64, 60, 0.9);
+    --wtg-pill-text: #e7e5e4;
+    --wtg-dock-bg: rgba(20, 19, 17, 0.95);
+    --wtg-sheet-bg: #1e1c19;
+    --wtg-handle: #78716c;
+    --wtg-shadow-card: none;
+    --wtg-success-bg: rgba(22, 101, 52, 0.35);
+    --wtg-success-text: #4ade80;
+    --wtg-danger-text: #f87171;
+
+    --ion-color-medium: #a8a29e;
+    --ion-color-medium-rgb: 168, 162, 158;
+  }
+
+  .wtg-theme-swipe {
+    --wtg-bg: #141413;
+    --wtg-surface: #1c1917;
+    --wtg-surface-2: #201f1b;
+    --wtg-border: #292524;
+    --wtg-text: #faf7ee;
+    --wtg-text-muted: #a8a29e;
+    --wtg-accent-text: #f5ab61;
+    --wtg-chip-accent-bg: rgba(232, 163, 89, 0.2);
+    --wtg-chip-accent-border: rgba(232, 163, 89, 0.3);
+    --wtg-chip-bg: rgba(41, 37, 36, 0.8);
+    --wtg-chip-border: rgba(68, 64, 60, 0.6);
+    --wtg-chip-text: #d6d3d1;
+    --wtg-ring: #1c1917;
+    --wtg-pill-bg: rgba(36, 34, 30, 0.75);
+    --wtg-pill-text: #faf7ee;
+    --wtg-sheet-bg: #171614;
+    --wtg-handle: #78716c;
+    --wtg-shadow-card: 0 16px 36px -10px rgba(0, 0, 0, 0.65);
+    --wtg-success-bg: #052e16;
+    --wtg-success-text: #34d399;
+    --wtg-danger-text: #fb7185;
+    --wtg-pass: #fb7185;
+    --wtg-pass-border: rgba(244, 63, 94, 0.3);
+    --wtg-star: #22d3ee;
+    --wtg-star-border: rgba(6, 182, 212, 0.3);
+
+    --ion-color-medium: #a8a29e;
+    --ion-color-medium-rgb: 168, 162, 158;
+  }
+}
+
+/* Ánh xạ token sang biến Ionic dùng chung cho cả hai hệ (P37) */
+.wtg-theme-home,
+.wtg-theme-swipe {
+  font-family: var(--wtg-font-body);
+  --ion-font-family: var(--wtg-font-body);
+  --ion-background-color: var(--wtg-bg);
+  --ion-text-color: var(--wtg-text);
+  --ion-toolbar-background: var(--wtg-bg);
+  --ion-toolbar-color: var(--wtg-text);
+}
+
+.wtg-theme-home ion-content,
+.wtg-theme-swipe ion-content {
+  --background: var(--wtg-bg);
+}
+
+.wtg-theme-home ion-toolbar,
+.wtg-theme-swipe ion-toolbar {
+  --background: var(--wtg-bg);
+  --border-width: 0;
+}
+
+.wtg-theme-home .wtg-heading,
+.wtg-theme-home .wtg-display,
+.wtg-theme-swipe .wtg-heading,
+.wtg-theme-swipe .wtg-display {
+  font-family: var(--wtg-font-display);
+}
+
+/* Nút avatar 44×44 (AvatarButton), dùng ở cả trang chủ và trang vuốt thẻ */
+.wtg-avatar-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.wtg-avatar-button > img,
+.wtg-avatar-button > span {
+  box-shadow: 0 0 0 1px var(--wtg-border);
+}
+
+/* Chip dùng chung cho bảng trượt lên, thẻ vuốt và thẻ tóm tắt (11px, không xuống dòng) */
+.wtg-chip {
+  display: inline-flex;
+  align-items: center;
+  flex-shrink: 0;
+  padding: 2px 8px;
+  border-radius: 999px;
+  border: 1px solid var(--wtg-chip-border);
+  background: var(--wtg-chip-bg);
+  color: var(--wtg-chip-text);
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1.4;
+  white-space: nowrap;
+}
+
+.wtg-chip--accent {
+  border-color: var(--wtg-chip-accent-border);
+  background: var(--wtg-chip-accent-bg);
+  color: var(--wtg-accent-text);
+  font-weight: 600;
+}

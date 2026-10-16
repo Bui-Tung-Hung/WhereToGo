@@ -16,14 +16,23 @@ class SupabaseAdmin:
         self._base_url = url.rstrip("/")
         self._headers = {"apikey": secret_key}
 
-    async def select_all(self, table: str, columns: str = "*") -> list[dict]:
-        """Return every row of `table`, paginating 1000 rows at a time via the Range header."""
+    async def select_all(
+        self, table: str, columns: str = "*", order: str | None = None
+    ) -> list[dict]:
+        """Return every row of `table`, paginating 1000 rows at a time via the Range header.
+
+        Pass `order` (a PostgREST order list such as ``"id"`` or ``"place_id,tag_id"``) to sort
+        the rows on a unique key, so that pages never overlap or skip rows between requests.
+        """
         rows: list[dict] = []
         offset = 0
+        params = {"select": columns}
+        if order is not None:
+            params["order"] = order
         while True:
             response = await self._http.get(
                 f"{self._base_url}/rest/v1/{table}",
-                params={"select": columns},
+                params=params,
                 headers={**self._headers, "Range": f"{offset}-{offset + _PAGE_SIZE - 1}"},
             )
             response.raise_for_status()

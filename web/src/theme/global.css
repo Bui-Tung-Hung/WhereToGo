@@ -88,6 +88,3 @@ ion-modal ion-datetime {
   min-width: 44px;
   min-height: 44px;
 }
-
-/* Tab đang chọn dùng icon filled, chưa chọn dùng icon outline
-   (áp dụng bằng cách đổi icon trong Tabs.tsx theo tab đang active) */

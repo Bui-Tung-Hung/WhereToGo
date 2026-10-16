@@ -16,9 +16,11 @@ import {
 } from '@ionic/react';
 import { useMemo } from 'react';
 import { toUserMessage } from '../../lib/errors';
-import { normalizeVi } from '../../shared/text/viNormalize';
+import { nameErrorMessage, validateName } from '../../shared/text/nameValidation';
 import { usePlaces } from '../places/placeQueries';
 import { useDeleteTag, useRenameTag, useTags } from './tagQueries';
+
+const MAX_NAME_LENGTH = 50;
 
 /**
  * Quản lý nhãn (mục 6.6 PLAN.md): danh sách nhãn kèm số địa điểm đang dùng
@@ -54,24 +56,24 @@ export function ManageTagsPage(): React.JSX.Element {
         {
           text: 'Lưu',
           handler: (data: { name?: string }) => {
-            const trimmed = (data.name ?? '').trim();
-            if (!trimmed) {
+            // Giống TagPicker: không cho trùng tên nhãn khác; tên rỗng thì bỏ qua.
+            const result = validateName(
+              data.name ?? '',
+              tags.filter((tag) => tag.id !== tagId).map((tag) => tag.name),
+              { maxLength: MAX_NAME_LENGTH },
+            );
+            if (result.kind === 'empty') {
               return;
             }
-            // Giống TagPicker: không cho trùng tên nhãn khác (so bằng normalizeVi).
-            const normalized = normalizeVi(trimmed);
-            const isDuplicate = tags.some(
-              (tag) => tag.id !== tagId && normalizeVi(tag.name) === normalized,
-            );
-            if (isDuplicate) {
+            if (result.kind !== 'ok') {
               void presentAlert({
                 header: 'Lỗi',
-                message: 'Nhãn này đã tồn tại.',
+                message: nameErrorMessage(result.kind, 'nhãn', MAX_NAME_LENGTH),
                 buttons: ['Đóng'],
               });
               return;
             }
-            renameTag.mutate({ id: tagId, name: trimmed }, { onError: showError });
+            renameTag.mutate({ id: tagId, name: result.name }, { onError: showError });
           },
         },
       ],
@@ -99,7 +101,7 @@ export function ManageTagsPage(): React.JSX.Element {
       <IonHeader>
         <IonToolbar>
           <IonButtons slot="start">
-            <IonBackButton defaultHref="/tabs/settings" text="Cài đặt" />
+            <IonBackButton defaultHref="/settings" text="Cài đặt" />
           </IonButtons>
           <IonTitle>Quản lý nhãn</IonTitle>
         </IonToolbar>

@@ -6,6 +6,14 @@
 @import '@fontsource/be-vietnam-pro/latin-600.css';
 @import '@fontsource/be-vietnam-pro/vietnamese-600.css';
 
-/* Playfair Display — tiêu đề (chỉ cần 600) */
+/* Playfair Display — tiêu đề (600) và chữ "WhereToGo" của trang chủ (800) */
 @import '@fontsource/playfair-display/latin-600.css';
 @import '@fontsource/playfair-display/vietnamese-600.css';
+@import '@fontsource/playfair-display/latin-800.css';
+@import '@fontsource/playfair-display/vietnamese-800.css';
+
+/* Trang vuốt thẻ (P23 PLAN-UI-1.md): Fraunces (tiêu đề) và Plus Jakarta Sans (nội dung), dạng
+   biến thiên theo độ đậm. Gói không có file theo từng subset nên nhập wght.css (trình duyệt chỉ
+   tải subset cần nhờ unicode-range). */
+@import '@fontsource-variable/fraunces/wght.css';
+@import '@fontsource-variable/plus-jakarta-sans/wght.css';

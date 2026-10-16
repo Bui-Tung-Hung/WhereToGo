@@ -23,8 +23,8 @@ Quy ước: `[USER]` = bước chỉ người dùng làm được (tài khoản,
 | D11 | Hosting web | GitHub Pages (repo public `WhereToGo`), deploy bằng GitHub Actions |
 | D12 | Việc định kỳ | GitHub Actions + Python: giữ Supabase hoạt động (hằng ngày), sao lưu JSON lên Drive (hằng tuần, giữ 8 bản) |
 | D13 | Offline | Chỉ xem: TanStack Query lưu cache vào IndexedDB (7 ngày). Khi offline: ẨN nút ＋, "Sửa", "Thêm lần đi", thao tác vuốt để xoá; nút "Lưu" trong form bị khoá |
-| D14 | Giao diện | "Đơn giản mà sang trọng": trắng ngà/đen than/vàng đồng, tiêu đề Playfair Display, nội dung Be Vietnam Pro, không đổ bóng, viền mảnh |
-| D15 | Điều hướng | 3 tab: Khám phá · Gần tôi · Cài đặt; nút tròn ＋ để thêm địa điểm |
+| D14 | Giao diện | "Đơn giản mà sang trọng": trắng ngà/đen than/vàng đồng, tiêu đề Playfair Display, nội dung Be Vietnam Pro, không đổ bóng, viền mảnh — đã thay bằng [UI-REDESIGN.md](UI-REDESIGN.md), 2026-10 |
+| D15 | Điều hướng | 3 tab: Khám phá · Gần tôi · Cài đặt; nút tròn ＋ để thêm địa điểm — đã thay bằng [UI-REDESIGN.md](UI-REDESIGN.md), 2026-10 |
 | D16 | Trạng thái | MẶC ĐỊNH: 3 trạng thái loại trừ nhau: Hứng thú / Chưa đi / Đã đi; mặc định khi tạo = Chưa đi; thêm một lần đi → tự chuyển "Đã đi"; xoá lần đi KHÔNG tự đổi trạng thái (chỉ đổi thủ công trong form) |
 | D17 | Lần đi | MẶC ĐỊNH: mỗi lần đi gồm ngày + ghi chú (≤500 ký tự) |
 | D18 | Giờ mở cửa | MẶC ĐỊNH: bảng tuần T2–CN, mỗi ngày tối đa 3 khung giờ, chọn giờ bằng bánh xe (bước 5 phút), có "Mở 24h", "Áp dụng cho cả tuần", "Chưa rõ giờ"; đóng cửa sau nửa đêm được hiểu là qua ngày hôm sau |
@@ -688,7 +688,7 @@ Cách áp dụng: `[USER]` dán lần lượt 4 file (3 file trên và `20260929
   - `ping()`: `GET /rest/v1/places?select=id&limit=1`.
 - `keepalive.py`: `main()` → `ping()`. Lỗi HTTP → log `keepalive_failed` rồi thoát mã 1. Thành công → log `keepalive_ok` (không in dữ liệu).
 - `backup.py`: `main()` chạy lần lượt:
-  1. Đọc 5 bảng `places`, `tags`, `place_tags`, `photos`, `visits`.
+  1. Đọc 8 bảng: `places`, `tags`, `place_tags`, `photos`, `visits`, `categories`, `place_categories`, `swipe_events`.
   2. Dựng JSON `{ "format": "wheretogo-backup", "version": 1, "exported_at": ISO-UTC, "tables": {...} }`.
   3. Với mỗi `user_id` trong `google_credentials` (thực tế chỉ 1):
      - Lọc dòng theo user.

@@ -1,13 +1,8 @@
-import { mapPostgrestError, OfflineError } from '../../lib/errors';
+import { mapPostgrestError } from '../../lib/errors';
+import { assertOnline } from '../../lib/onlineGuard';
 import { supabase } from '../../lib/supabaseClient';
 import type { PlaceStatus } from '../places/types';
 import { deleteVisit, insertVisit, type InsertVisitInput, type Visit } from './visitRepository';
-
-function assertOnline(): void {
-  if (!navigator.onLine) {
-    throw new OfflineError();
-  }
-}
 
 /**
  * Thêm một lần đi. Nếu trạng thái hiện tại của địa điểm chưa phải "Đã đi"

@@ -19,7 +19,27 @@ from .supabase_admin import SupabaseAdmin
 
 logger = logging.getLogger(__name__)
 
-_TABLES = ("places", "tags", "place_tags", "photos", "visits")
+_TABLES = (
+    "places",
+    "tags",
+    "place_tags",
+    "photos",
+    "visits",
+    "categories",
+    "place_categories",
+    "swipe_events",
+)
+# Unique sort key per table, so paginated reads are stable.
+_TABLE_ORDER: dict[str, str] = {
+    "places": "id",
+    "tags": "id",
+    "place_tags": "place_id,tag_id",
+    "photos": "id",
+    "visits": "id",
+    "categories": "id",
+    "place_categories": "place_id,category_id",
+    "swipe_events": "id",
+}
 _BACKUPS_TO_KEEP = 8
 
 
@@ -27,7 +47,7 @@ async def _export_tables(admin: SupabaseAdmin) -> dict[str, list[dict]]:
     """Read every row of each backed-up table, logging only row counts."""
     tables: dict[str, list[dict]] = {}
     for table in _TABLES:
-        rows = await admin.select_all(table)
+        rows = await admin.select_all(table, order=_TABLE_ORDER[table])
         tables[table] = rows
         logger.info("backup_table_read", extra={"table": table, "row_count": len(rows)})
     return tables

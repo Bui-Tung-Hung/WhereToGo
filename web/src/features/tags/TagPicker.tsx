@@ -1,7 +1,8 @@
 import { IonChip, IonIcon, IonLabel, useIonAlert } from '@ionic/react';
 import { addOutline } from 'ionicons/icons';
 import { toUserMessage } from '../../lib/errors';
-import { normalizeVi } from '../../shared/text/viNormalize';
+import { ToggleChip } from '../../shared/components/ToggleChip';
+import { nameErrorMessage, validateName } from '../../shared/text/nameValidation';
 import { useCreateTag, useTags } from './tagQueries';
 
 export interface TagPickerProps {
@@ -10,13 +11,12 @@ export interface TagPickerProps {
   onChange: (tagIds: string[]) => void;
 }
 
-const MIN_NAME_LENGTH = 1;
 const MAX_NAME_LENGTH = 50;
 
 /**
  * Chọn nhiều nhãn cho một địa điểm (mục 6.6 PLAN.md): mỗi nhãn là một chip
  * bật/tắt, kèm chip "＋ Nhãn mới" mở hộp thoại nhập tên (trim, 1–50 ký tự,
- * không trùng — so bằng `normalizeVi`); tạo xong tự chọn nhãn vừa tạo.
+ * không trùng — kiểm bằng `validateName`); tạo xong tự chọn nhãn vừa tạo.
  */
 export function TagPicker({ value, onChange }: TagPickerProps): React.JSX.Element {
   const { data: tags = [] } = useTags();
@@ -32,18 +32,17 @@ export function TagPicker({ value, onChange }: TagPickerProps): React.JSX.Elemen
   }
 
   async function handleCreate(rawName: string): Promise<void> {
-    const trimmed = rawName.trim();
-    if (trimmed.length < MIN_NAME_LENGTH || trimmed.length > MAX_NAME_LENGTH) {
-      showError(`Tên nhãn phải từ ${MIN_NAME_LENGTH} đến ${MAX_NAME_LENGTH} ký tự.`);
-      return;
-    }
-    const normalized = normalizeVi(trimmed);
-    if (tags.some((tag) => normalizeVi(tag.name) === normalized)) {
-      showError('Nhãn này đã tồn tại.');
+    const result = validateName(
+      rawName,
+      tags.map((tag) => tag.name),
+      { maxLength: MAX_NAME_LENGTH },
+    );
+    if (result.kind !== 'ok') {
+      showError(nameErrorMessage(result.kind, 'nhãn', MAX_NAME_LENGTH));
       return;
     }
     try {
-      const created = await createTag.mutateAsync(trimmed);
+      const created = await createTag.mutateAsync(result.name);
       onChange([...value, created.id]);
     } catch (error) {
       showError(toUserMessage(error));
@@ -70,29 +69,14 @@ export function TagPicker({ value, onChange }: TagPickerProps): React.JSX.Elemen
 
   return (
     <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
-      {tags.map((tag) => {
-        const isSelected = value.includes(tag.id);
-        return (
-          <IonChip
-            key={tag.id}
-            className="wtg-tap-target"
-            color={isSelected ? 'primary' : undefined}
-            outline={!isSelected}
-            role="button"
-            tabIndex={0}
-            aria-pressed={isSelected}
-            onClick={() => toggleTag(tag.id)}
-            onKeyDown={(event: React.KeyboardEvent) => {
-              if (event.key === 'Enter' || event.key === ' ') {
-                event.preventDefault();
-                toggleTag(tag.id);
-              }
-            }}
-          >
-            <IonLabel>{tag.name}</IonLabel>
-          </IonChip>
-        );
-      })}
+      {tags.map((tag) => (
+        <ToggleChip
+          key={tag.id}
+          label={tag.name}
+          selected={value.includes(tag.id)}
+          onToggle={() => toggleTag(tag.id)}
+        />
+      ))}
       <IonChip
         className="wtg-tap-target"
         outline

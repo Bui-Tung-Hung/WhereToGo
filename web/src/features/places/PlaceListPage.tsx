@@ -1,4 +1,6 @@
 import {
+  IonBackButton,
+  IonButtons,
   IonContent,
   IonFab,
   IonFabButton,
@@ -37,7 +39,18 @@ import { filterPlaces, sortPlaces, type StatusFilter } from './placeFilters';
 import { usePlaces } from './placeQueries';
 
 export interface PlaceListPageProps {
+  /** `explore` sắp theo mới cập nhật/đánh giá; `nearby` sắp theo khoảng cách tới vị trí hiện tại. */
   mode: 'explore' | 'nearby';
+  /** Tiêu đề trang (ví dụ "Tìm kiếm", "Yêu thích", tên nhóm). */
+  title: string;
+  /** Chỉ hiện địa điểm thuộc nhóm này (lối vào tạm từ thẻ nhóm trên trang chủ — P9). */
+  presetCategoryId?: string;
+  /** Chỉ hiện địa điểm đã Yêu thích (lối vào tạm từ nút tim — P9). */
+  favoritesOnly?: boolean;
+  /** Tiêu đề trạng thái rỗng khi chưa lọc gì thêm mà danh sách vẫn trống. */
+  emptyTitle?: string;
+  /** Câu mô tả đi kèm `emptyTitle`. */
+  emptyMessage?: string;
 }
 
 const STATUS_SEGMENTS: { value: StatusFilter; label: string }[] = [
@@ -50,11 +63,19 @@ const STATUS_SEGMENTS: { value: StatusFilter; label: string }[] = [
 const SEARCH_DEBOUNCE_MS = 200;
 
 /**
- * Danh sách địa điểm, dùng chung cho 2 tab "Khám phá" (`mode="explore"`,
- * sắp theo mới cập nhật/đánh giá) và "Gần tôi" (`mode="nearby"`, sắp theo
- * khoảng cách tới vị trí hiện tại) — mục 6.6 PLAN.md.
+ * Danh sách địa điểm (mục 6.6 PLAN.md). Từ giao diện mới phần 1 đây là trang được mở từ trang
+ * chủ (có nút quay lại), dùng tạm cho Tìm kiếm, Yêu thích, thẻ nhóm (`mode="explore"`, sắp theo
+ * mới cập nhật/đánh giá) và Gần tôi (`mode="nearby"`, sắp theo khoảng cách) — mục 5 PLAN-UI-1.md.
+ * Bộ lọc đặt sẵn (`presetCategoryId`, `favoritesOnly`) đọc thẳng từ props mỗi lần render.
  */
-export function PlaceListPage({ mode }: PlaceListPageProps): React.JSX.Element {
+export function PlaceListPage({
+  mode,
+  title,
+  presetCategoryId,
+  favoritesOnly,
+  emptyTitle,
+  emptyMessage,
+}: PlaceListPageProps): React.JSX.Element {
   const navigate = useNavigate();
   const isOnline = useOnlineStatus();
   const placesQuery = usePlaces();
@@ -81,8 +102,19 @@ export function PlaceListPage({ mode }: PlaceListPageProps): React.JSX.Element {
   );
 
   const filtered = useMemo(
-    () => filterPlaces(places, { query, tagIds: selectedTagIds, status }, tagNameById),
-    [places, query, selectedTagIds, status, tagNameById],
+    () =>
+      filterPlaces(
+        places,
+        {
+          query,
+          tagIds: selectedTagIds,
+          status,
+          categoryIds: presetCategoryId ? [presetCategoryId] : [],
+          favoritesOnly,
+        },
+        tagNameById,
+      ),
+    [places, query, selectedTagIds, status, presetCategoryId, favoritesOnly, tagNameById],
   );
 
   const { sorted, withoutCoordsCount } = useMemo(() => {
@@ -93,8 +125,6 @@ export function PlaceListPage({ mode }: PlaceListPageProps): React.JSX.Element {
     }
     return sortPlaces(filtered, sortMode);
   }, [mode, filtered, position, sortMode]);
-
-  const title = mode === 'explore' ? 'Khám phá' : 'Gần tôi';
 
   async function handleRefresh(event: RefresherCustomEvent): Promise<void> {
     await Promise.all([placesQuery.refetch(), tagsQuery.refetch()]);
@@ -156,6 +186,10 @@ export function PlaceListPage({ mode }: PlaceListPageProps): React.JSX.Element {
     }
 
     if (sorted.length === 0) {
+      const hasNoExtraFilter = query === '' && selectedTagIds.length === 0 && status === 'all';
+      if (hasNoExtraFilter && emptyTitle) {
+        return <EmptyState icon={searchOutline} title={emptyTitle} message={emptyMessage ?? ''} />;
+      }
       return (
         <EmptyState
           icon={searchOutline}
@@ -195,6 +229,9 @@ export function PlaceListPage({ mode }: PlaceListPageProps): React.JSX.Element {
     <IonPage>
       <IonHeader>
         <IonToolbar>
+          <IonButtons slot="start">
+            <IonBackButton defaultHref="/home" text="" />
+          </IonButtons>
           <IonTitle>{title}</IonTitle>
         </IonToolbar>
       </IonHeader>

@@ -1,6 +1,5 @@
-import type { PostgrestError } from '@supabase/supabase-js';
-import { mapPostgrestError } from '../../lib/errors';
 import { supabase } from '../../lib/supabaseClient';
+import { assertNoError, unwrap } from '../../lib/supabaseResult';
 
 /** Một lần đi của một địa điểm. */
 export interface Visit {
@@ -29,27 +28,6 @@ function mapVisitRow(row: VisitRow): Visit {
     note: row.note,
     createdAt: row.created_at,
   };
-}
-
-/** Đọc `{ data, error }` của supabase-js, ném `ApiError` (qua `mapPostgrestError`) nếu có lỗi. */
-async function unwrap<T>(
-  promise: PromiseLike<{ data: T | null; error: PostgrestError | null }>,
-): Promise<T> {
-  const { data, error } = await promise;
-  if (error) {
-    throw mapPostgrestError(error);
-  }
-  return data as T;
-}
-
-/** Chỉ kiểm tra lỗi của một lời gọi supabase-js không trả dữ liệu (ví dụ `delete`). */
-async function assertNoError(
-  promise: PromiseLike<{ error: PostgrestError | null }>,
-): Promise<void> {
-  const { error } = await promise;
-  if (error) {
-    throw mapPostgrestError(error);
-  }
 }
 
 /** Danh sách các lần đi của một địa điểm, sắp theo `visited_on` giảm dần. */

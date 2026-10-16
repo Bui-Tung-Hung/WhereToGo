@@ -1,6 +1,5 @@
-import type { PostgrestError } from '@supabase/supabase-js';
-import { mapPostgrestError } from '../../lib/errors';
 import { supabase } from '../../lib/supabaseClient';
+import { assertNoError, unwrap } from '../../lib/supabaseResult';
 import type { OpeningHours } from '../opening-hours/openingHours';
 import type { Place, PlaceInput, PlaceStatus, PlaceWithRelations } from './types';
 
@@ -17,44 +16,32 @@ interface PlaceColumnsRow {
   price_min_vnd: number | null;
   price_max_vnd: number | null;
   notes: string | null;
+  story: string | null;
   status: string;
   opening_hours: OpeningHours | null;
+  interest_score: number;
+  favorited_at: string | null;
   created_at: string;
   updated_at: string;
 }
 
 interface PlaceRelationsRow extends PlaceColumnsRow {
+  place_categories: { category_id: string }[];
   place_tags: { tag_id: string }[];
-  photos: { id: string; drive_file_id: string; position: number }[];
+  photos: { id: string; drive_file_id: string; position: number; created_at: string }[];
   visits: { visited_on: string }[];
 }
 
 const PLACE_COLUMNS =
   'id, user_id, name, address, latitude, longitude, google_maps_url, google_place_ref, ' +
-  'rating, price_min_vnd, price_max_vnd, notes, status, opening_hours, created_at, updated_at';
+  'rating, price_min_vnd, price_max_vnd, notes, story, status, opening_hours, interest_score, ' +
+  'favorited_at, created_at, updated_at';
 
-const PLACE_WITH_RELATIONS_COLUMNS = `${PLACE_COLUMNS}, place_tags(tag_id), photos(id, drive_file_id, position), visits(visited_on)`;
+const PLACE_WITH_RELATIONS_COLUMNS = `${PLACE_COLUMNS}, place_categories(category_id), place_tags(tag_id), photos(id, drive_file_id, position, created_at), visits(visited_on)`;
 
-/** Đọc `{ data, error }` của supabase-js, ném `ApiError` (qua `mapPostgrestError`) nếu có lỗi. */
-async function unwrap<T>(
-  promise: PromiseLike<{ data: T | null; error: PostgrestError | null }>,
-): Promise<T> {
-  const { data, error } = await promise;
-  if (error) {
-    throw mapPostgrestError(error);
-  }
-  return data as T;
-}
-
-/** Chỉ kiểm tra lỗi của một lời gọi supabase-js không trả dữ liệu (ví dụ `delete`). */
-async function assertNoError(
-  promise: PromiseLike<{ error: PostgrestError | null }>,
-): Promise<void> {
-  const { error } = await promise;
-  if (error) {
-    throw mapPostgrestError(error);
-  }
-}
+/** Bảng nối giữa địa điểm và nhóm/nhãn, cùng tên cột id phía bên kia. */
+type JoinTable = 'place_tags' | 'place_categories';
+type JoinColumn = 'tag_id' | 'category_id';
 
 function mapPlaceColumns(row: PlaceColumnsRow): Place {
   return {
@@ -70,15 +57,18 @@ function mapPlaceColumns(row: PlaceColumnsRow): Place {
     priceMinVnd: row.price_min_vnd,
     priceMaxVnd: row.price_max_vnd,
     notes: row.notes,
+    story: row.story,
     status: row.status as PlaceStatus,
     openingHours: row.opening_hours,
+    interestScore: row.interest_score,
+    favoritedAt: row.favorited_at,
     createdAt: row.created_at,
     updatedAt: row.updated_at,
   };
 }
 
 /**
- * Đổi một dòng `places` (kèm quan hệ `place_tags`/`photos`/`visits` đã
+ * Đổi một dòng `places` (kèm quan hệ `place_categories`/`place_tags`/`photos`/`visits` đã
  * join) sang `PlaceWithRelations`.
  *
  * LUÔN tự sắp `photos` theo `position` tăng dần và `visitDates` giảm dần
@@ -88,6 +78,7 @@ function mapPlaceColumns(row: PlaceColumnsRow): Place {
 export function mapPlaceRow(row: PlaceRelationsRow): PlaceWithRelations {
   return {
     ...mapPlaceColumns(row),
+    categoryIds: row.place_categories.map((placeCategory) => placeCategory.category_id),
     tagIds: row.place_tags.map((placeTag) => placeTag.tag_id),
     photos: [...row.photos]
       .sort((a, b) => a.position - b.position)
@@ -95,15 +86,22 @@ export function mapPlaceRow(row: PlaceRelationsRow): PlaceWithRelations {
         id: photo.id,
         driveFileId: photo.drive_file_id,
         position: photo.position,
+        createdAt: photo.created_at,
       })),
     visitDates: row.visits.map((visit) => visit.visited_on).sort((a, b) => b.localeCompare(a)),
   };
 }
 
-/** Chuyển các trường của `PlaceInput` (camelCase) sang tên cột của bảng `places` (snake_case). */
+/**
+ * Chuyển các trường của `PlaceInput` (camelCase) sang tên cột của bảng `places` (snake_case).
+ * Form không bao giờ ghi `interest_score` (DB tự cập nhật) và `favorited_at` (nút sao).
+ */
 function toColumns(
   input: PlaceInput,
-): Omit<PlaceColumnsRow, 'id' | 'user_id' | 'created_at' | 'updated_at'> {
+): Omit<
+  PlaceColumnsRow,
+  'id' | 'user_id' | 'created_at' | 'updated_at' | 'interest_score' | 'favorited_at'
+> {
   return {
     name: input.name,
     address: input.address,
@@ -115,6 +113,7 @@ function toColumns(
     price_min_vnd: input.priceMinVnd,
     price_max_vnd: input.priceMaxVnd,
     notes: input.notes,
+    story: input.story,
     status: input.status,
     opening_hours: input.openingHours,
   };
@@ -142,7 +141,7 @@ export async function getPlace(id: string): Promise<PlaceWithRelations> {
   return mapPlaceRow(row);
 }
 
-/** Tạo một địa điểm mới (chưa gắn nhãn/ảnh — xem `placeService.createPlace`). */
+/** Tạo một địa điểm mới (chưa gắn nhóm/nhãn/ảnh — xem `placeService.createPlace`). */
 export async function insertPlace(input: PlaceInput): Promise<Place> {
   const row = await unwrap<PlaceColumnsRow>(
     supabase.from('places').insert(toColumns(input)).select(PLACE_COLUMNS).single(),
@@ -150,7 +149,7 @@ export async function insertPlace(input: PlaceInput): Promise<Place> {
   return mapPlaceColumns(row);
 }
 
-/** Cập nhật các trường của một địa điểm đã có (không đụng tới nhãn/ảnh/lần đi). */
+/** Cập nhật các trường của một địa điểm đã có (không đụng tới nhóm/nhãn/ảnh/lần đi). */
 export async function updatePlace(id: string, input: PlaceInput): Promise<Place> {
   const row = await unwrap<PlaceColumnsRow>(
     supabase.from('places').update(toColumns(input)).eq('id', id).select(PLACE_COLUMNS).single(),
@@ -158,36 +157,76 @@ export async function updatePlace(id: string, input: PlaceInput): Promise<Place>
   return mapPlaceColumns(row);
 }
 
-/** Xoá một địa điểm (`on delete cascade` tự xoá `place_tags`/`photos`/`visits` liên quan). */
+/**
+ * Đặt hoặc bỏ Yêu thích: cập nhật đúng một cột `favorited_at` (nên không chạy trigger
+ * `updated_at`, quán không nhảy lên "Mới cập nhật").
+ *
+ * @returns Giá trị `favorited_at` server đã lưu.
+ */
+export async function updatePlaceFavorite(
+  id: string,
+  favoritedAt: string | null,
+): Promise<string | null> {
+  const row = await unwrap<{ favorited_at: string | null }>(
+    supabase
+      .from('places')
+      .update({ favorited_at: favoritedAt })
+      .eq('id', id)
+      .select('favorited_at')
+      .single(),
+  );
+  return row.favorited_at;
+}
+
+/** Xoá một địa điểm (`on delete cascade` tự xoá nhóm/nhãn/ảnh/lần đi/lượt vuốt liên quan). */
 export async function deletePlaceRow(id: string): Promise<void> {
   await assertNoError(supabase.from('places').delete().eq('id', id));
 }
 
 /**
- * Đồng bộ nhãn của một địa điểm về đúng danh sách `tagIds`: xoá các dòng
- * `place_tags` thừa, chèn các dòng còn thiếu (không đụng tới các dòng đã
- * đúng sẵn).
+ * Đồng bộ các dòng của một bảng nối về đúng danh sách `ids`: xoá các dòng
+ * thừa, chèn các dòng còn thiếu (không đụng tới các dòng đã đúng sẵn).
  */
-export async function replacePlaceTags(placeId: string, tagIds: readonly string[]): Promise<void> {
-  const existingRows = await unwrap<{ tag_id: string }[]>(
-    supabase.from('place_tags').select('tag_id').eq('place_id', placeId),
+async function replaceJoinRows(
+  table: JoinTable,
+  column: JoinColumn,
+  placeId: string,
+  ids: readonly string[],
+): Promise<void> {
+  const existingRows = await unwrap<Record<string, string>[]>(
+    supabase.from(table).select(column).eq('place_id', placeId),
   );
-  const existingIds = new Set((existingRows ?? []).map((row) => row.tag_id));
-  const nextIds = new Set(tagIds);
+  const existingIds = new Set(
+    (existingRows ?? [])
+      .map((row) => row[column])
+      .filter((id): id is string => id !== undefined),
+  );
+  const nextIds = new Set(ids);
 
   const idsToRemove = [...existingIds].filter((id) => !nextIds.has(id));
   const idsToAdd = [...nextIds].filter((id) => !existingIds.has(id));
 
   if (idsToRemove.length > 0) {
     await assertNoError(
-      supabase.from('place_tags').delete().eq('place_id', placeId).in('tag_id', idsToRemove),
+      supabase.from(table).delete().eq('place_id', placeId).in(column, idsToRemove),
     );
   }
   if (idsToAdd.length > 0) {
     await assertNoError(
-      supabase
-        .from('place_tags')
-        .insert(idsToAdd.map((tagId) => ({ place_id: placeId, tag_id: tagId }))),
+      supabase.from(table).insert(idsToAdd.map((id) => ({ place_id: placeId, [column]: id }))),
     );
   }
+}
+
+/** Đồng bộ nhãn của một địa điểm về đúng danh sách `tagIds`. */
+export async function replacePlaceTags(placeId: string, tagIds: readonly string[]): Promise<void> {
+  await replaceJoinRows('place_tags', 'tag_id', placeId, tagIds);
+}
+
+/** Đồng bộ nhóm của một địa điểm về đúng danh sách `categoryIds`. */
+export async function replacePlaceCategories(
+  placeId: string,
+  categoryIds: readonly string[],
+): Promise<void> {
+  await replaceJoinRows('place_categories', 'category_id', placeId, categoryIds);
 }

@@ -71,6 +71,8 @@ Vào **SQL Editor → New query**. Chạy lần lượt từng file dưới đâ
 2. `supabase/migrations/20260924000200_rls_and_grants.sql`
 3. `supabase/migrations/20260924000300_functions.sql`
 4. `supabase/migrations/20260929000100_seed_default_tags_once.sql`
+5. `supabase/migrations/20261016000100_categories_swipes_favorites_story.sql`
+6. `supabase/migrations/20261016000200_drop_legacy_tags.sql` — **chỉ chạy sau khi bản web mới đã lên** (xem mục "Nâng cấp giao diện phần 1" bên dưới nếu app đã có dữ liệu).
 
 ## Bước 6 — Khoá mã hoá refresh token
 
@@ -155,6 +157,28 @@ Vào repo → **Settings → Secrets and variables → Actions**.
 1. Đăng nhập app bằng tài khoản Google của bạn ít nhất một lần.
 2. Supabase → **Authentication → Settings** (hoặc Sign In / Providers → User Signups) → **TẮT** "Allow new users to sign up".
 3. **Kiểm tra:** mở app ở cửa sổ ẩn danh, đăng nhập bằng **một tài khoản Google khác**. Phải bị từ chối, trang Đăng nhập hiện thông báo "Tài khoản Google này không có quyền dùng WhereToGo…". Tài khoản của bạn vẫn đăng nhập bình thường.
+
+---
+
+## Nâng cấp giao diện phần 1 (dữ liệu đã có)
+
+Làm đúng thứ tự dưới đây, **trước** khi push bản web mới lên `main` (bản web mới cần bảng và cột mới). File kiểm tra: `supabase/checks/20261016000100_verify.sql` — mỗi phần là một câu `select`: bôi đen đúng phần đó rồi bấm **Run**, gửi lại cả bảng kết quả.
+
+**(a) Sao lưu.** Repo → **Actions** → `backup` → **Run workflow**. Đợi chạy xong (xanh), mở Drive → thư mục "WhereToGo Backups" → phải có file `wheretogo-backup-<ngày hôm nay>.json`.
+
+**(b) Phần TRƯỚC** của file kiểm tra. Mong đợi: mỗi nhãn một dòng `nhan`; ba nhãn "Ăn uống", "Vui chơi", "Du lịch" có `khop_anh_xa=true`; dòng `so_quan` là số quán của bạn. Nếu tên nhãn khác (đã đổi tên) thì **dừng** và báo lại.
+
+**(c) Migration 1.** Dán toàn bộ `supabase/migrations/20261016000100_categories_swipes_favorites_story.sql` → **Run**. Chạy đúng **một** lần: chạy lại sẽ báo lỗi và không đổi gì. Nếu SQL Editor cảnh báo câu lệnh có thao tác xoá (`drop trigger`), chọn chạy tiếp.
+
+**(d) Phần SAU-1** của file kiểm tra. Mong đợi:
+- `so_nhom`: 4 cho mỗi user; `quan_theo_nhom`: số quán của từng nhóm (quán gắn "Ăn uống" và quán chưa có nhãn nào nằm ở "Quán ăn"); `quan_khong_nhom`: 0.
+- `trigger_updated_at`: định nghĩa có `BEFORE UPDATE OF name, address, … , opening_hours, story`.
+- `rls`: cả 3 bảng `rowsecurity=true`, cột cuối là 1.
+- `quyen`: `authenticated` có đủ SELECT/INSERT/UPDATE/DELETE trên `categories` và `place_categories`; trên `swipe_events` thì SELECT/INSERT/DELETE là `true`, UPDATE là `false`; `anon` toàn bộ `false`; `service_role` SELECT là `true` (các quyền khác của `service_role` có thể `true` do mặc định của Supabase, không sao).
+- `ham`: cả 3 hàm `security_definer=false`.
+- `lech_user`: 0; `lech_diem`: 0.
+
+**(e) Sau khi bản web mới đã lên và đã thử trên iPhone:** dán toàn bộ `supabase/migrations/20261016000200_drop_legacy_tags.sql` → **Run**, rồi chạy **Phần SAU-2**. Mong đợi: `nhan_cu_con_lai` = 0, `quan_khong_nhom` = 0. File này chạy lại cũng an toàn.
 
 ---
 

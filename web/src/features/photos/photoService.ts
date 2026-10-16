@@ -1,6 +1,7 @@
 import { apiClient } from '../../lib/apiClient';
-import { DriveUploadError, OfflineError, toUserMessage } from '../../lib/errors';
+import { DriveUploadError, toUserMessage } from '../../lib/errors';
 import { logger } from '../../lib/logger';
+import { assertOnline } from '../../lib/onlineGuard';
 import { getPhotoFolderId } from '../google/driveFolderApi';
 import { uploadFileToDrive } from '../google/driveUpload';
 import { getDriveAccessToken } from '../google/googleTokenService';
@@ -19,12 +20,6 @@ const MIME_TO_EXTENSION: Record<string, string> = {
   'image/png': 'png',
   'image/webp': 'webp',
 };
-
-function assertOnline(): void {
-  if (!navigator.onLine) {
-    throw new OfflineError();
-  }
-}
 
 /** Dấu thời gian `yyyyMMddHHmmss` theo giờ hệ thống, dùng để đặt tên file trên Drive. */
 function timestampForFileName(date: Date): string {

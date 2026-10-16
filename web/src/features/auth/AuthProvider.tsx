@@ -6,6 +6,7 @@ import { onGoogleReauthRequired } from '../../lib/apiClient';
 import { GoogleReauthRequiredError } from '../../lib/errors';
 import { logger } from '../../lib/logger';
 import { supabase } from '../../lib/supabaseClient';
+import { seedDefaultCategories } from '../categories/categoryRepository';
 import { getDriveAccessToken } from '../google/googleTokenService';
 import { QUERY_KEYS } from '../places/placeQueries';
 import { seedDefaultTags } from '../tags/tagRepository';
@@ -39,8 +40,9 @@ const DRIVE_LINK_RETRY_DELAY_MS = 2000;
 /**
  * Cung cấp trạng thái đăng nhập hiện tại cho toàn app qua React context.
  *
- * Khi `status` chuyển sang `signed_in`: gọi `seedDefaultTags()` đúng một lần
- * mỗi lần mở app rồi làm mới cache `['tags']`, và thăm dò trạng thái kết nối
+ * Khi `status` chuyển sang `signed_in`: gọi `seedDefaultTags()` và
+ * `seedDefaultCategories()` đúng một lần mỗi lần mở app (tạo nhãn và nhóm mặc
+ * định nếu chưa có) rồi làm mới cache `['tags']`/`['categories']`, và thăm dò trạng thái kết nối
  * Google Drive (`driveLinked`) qua `getDriveAccessToken()` — `false` khi
  * server báo `GoogleReauthRequiredError` (không có/hỏng refresh token),
  * `true` khi lấy được access token, giữ `null` (chưa rõ) với các lỗi khác
@@ -55,7 +57,7 @@ export function AuthProvider({ children }: AuthProviderProps): React.JSX.Element
   // chuyển sang `signed_out` (vi phạm quy tắc `react-hooks/set-state-in-effect`).
   const [driveLinkedProbe, setDriveLinkedProbe] = useState<boolean | null>(null);
   const queryClient = useQueryClient();
-  const hasSeededTagsRef = useRef(false);
+  const hasSeededDefaultsRef = useRef(false);
 
   useEffect(() => {
     let active = true;
@@ -79,18 +81,27 @@ export function AuthProvider({ children }: AuthProviderProps): React.JSX.Element
     };
   }, []);
 
-  // Seed 4 nhãn mặc định một lần mỗi lần mở app, ngay khi vừa xác định đã đăng nhập.
+  // Seed nhãn và nhóm mặc định một lần mỗi lần mở app, ngay khi vừa xác định đã đăng nhập.
   useEffect(() => {
-    if (status !== 'signed_in' || hasSeededTagsRef.current) {
+    if (status !== 'signed_in' || hasSeededDefaultsRef.current) {
       return;
     }
-    hasSeededTagsRef.current = true;
+    hasSeededDefaultsRef.current = true;
     void seedDefaultTags()
       .then(() => {
         void queryClient.invalidateQueries({ queryKey: QUERY_KEYS.tags });
       })
       .catch((error: unknown) => {
         logger.error('seed_default_tags_failed', {
+          message: error instanceof Error ? error.message : String(error),
+        });
+      });
+    void seedDefaultCategories()
+      .then(() => {
+        void queryClient.invalidateQueries({ queryKey: QUERY_KEYS.categories });
+      })
+      .catch((error: unknown) => {
+        logger.error('seed_default_categories_failed', {
           message: error instanceof Error ? error.message : String(error),
         });
       });

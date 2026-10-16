@@ -23,10 +23,14 @@ function makePlace(overrides: Partial<PlaceWithRelations> = {}): PlaceWithRelati
     priceMinVnd: null,
     priceMaxVnd: null,
     notes: null,
+    story: null,
     status: 'not_visited',
     openingHours: null,
+    interestScore: 0,
+    favoritedAt: null,
     createdAt: '2026-01-01T00:00:00.000Z',
     updatedAt: '2026-01-01T00:00:00.000Z',
+    categoryIds: [],
     tagIds: [],
     photos: [],
     visitDates: [],
@@ -35,6 +39,47 @@ function makePlace(overrides: Partial<PlaceWithRelations> = {}): PlaceWithRelati
 }
 
 describe('filterPlaces', () => {
+  it('lọc theo nhóm kiểu HOẶC', () => {
+    const an = makePlace({ categoryIds: ['cat-an'] });
+    const uong = makePlace({ categoryIds: ['cat-uong'] });
+    const choi = makePlace({ categoryIds: ['cat-choi'] });
+    const result = filterPlaces(
+      [an, uong, choi],
+      { query: '', tagIds: [], status: 'all', categoryIds: ['cat-an', 'cat-uong'] },
+      new Map(),
+    );
+    expect(result).toEqual([an, uong]);
+  });
+
+  it('favoritesOnly chỉ giữ địa điểm đã Yêu thích', () => {
+    const favorite = makePlace({ favoritedAt: '2026-10-17T00:00:00.000Z' });
+    const normal = makePlace();
+    const result = filterPlaces(
+      [favorite, normal],
+      { query: '', tagIds: [], status: 'all', favoritesOnly: true },
+      new Map(),
+    );
+    expect(result).toEqual([favorite]);
+  });
+
+  it('tìm theo câu chuyện', () => {
+    const withStory = makePlace({ story: 'Quán phở gia truyền từ năm 1955' });
+    const other = makePlace();
+    const result = filterPlaces(
+      [withStory, other],
+      { query: 'gia truyen', tagIds: [], status: 'all' },
+      new Map(),
+    );
+    expect(result).toEqual([withStory]);
+  });
+
+  it('không truyền categoryIds và favoritesOnly thì không lọc thêm', () => {
+    const places = [makePlace({ categoryIds: ['cat-an'] }), makePlace()];
+    expect(filterPlaces(places, { query: '', tagIds: [], status: 'all' }, new Map())).toEqual(
+      places,
+    );
+  });
+
   it('tìm "pho" khớp "Phở Thìn"', () => {
     const phoThin = makePlace({ name: 'Phở Thìn' });
     const cafe = makePlace({ name: 'Cafe Giảng' });
