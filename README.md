@@ -44,3 +44,6 @@ Jobs: `pytest -q jobs/tests` (cài `./server` và `jobs/requirements-dev.txt` tr
 
 - [docs/SETUP.md](docs/SETUP.md) — tạo tài khoản, khoá, biến môi trường, chạy local
 - [docs/PLAN.md](docs/PLAN.md) — kế hoạch triển khai đã duyệt
+- [docs/UI-REDESIGN.md](docs/UI-REDESIGN.md) — ghi chép research giao diện mới (Stitch)
+- [docs/PLAN-UI-1.md](docs/PLAN-UI-1.md) — kế hoạch giao diện mới phần 1 (đã làm)
+- [docs/PLAN-UI-2.md](docs/PLAN-UI-2.md) — kế hoạch phần 2: một phong cách "Sổ tay", đủ trang, mở công khai
