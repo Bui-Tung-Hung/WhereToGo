@@ -13,12 +13,18 @@ describe('categoryFormSchema', () => {
   it('tên rỗng hoặc quá dài báo đúng câu lỗi', () => {
     const empty = categoryFormSchema.safeParse({ name: '   ', prompt: null, icon: null });
     expect(empty.error?.issues[0]?.message).toBe('Tên nhóm phải từ 1 đến 50 ký tự.');
-    const tooLong = categoryFormSchema.safeParse({ name: 'a'.repeat(51), prompt: null, icon: null });
+    const tooLong = categoryFormSchema.safeParse({
+      name: 'a'.repeat(51),
+      prompt: null,
+      icon: null,
+    });
     expect(tooLong.error?.issues[0]?.message).toBe('Tên nhóm phải từ 1 đến 50 ký tự.');
   });
 
   it('câu gợi ý toàn khoảng trắng thành null, có chữ thì được trim', () => {
-    expect(categoryFormSchema.parse({ name: 'Du lịch', prompt: '   ', icon: null }).prompt).toBeNull();
+    expect(
+      categoryFormSchema.parse({ name: 'Du lịch', prompt: '   ', icon: null }).prompt,
+    ).toBeNull();
     expect(
       categoryFormSchema.parse({ name: 'Du lịch', prompt: '  Đi đâu?  ', icon: null }).prompt,
     ).toBe('Đi đâu?');

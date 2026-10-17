@@ -55,9 +55,7 @@ export function SwipeDeckView({
   // Thẻ dưới vẽ trước; thẻ đang bay vẽ cuối. Cùng một danh sách, `key` = id quán, để thẻ đang
   // kéo trở thành thẻ bay mà vẫn là phần tử DOM cũ.
   const stack = [
-    ...upcoming
-      .map((place, index) => ({ place, role: STACK_ROLES[index] ?? 'third' }))
-      .reverse(),
+    ...upcoming.map((place, index) => ({ place, role: STACK_ROLES[index] ?? 'third' })).reverse(),
     ...(flying ? [{ place: flying.place, role: 'flying' as const }] : []),
   ];
 

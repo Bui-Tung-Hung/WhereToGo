@@ -22,10 +22,7 @@ import { useSwipeGesture } from './useSwipeGesture';
 const MAX_CARD_CHIPS = 2;
 
 /** Gọi `callbackRef.current` đúng một lần cho mỗi lần bay (cờ `endedRef` đặt lại khi bắt đầu bay). */
-function finishFlyOutOnce(
-  endedRef: RefObject<boolean>,
-  callbackRef: RefObject<() => void>,
-): void {
+function finishFlyOutOnce(endedRef: RefObject<boolean>, callbackRef: RefObject<() => void>): void {
   if (endedRef.current) {
     return;
   }

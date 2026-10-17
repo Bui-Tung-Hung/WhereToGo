@@ -98,10 +98,19 @@ describe('recentPhotosForCategory', () => {
     const places = [
       makePlace('1', {
         categoryIds: ['an'],
-        photos: [makePhoto('p1', '2026-10-01T00:00:00.000Z'), makePhoto('p2', '2026-10-05T00:00:00.000Z')],
+        photos: [
+          makePhoto('p1', '2026-10-01T00:00:00.000Z'),
+          makePhoto('p2', '2026-10-05T00:00:00.000Z'),
+        ],
       }),
-      makePlace('2', { categoryIds: ['an'], photos: [makePhoto('p3', '2026-10-03T00:00:00.000Z')] }),
-      makePlace('3', { categoryIds: ['uong'], photos: [makePhoto('p4', '2026-10-09T00:00:00.000Z')] }),
+      makePlace('2', {
+        categoryIds: ['an'],
+        photos: [makePhoto('p3', '2026-10-03T00:00:00.000Z')],
+      }),
+      makePlace('3', {
+        categoryIds: ['uong'],
+        photos: [makePhoto('p4', '2026-10-09T00:00:00.000Z')],
+      }),
     ];
     expect(recentPhotosForCategory(places, 'an', 2).map((photo) => photo.id)).toEqual(['p2', 'p3']);
   });
@@ -110,7 +119,10 @@ describe('recentPhotosForCategory', () => {
     const places = [
       makePlace('1', {
         categoryIds: ['an'],
-        photos: [makePhoto('b', '2026-10-01T00:00:00.000Z'), makePhoto('a', '2026-10-01T00:00:00.000Z')],
+        photos: [
+          makePhoto('b', '2026-10-01T00:00:00.000Z'),
+          makePhoto('a', '2026-10-01T00:00:00.000Z'),
+        ],
       }),
     ];
     expect(recentPhotosForCategory(places, 'an', 5).map((photo) => photo.id)).toEqual(['a', 'b']);

@@ -8,9 +8,7 @@ function compareByCreation(a: Category, b: Category): number {
 }
 
 /** Số địa điểm của từng nhóm (một địa điểm thuộc nhiều nhóm thì được đếm ở mỗi nhóm). */
-export function countPlacesByCategory(
-  places: readonly PlaceWithRelations[],
-): Map<string, number> {
+export function countPlacesByCategory(places: readonly PlaceWithRelations[]): Map<string, number> {
   const counts = new Map<string, number>();
   for (const place of places) {
     for (const categoryId of place.categoryIds) {

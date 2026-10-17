@@ -56,7 +56,11 @@ export function SettingsPage(): React.JSX.Element {
                 await signOut();
                 navigate('/login', { replace: true });
               } catch (error) {
-                void presentAlert({ header: 'Lỗi', message: toUserMessage(error), buttons: ['Đóng'] });
+                void presentAlert({
+                  header: 'Lỗi',
+                  message: toUserMessage(error),
+                  buttons: ['Đóng'],
+                });
               }
             })();
           },
@@ -108,7 +112,12 @@ export function SettingsPage(): React.JSX.Element {
                 <IonLabel>Quản lý nhóm</IonLabel>
                 <IonIcon icon={chevronForwardOutline} slot="end" aria-hidden="true" />
               </IonItem>
-              <IonItem lines="none" button className="wtg-tap-target" onClick={() => navigate('/settings/tags')}>
+              <IonItem
+                lines="none"
+                button
+                className="wtg-tap-target"
+                onClick={() => navigate('/settings/tags')}
+              >
                 <IonLabel>Quản lý nhãn</IonLabel>
                 <IonIcon icon={chevronForwardOutline} slot="end" aria-hidden="true" />
               </IonItem>

@@ -60,6 +60,11 @@ ion-title.wtg-swipe-title {
   padding: 0 16px;
 }
 
+/* P29: mỗi hàng lọc 52px = chip 44 + lề trên/dưới 4 */
+.wtg-swipe-filters .wtg-chip-row {
+  padding: 0;
+}
+
 .wtg-swipe-deck-view {
   display: flex;
   flex: 1;
@@ -220,6 +225,19 @@ ion-title.wtg-swipe-title {
   display: flex;
   gap: 6px;
   overflow: hidden;
+}
+
+/* Chip trên ảnh: màu cố định ở cả hai chế độ như chữ trên ảnh (mục 6.1) */
+.wtg-swipe-card__chips .wtg-chip {
+  border-color: rgba(250, 247, 238, 0.3);
+  background: rgba(20, 20, 19, 0.7);
+  color: #faf7ee;
+}
+
+.wtg-swipe-card__chips .wtg-chip--accent {
+  border-color: #e8a359;
+  background: #e8a359;
+  color: #0c0a09;
 }
 
 .wtg-swipe-card__name {

@@ -25,7 +25,7 @@ export function TagFilterBar({ selected, onChange }: TagFilterBarProps): React.J
   }
 
   return (
-    <div style={{ display: 'flex', gap: 8, overflowX: 'auto', padding: '8px 0' }}>
+    <div className="wtg-chip-row">
       {tags.map((tag) => (
         <ToggleChip
           key={tag.id}

@@ -15,7 +15,11 @@ export interface PhotoClusterProps {
 }
 
 /** Cụm ảnh tròn chồng nhau trên thẻ nhóm của trang chủ (vị trí theo Stitch — mục 6.3 PLAN-UI-1.md). */
-export function PhotoCluster({ photos, count, fallbackIcon }: PhotoClusterProps): React.JSX.Element {
+export function PhotoCluster({
+  photos,
+  count,
+  fallbackIcon,
+}: PhotoClusterProps): React.JSX.Element {
   const visible = photos.slice(0, CLUSTER_PHOTO_LIMIT);
   return (
     <div className="wtg-cluster" aria-hidden="true">

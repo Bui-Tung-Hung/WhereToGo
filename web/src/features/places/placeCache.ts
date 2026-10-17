@@ -1,5 +1,5 @@
 import type { QueryClient } from '@tanstack/react-query';
-import { QUERY_KEYS } from './placeQueries';
+import { QUERY_KEYS } from './queryKeys';
 import type { PlaceWithRelations } from './types';
 
 /** Hàm biến đổi một địa điểm (trả bản mới, không sửa bản cũ). */

@@ -8,7 +8,7 @@ import { logger } from '../../lib/logger';
 import { supabase } from '../../lib/supabaseClient';
 import { seedDefaultCategories } from '../categories/categoryRepository';
 import { getDriveAccessToken } from '../google/googleTokenService';
-import { QUERY_KEYS } from '../places/placeQueries';
+import { QUERY_KEYS } from '../places/queryKeys';
 import { seedDefaultTags } from '../tags/tagRepository';
 import { signInWithGoogle } from './authService';
 

@@ -57,9 +57,7 @@ export function useSwipeDeckController({
   isOnline,
 }: SwipeDeckControllerOptions): SwipeDeckController {
   const [deck, setDeck] = useState(() => createDeck(initialPlaceIds, seed));
-  const [flying, setFlying] = useState<{ placeId: string; direction: SwipeDirection } | null>(
-    null,
-  );
+  const [flying, setFlying] = useState<{ placeId: string; direction: SwipeDirection } | null>(null);
   const [pendingEventId, setPendingEventId] = useState<string | null>(null);
   const record = useRecordSwipe();
   const undoMutation = useUndoSwipe();
@@ -85,10 +83,7 @@ export function useSwipeDeckController({
   const flyingCard =
     flying && flyingPlace ? { place: flyingPlace, direction: flying.direction } : null;
   const busy =
-    flyingCard !== null ||
-    pendingEventId !== null ||
-    undoMutation.isPending ||
-    favorite.isPending;
+    flyingCard !== null || pendingEventId !== null || undoMutation.isPending || favorite.isPending;
   const top = upcoming[0];
 
   function showToast(message: string, isError = false): void {
@@ -161,8 +156,7 @@ export function useSwipeDeckController({
     favorite.mutate(
       { id: top.id, favorited },
       {
-        onSuccess: () =>
-          showToast(favorited ? 'Đã thêm vào Yêu thích' : 'Đã bỏ khỏi Yêu thích'),
+        onSuccess: () => showToast(favorited ? 'Đã thêm vào Yêu thích' : 'Đã bỏ khỏi Yêu thích'),
         onError: (error) => showToast(toUserMessage(error), true),
       },
     );

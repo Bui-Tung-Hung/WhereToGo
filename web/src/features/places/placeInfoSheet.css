@@ -95,6 +95,11 @@ ion-modal.wtg-info-sheet ion-content {
   color: var(--wtg-text-muted);
 }
 
+.wtg-info-photo__media {
+  width: 100%;
+  height: 100%;
+}
+
 .wtg-info-photo img {
   display: block;
   width: 100%;

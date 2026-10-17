@@ -22,7 +22,9 @@ export function getAvatarInfo(user: AvatarUser | null): AvatarInfo {
   const metadata = user?.user_metadata ?? {};
   const imageUrl = nonEmptyString(metadata.avatar_url) ?? nonEmptyString(metadata.picture);
   const displayName =
-    nonEmptyString(metadata.full_name) ?? nonEmptyString(metadata.name) ?? nonEmptyString(user?.email);
+    nonEmptyString(metadata.full_name) ??
+    nonEmptyString(metadata.name) ??
+    nonEmptyString(user?.email);
   const initial = displayName ? displayName.trim().charAt(0).toUpperCase() : '?';
   return { imageUrl, initial };
 }

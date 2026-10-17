@@ -22,7 +22,7 @@ export function CategoryFilterBar({
   const sorted = useMemo(() => sortCategoriesByCreation(categories), [categories]);
 
   return (
-    <div style={{ display: 'flex', gap: 8, overflowX: 'auto', padding: '8px 0' }}>
+    <div className="wtg-chip-row">
       <ToggleChip label="Tất cả" selected={selected === null} onToggle={() => onChange(null)} />
       {sorted.map((category) => (
         <ToggleChip

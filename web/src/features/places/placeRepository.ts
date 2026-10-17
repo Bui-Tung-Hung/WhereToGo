@@ -197,9 +197,7 @@ async function replaceJoinRows(
     supabase.from(table).select(column).eq('place_id', placeId),
   );
   const existingIds = new Set(
-    (existingRows ?? [])
-      .map((row) => row[column])
-      .filter((id): id is string => id !== undefined),
+    (existingRows ?? []).map((row) => row[column]).filter((id): id is string => id !== undefined),
   );
   const nextIds = new Set(ids);
 

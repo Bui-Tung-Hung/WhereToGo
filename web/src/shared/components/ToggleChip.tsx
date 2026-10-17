@@ -15,7 +15,12 @@ export interface ToggleChipProps {
  * Chip bật/tắt dùng chung cho các hàng chọn nhãn/nhóm: chọn thì tô màu `primary`, không chọn
  * thì viền; có `role="button"`, `aria-pressed` và bấm được bằng Enter/Space.
  */
-export function ToggleChip({ label, selected, onToggle, icon }: ToggleChipProps): React.JSX.Element {
+export function ToggleChip({
+  label,
+  selected,
+  onToggle,
+  icon,
+}: ToggleChipProps): React.JSX.Element {
   return (
     <IonChip
       className="wtg-tap-target"

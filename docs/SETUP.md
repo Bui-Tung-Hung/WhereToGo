@@ -171,8 +171,8 @@ Làm đúng thứ tự dưới đây, **trước** khi push bản web mới lên
 **(c) Migration 1.** Dán toàn bộ `supabase/migrations/20261016000100_categories_swipes_favorites_story.sql` → **Run**. Chạy đúng **một** lần: chạy lại sẽ báo lỗi và không đổi gì. Nếu SQL Editor cảnh báo câu lệnh có thao tác xoá (`drop trigger`), chọn chạy tiếp.
 
 **(d) Phần SAU-1** của file kiểm tra. Mong đợi:
-- `so_nhom`: 4 cho mỗi user; `quan_theo_nhom`: số quán của từng nhóm (quán gắn "Ăn uống" và quán chưa có nhãn nào nằm ở "Quán ăn"); `quan_khong_nhom`: 0.
-- `trigger_updated_at`: định nghĩa có `BEFORE UPDATE OF name, address, … , opening_hours, story`.
+- `so_nhom`: 4 cho mỗi user; `quan_theo_nhom`: số quán của từng nhóm (quán gắn "Ăn uống" vào "Quán ăn", "Vui chơi" vào "Chỗ chơi", "Du lịch" vào "Du lịch"; quán còn lại chưa có nhóm nào, kể cả quán chỉ có nhãn khác như "Hẹn hò", vào "Quán ăn"); `quan_khong_nhom`: 0.
+- `trigger_updated_at`: định nghĩa có `BEFORE UPDATE OF` đủ 13 cột: `name, address, latitude, longitude, google_maps_url, google_place_ref, rating, price_min_vnd, price_max_vnd, notes, status, opening_hours, story`.
 - `rls`: cả 3 bảng `rowsecurity=true`, cột cuối là 1.
 - `quyen`: `authenticated` có đủ SELECT/INSERT/UPDATE/DELETE trên `categories` và `place_categories`; trên `swipe_events` thì SELECT/INSERT/DELETE là `true`, UPDATE là `false`; `anon` toàn bộ `false`; `service_role` SELECT là `true` (các quyền khác của `service_role` có thể `true` do mặc định của Supabase, không sao).
 - `ham`: cả 3 hàm `security_definer=false`.

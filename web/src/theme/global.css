@@ -83,6 +83,19 @@ ion-modal ion-datetime {
   max-width: none;
 }
 
+/* Hàng chip cuộn ngang (TagFilterBar, CategoryFilterBar) */
+.wtg-chip-row {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 8px 0;
+}
+
+/* Chip giữ nguyên bề ngang để hàng cuộn ngang thay vì bẻ chữ xuống dòng */
+.wtg-chip-row > ion-chip {
+  flex-shrink: 0;
+}
+
 /* Mọi vùng bấm tối thiểu 44x44 px */
 .wtg-tap-target {
   min-width: 44px;

@@ -69,20 +69,20 @@ export function SwipePage(): React.JSX.Element {
           />
         );
       }
-      if (placesQuery.isError) {
+      if (placesQuery.isPending) {
         return (
-          <EmptyState
-            icon={alertCircleOutline}
-            title="Không tải được dữ liệu"
-            message={toUserMessage(placesQuery.error)}
-            action={{ label: 'Thử lại', onClick: () => void placesQuery.refetch() }}
-          />
+          <div style={{ display: 'flex', justifyContent: 'center', padding: 48 }}>
+            <IonSpinner aria-label="Đang tải" />
+          </div>
         );
       }
       return (
-        <div style={{ display: 'flex', justifyContent: 'center', padding: 48 }}>
-          <IonSpinner aria-label="Đang tải" />
-        </div>
+        <EmptyState
+          icon={alertCircleOutline}
+          title="Không tải được dữ liệu"
+          message={toUserMessage(placesQuery.error)}
+          action={{ label: 'Thử lại', onClick: () => void placesQuery.refetch() }}
+        />
       );
     }
 
@@ -129,11 +129,7 @@ export function SwipePage(): React.JSX.Element {
           {renderDeck()}
         </div>
       </IonContent>
-      <PlaceInfoSheet
-        place={infoPlace}
-        onDidDismiss={() => setInfoPlaceId(null)}
-        theme="swipe"
-      />
+      <PlaceInfoSheet place={infoPlace} onDidDismiss={() => setInfoPlaceId(null)} theme="swipe" />
     </IonPage>
   );
 }

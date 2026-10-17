@@ -18,7 +18,7 @@ export function HomeHeader(): React.JSX.Element {
             aria-label="Yêu thích"
             onClick={() => navigate('/favorites')}
           >
-            <IonIcon slot="icon-only" icon={heartOutline} />
+            <IonIcon slot="icon-only" icon={heartOutline} aria-hidden="true" />
           </IonButton>
           <AvatarButton />
         </IonButtons>

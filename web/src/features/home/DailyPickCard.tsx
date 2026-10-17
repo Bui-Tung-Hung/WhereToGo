@@ -19,7 +19,11 @@ export interface DailyPickCardProps {
  * Thẻ "Hôm nay thử quán này" ở đầu trang chủ (U33, M4). Phần tử tương tác duy nhất là nút "Xem"
  * (thẻ chỉ nhận bấm bằng chuột/chạm, không phải nút lồng nút).
  */
-export function DailyPickCard({ place, categories, onOpen }: DailyPickCardProps): React.JSX.Element {
+export function DailyPickCard({
+  place,
+  categories,
+  onOpen,
+}: DailyPickCardProps): React.JSX.Element {
   const cover = getCoverPhoto(place);
   return (
     <div

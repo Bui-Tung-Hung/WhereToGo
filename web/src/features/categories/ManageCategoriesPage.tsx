@@ -114,7 +114,11 @@ export function ManageCategoriesPage(): React.JSX.Element {
                   className="wtg-tap-target"
                   onClick={isOnline ? () => setEditor({ category }) : undefined}
                 >
-                  <IonIcon icon={resolveCategoryIcon(category.icon)} slot="start" aria-hidden="true" />
+                  <IonIcon
+                    icon={resolveCategoryIcon(category.icon)}
+                    slot="start"
+                    aria-hidden="true"
+                  />
                   <IonLabel>
                     <p>{category.name}</p>
                     <p className="wtg-caption">

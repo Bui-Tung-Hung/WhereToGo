@@ -19,8 +19,7 @@ export function useRecordSwipe() {
   const queryClient = useQueryClient();
   return useMutation<void, unknown, SwipeVariables>({
     networkMode: 'always',
-    mutationFn: ({ eventId, placeId, delta }) =>
-      insertSwipeEvent({ id: eventId, placeId, delta }),
+    mutationFn: ({ eventId, placeId, delta }) => insertSwipeEvent({ id: eventId, placeId, delta }),
     onMutate: ({ placeId, delta }) => {
       applyPlacePatch(queryClient, placeId, (place) => withInterestDelta(place, delta));
     },

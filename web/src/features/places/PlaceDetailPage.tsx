@@ -150,6 +150,7 @@ export function PlaceDetailPage(): React.JSX.Element {
                 <IonIcon
                   slot="icon-only"
                   icon={isFavorite ? star : starOutline}
+                  aria-hidden="true"
                   style={{ fontSize: 24 }}
                 />
               </IonButton>

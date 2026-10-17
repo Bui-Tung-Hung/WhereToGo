@@ -1,5 +1,5 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { QUERY_KEYS } from '../places/placeQueries';
+import { QUERY_KEYS } from '../places/queryKeys';
 import { createTag, deleteTag, listTags, renameTag, type Tag } from './tagRepository';
 
 /** Danh sách nhãn của user hiện tại. */

@@ -92,8 +92,11 @@ export async function deleteCategory(id: string): Promise<void> {
 /**
  * Tạo 4 nhóm mặc định khi user chưa có nhóm nào (RPC `seed_default_categories`); nhóm mặc định
  * đã xoá hoặc đổi tên không bị tạo lại. An toàn gọi nhiều lần.
+ *
+ * @throws {OfflineError} Khi đang offline (D13).
  */
 export async function seedDefaultCategories(): Promise<void> {
+  assertOnline();
   const { error } = await supabase.rpc('seed_default_categories');
   if (error) {
     throw mapPostgrestError(error);

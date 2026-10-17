@@ -586,3 +586,64 @@ Python: `pytest -q jobs/tests` (test backup cập nhật + `test_supabase_admin.
 56. Quét bí mật trong mọi file đã đổi, rồi `git add` đúng các đường dẫn ở mục 3 (không gồm `stitch_web_page_builder.zip`, `img/`, `.claude/`); báo danh sách file và gợi ý message commit. User tự commit và push.
 57. `[USER][GATE C]` Sau khi CI và deploy xanh, thử trên iPhone (app đã cài): trang chủ sáng/tối, avatar Google, "Hôm nay thử quán này" + bảng trượt lên + "Chỉ đường"; trang vuốt thẻ: kéo từ giữa và **từ sát mép trái** (không được quay về trang chủ), bấm nhanh liên tiếp không ghi hai lần, Hứng thú/Bỏ qua/Sao/Hoàn tác, mở "Xem đầy đủ" rồi quay lại vẫn giữ vị trí, về trang chủ rồi vào lại thì bộ thẻ xáo lại, offline thì bị khoá; form bắt buộc chọn nhóm; Quản lý nhóm; danh sách tạm. Báo kết quả từng mục.
 58. `[USER][GATE D]` Chạy migration 2 rồi phần SAU-2 của file kiểm tra (SETUP.md bước (e)), gửi kết quả; Claude đối chiếu.
+
+---
+
+## 12. Điều chỉnh sau REVIEW (2026-10-17)
+
+REVIEW ngày 2026-10-17 đối chiếu code của commit `ff25e89` với kế hoạch này và ghi nhận 40 lệch (#1–#40). Mục này **thay thế hoặc bổ sung** các câu tương ứng ở các mục trên; chỗ nào khác nhau thì theo mục 12.
+
+### 12.1 Chấp nhận theo code
+
+| # | Mục plan | Code làm gì | Lý do |
+|---|---|---|---|
+| 1 | 2.1.F | `apply_swipe_event_to_score` có thêm `return null;` ở cuối hàm | Lối thoát an toàn của plpgsql; migration đã chạy nên không sửa |
+| 2 | 2.3 | Phần quyền in đủ 4 quyền cho cả `service_role` | File đã dùng ở GATE A, kết quả đã đối chiếu |
+| 3 | 2.3 | Kiểm `prosecdef` của 3 hàm (thêm `seed_default_tags`) | Chặt hơn plan, vô hại |
+| 4 | 2.3 | `lech_user`, `lech_diem`, `nhan_cu_con_lai` đếm toàn bảng, không `group by user_id` | Kiểm toàn vẹn, mong đợi 0; tách theo user không thêm thông tin |
+| 8 | 4.3 | `replaceJoinRows` lọc `id !== undefined` sau `row[column]` | Bắt buộc do `noUncheckedIndexedAccess` |
+| 10 | 4.10 | `getAvatarInfo` cắt khoảng trắng trước khi xét rỗng | Tên toàn khoảng trắng hiện "?" |
+| 12 | 4.9 | `busy` dùng `flyingCard` (thẻ đang bay mà quán còn tồn tại); trả `flying: { place, direction } \| null` thay cho `flyingPlace` | Không kẹt trạng thái bận khi quán bị xoá lúc thẻ đang bay; `SwipeDeckView` cần biết hướng bay |
+| 13 | 4.9 | `upcoming` lấy 4 id, bỏ id của thẻ đang bay, cắt còn 3 | Không trùng `key` khi ghi lỗi lúc thẻ đang bay |
+| 14 | 6.5 SwipeCard | Khi bắt đầu bay, xoá cả `transition` inline | Thiếu thì sau khi kéo, lớp `--fly-*` không chạy hiệu ứng |
+| 15 | 6.5, P31 | `.wtg-swipe-card` có `transition: transform 300ms ease, opacity 300ms ease` | Thẻ 2 lên thay thẻ 1 mượt; đã qua GATE C |
+| 16 | 6.5 | Khối giảm chuyển động tắt cả transition của `.wtg-swipe-action` | Theo mục 6.9 |
+| 19 | 6.5 Header | `.wtg-swipe-title__sub` có `letter-spacing: 0.08em`; nút quay lại có `margin-left: 8px` | Plan không quy định; đã qua GATE C |
+| 20 | 6.5 SwipeCard | Dấu HỨNG THÚ/BỎ QUA cách mép 20px, `letter-spacing: 0.06em` | Như #19 |
+| 21 | 6.5 SwipeEmptyState | Icon `mapOutline` / `searchOutline` / `albumsOutline`; `no-places` có câu phụ "Bắt đầu lưu lại những nơi bạn muốn nhớ." | `EmptyState` bắt buộc `icon` và `message` |
+| 23 | 6.4 | Không có giá mà có khoảng cách thì dòng giá chỉ là "cách bạn X" | Plan không nói trường hợp thiếu giá |
+| 24 | 6.4 | Hàng địa chỉ và huy hiệu giờ mở cửa nằm dưới cả cụm ảnh + cột, rộng hết bảng | Câu plan mơ hồ; đã qua GATE B/C |
+| 27 | 6.3 | Keyframes tên `wtg-fade-in-up`, `wtg-fab-breathing` | Theo quy ước tiền tố `wtg-`, tránh trùng tên toàn cục |
+| 28 | 6.1 | `themes.css` có luật dùng chung `.wtg-avatar-button`, `.wtg-chip`, `.wtg-chip--accent` | Dùng ở 3 nơi (DRY) |
+| 30 | 6.3 HomeHeader | `.wtg-home-header-end` có gap 14px, `padding-right: 8px`; nút tim `margin: 0` | Plan không quy định |
+| 31 | 6.3 HomePage | Thẻ "Chưa có nhóm nào": icon `addCircleOutline`, `aside={null}`, `ariaLabel` "Chưa có nhóm nào. Tạo nhóm để sắp xếp địa điểm", `cascadeIndex={1}` | `HomeCardLayout` bắt buộc các prop này |
+| 32 | 6.3 NearbyCard | `ariaLabel="Gần tôi"` | Như #31 |
+| 33 | 5 PlaceListPage | Có `emptyTitle` mà thiếu `emptyMessage` thì dùng `''` | `EmptyState` bắt buộc `message` |
+| 34 | 6.7 | Hàng tên nhóm ẩn khi quán không có nhóm | Giống cách hàng nhãn đang làm |
+| 36 | 3 | Commit `ff25e89` có thêm `docs/PLAN-UI-1.md` | User yêu cầu |
+| 37 | Bước 50 | Việc xoá `Tabs.tsx` được stage ngay bằng `git rm --cached` | Đã commit, không còn gì để làm |
+| 38 | Bước 53 | `.claude/launch.json` có thêm cấu hình `web-preview` (cổng 4173) | Dùng để kiểm bản production; không commit |
+
+### 12.2 Đã sửa code
+
+| # | Mục plan | Đã sửa |
+|---|---|---|
+| 5, 6 | Bước 4 | SETUP.md mục (d) ghi đủ cách gán nhóm của K.1–K.3 và liệt kê đủ 13 cột của trigger |
+| 7 | 4.5 | Tạo `places/queryKeys.ts` giữ `QUERY_KEYS`; `placeCache.ts` và mọi nơi khác import từ đây, hết import vòng |
+| 9 | 4.8, 7 | `seedDefaultCategories` gọi `assertOnline()` |
+| 11 | 4.10 | Viền avatar là `border` 1px nằm trong khung 28px (`box-sizing: border-box`) |
+| 17 | 6.1, 6.5 | Chip trên ảnh thẻ vuốt có màu cố định ở cả hai chế độ: chip thường nền `rgba(20, 20, 19, 0.7)`, chữ `#FAF7EE`; chip nhấn nền `#E8A359`, chữ `#0C0A09` |
+| 18 | P29 | Hàng lọc trên trang vuốt thẻ bỏ đệm dọc, mỗi hàng 52px |
+| 22 | 6.4 | Ảnh bìa trong bảng trượt lên phủ kín ô 80×80 (`.wtg-info-photo__media`) |
+| 25, 40 | 6.9 | Icon tim (`HomeHeader`) và icon sao (`PlaceDetailPage`) có `aria-hidden="true"` |
+| 26 | 6.3, 6.5 | Thứ tự trạng thái khi chưa có dữ liệu: offline → đang tải → lỗi (`HomePage`, `SwipePage`) |
+| 29 | 6.1, P37 | `--ion-color-primary` = `var(--wtg-accent)`, `--ion-color-medium` = `var(--wtg-text-muted)` |
+| 35 | Quy ước Prettier | Đã chạy Prettier trên các file web của phần 1 |
+| 39 | Bước 54 | Claude kiểm ở cỡ di động, sáng và tối, có ảnh chụp (GATE sau REVIEW) |
+| 41 | 4.1, P29 | Chip trong `.wtg-chip-row` không co (`flex-shrink: 0`), chữ không còn xuống 2 dòng; phát hiện ở GATE sau REVIEW |
+
+### 12.3 Thay cho các câu ở trên
+
+- **P29:** bộ thẻ `clamp(280px, 44vh, 380px)`. Tổng chiều cao trang vuốt = header 44 + 2 hàng lọc 104 (mỗi hàng 52 = chip 44 + lề trên/dưới 4) + dòng "Còn N" ~14 + 3 khoảng cách 8 + teaser ~88 + hàng nút 68 + đệm đáy 8. Số đo thật (Chromium giả lập, 2026-10-17): header 50, hai hàng lọc 52 + 52, dòng "Còn N" 16,5, teaser 92,6, hàng nút 68; bộ thẻ 293,6px ở 375×667 (bằng `44vh`) và 380px ở 428×926.
+- **Mục 3.1 và 4.5:** thêm file `web/src/features/places/queryKeys.ts` (`QUERY_KEYS`); `placeQueries.ts`, `placeCache.ts`, `tagQueries.ts`, `categoryQueries.ts`, `visitQueries.ts`, `AuthProvider.tsx`, `HomePage.tsx`, `PlaceFormPage.tsx` import từ file này.
+- **Mục 4.1:** lớp `.wtg-chip-row` (`theme/global.css`: flex, gap 8px, cuộn ngang, đệm `8px 0`) dùng cho `TagFilterBar` và `CategoryFilterBar`; trang vuốt thẻ bỏ đệm dọc của lớp này (`.wtg-swipe-filters .wtg-chip-row`). Chip trong hàng không co (`flex-shrink: 0`).

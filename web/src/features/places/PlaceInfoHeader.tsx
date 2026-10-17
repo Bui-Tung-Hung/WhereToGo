@@ -45,7 +45,12 @@ export function PlaceInfoHeader({
       <div className="wtg-info-header">
         <div className="wtg-info-photo">
           {cover ? (
-            <AuthedImage driveFileId={cover.driveFileId} size={400} alt={`Ảnh ${place.name}`} />
+            <AuthedImage
+              driveFileId={cover.driveFileId}
+              size={400}
+              alt={`Ảnh ${place.name}`}
+              className="wtg-info-photo__media"
+            />
           ) : (
             <IonIcon icon={resolveCategoryIcon(categories[0]?.icon ?? null)} aria-hidden="true" />
           )}
@@ -56,7 +61,9 @@ export function PlaceInfoHeader({
               {chips.visible.map((name, index) => (
                 <span
                   key={`${index}-${name}`}
-                  className={index < categoryNames.length ? 'wtg-chip wtg-chip--accent' : 'wtg-chip'}
+                  className={
+                    index < categoryNames.length ? 'wtg-chip wtg-chip--accent' : 'wtg-chip'
+                  }
                 >
                   {name}
                 </span>

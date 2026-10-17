@@ -4,8 +4,9 @@ import { getAvatarInfo } from './avatarInfo';
 describe('getAvatarInfo', () => {
   it('ưu tiên avatar_url, rồi picture', () => {
     expect(
-      getAvatarInfo({ user_metadata: { avatar_url: 'https://a/1.jpg', picture: 'https://a/2.jpg' } })
-        .imageUrl,
+      getAvatarInfo({
+        user_metadata: { avatar_url: 'https://a/1.jpg', picture: 'https://a/2.jpg' },
+      }).imageUrl,
     ).toBe('https://a/1.jpg');
     expect(getAvatarInfo({ user_metadata: { picture: 'https://a/2.jpg' } }).imageUrl).toBe(
       'https://a/2.jpg',

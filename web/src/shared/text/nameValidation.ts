@@ -2,10 +2,7 @@ import { normalizeVi } from './viNormalize';
 
 /** Kết quả kiểm tên của một nhãn/nhóm. */
 export type NameValidation =
-  | { kind: 'ok'; name: string }
-  | { kind: 'empty' }
-  | { kind: 'too_long' }
-  | { kind: 'duplicate' };
+  { kind: 'ok'; name: string } | { kind: 'empty' } | { kind: 'too_long' } | { kind: 'duplicate' };
 
 /** Tuỳ chọn cho {@link validateName}. */
 export interface ValidateNameOptions {
