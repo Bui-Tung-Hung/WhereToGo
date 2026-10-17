@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>Mở bằng trình duyệt</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;600&amp;family=Newsreader:wght@400;600&amp;family=Roboto:wght@500&amp;display=swap" rel="stylesheet">
+<style>
+/* ===== WTG TOKENS v1 — identical in every artboard, do not edit ===== */
+body{margin:0}
+.wtg{--bg:#F5F2E9;--surface:#FBF9F4;--surface-2:#EDE8DC;--border:#E2DBCC;--border-strong:#8A8072;--text:#1C1917;--muted:#5C554B;--accent:#A8482A;--accent-pressed:#8F3D23;--on-accent:#FFFFFF;--accent-text:#96401F;--accent-soft:#F4E1D7;--success:#2D6E45;--success-bg:#E2EEE2;--warning:#8A5600;--warning-bg:#F5E6C8;--danger:#B3261E;--danger-bg:#F8E0DA;--on-danger:#FFFFFF;--focus:#2F5DA8;--inverse-bg:#1C1917;--inverse-text:#F5F2E9;--inverse-action:#F09D7B;--scrim:rgba(28,25,23,.45);--photo-edge:rgba(28,25,23,.08);--pill:rgba(251,249,244,.92);--dock:rgba(251,249,244,.96);--e1:0 1px 2px rgba(28,25,23,.06);--e2:0 8px 24px -8px rgba(28,25,23,.20);--g-fill:#FFFFFF;--g-stroke:#747775;--g-text:#1F1F1F;--ph-1:#D9C7A7;--ph-2:#C9B8A6;--ph-3:#B9C3AA;--ph-4:#D8B8A4;--ph-5:#C2C9CC;--ph-6:#D3C4A0;--ph-icon:rgba(28,25,23,.32);--viewer-bg:#0C0A09;--sans:'Be Vietnam Pro',system-ui,-apple-system,'Segoe UI',sans-serif;--serif:'Newsreader',Georgia,'Times New Roman',serif;color-scheme:light;background:var(--bg);color:var(--text);font-family:var(--sans);font-size:16px;line-height:24px;-webkit-font-smoothing:antialiased}
+.wtg.dark{--bg:#141311;--surface:#1E1C19;--surface-2:#2A2723;--border:#3A3631;--border-strong:#7D7466;--text:#F2EDE3;--muted:#B3AB9C;--accent:#E58A66;--accent-pressed:#CF7652;--on-accent:#1C1210;--accent-text:#F09D7B;--accent-soft:#3B2720;--success:#86CB9A;--success-bg:#1F3326;--warning:#E9B65E;--warning-bg:#3A2E17;--danger:#F49283;--danger-bg:#3E211D;--on-danger:#1C1210;--focus:#93B6F2;--inverse-bg:#F2EDE3;--inverse-text:#1C1917;--inverse-action:#96401F;--scrim:rgba(0,0,0,.60);--photo-edge:rgba(255,255,255,.06);--pill:rgba(30,28,25,.92);--dock:rgba(30,28,25,.96);--e1:none;--e2:0 8px 24px -8px rgba(0,0,0,.70);--g-fill:#131314;--g-stroke:#8E918F;--g-text:#E3E3E3;--ph-1:#4A4033;--ph-2:#463E37;--ph-3:#3D4436;--ph-4:#4D3A31;--ph-5:#3B4145;--ph-6:#48412F;--ph-icon:rgba(255,255,255,.30);color-scheme:dark}
+.wtg *{box-sizing:border-box}
+.wtg button,.wtg input,.wtg select,.wtg textarea{font:inherit;color:inherit}
+.wtg a{color:var(--accent-text);text-decoration:none}
+.wtg a:hover{color:var(--accent-text)}
+.wtg p a,.wtg li a{text-decoration:underline;text-underline-offset:3px}
+.wtg :focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+.t-display{font-family:var(--serif);font-size:36px;line-height:46px;font-weight:600;letter-spacing:-0.01em;margin:0}
+.t-h1{font-family:var(--serif);font-size:28px;line-height:36px;font-weight:600;margin:0}
+.t-h2{font-family:var(--serif);font-size:22px;line-height:30px;font-weight:600;margin:0}
+.t-name{font-family:var(--serif);font-size:17px;line-height:22px;font-weight:600;margin:0}
+.t-name-lg{font-family:var(--serif);font-size:24px;line-height:32px;font-weight:600;margin:0}
+.t-numeral{font-family:var(--serif);font-size:28px;line-height:36px;font-weight:600}
+.t-story{font-family:var(--serif);font-size:18px;line-height:28px;font-weight:400;margin:0}
+.t-title{font-size:17px;line-height:24px;font-weight:600;margin:0}
+.t-body{font-size:16px;line-height:24px;font-weight:400;margin:0}
+.t-btn{font-size:16px;line-height:24px;font-weight:600}
+.t-body-sm{font-size:15px;line-height:22px;font-weight:400;margin:0}
+.t-label{font-size:14px;line-height:20px;font-weight:600;margin:0}
+.t-caption{font-size:13px;line-height:18px;font-weight:400;margin:0}
+.t-micro{font-size:12px;line-height:16px;font-weight:600;white-space:nowrap}
+.muted{color:var(--muted)}
+/* ===== end WTG TOKENS v1 ===== */
+</style>
+</helmet>
+<div class="wtg {{mode}}" style="width: 390px; height: 844px; position: relative; overflow: hidden; display: flex; flex-direction: column; background: var(--bg)">
+  <!-- top safe area: leave empty -->
+  <div style="height: 47px; flex: none"></div>
+
+  <!-- behind the gate: a simplified landing hero, hidden from assistive tech and covered by the overlay -->
+  <div aria-hidden="true" style="flex: 1; min-height: 0; display: flex; flex-direction: column; padding: 0 16px; overflow: hidden">
+    <div style="height: 56px; flex: none; display: flex; align-items: center; gap: 10px">
+      <span style="width: 32px; height: 32px; flex: none; border-radius: 8px; background: #1C1917; background: {{logoTile}}; color: var(--accent); display: flex; align-items: center; justify-content: center"><svg width="20" height="20" viewBox="0 0 512 512" aria-hidden="true" style="display: block; flex: none"><path d="M256 48c-79.5 0-144 61.39-144 137 0 87 96 224.87 131.25 272.49a15.77 15.77 0 0 0 25.5 0C304 409.89 400 272.07 400 185c0-75.61-64.5-137-144-137" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32px"></path><circle cx="256" cy="192" r="48" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32px"></circle></svg></span>
+      <span style="font-family: var(--serif); font-size: 22px; line-height: 30px; font-weight: 600; flex: 1">WhereToGo</span>
+      <span class="t-btn" style="height: 44px; padding: 0 12px; display: flex; align-items: center; color: var(--accent-text)">Đăng nhập</span>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 16px; padding-top: 32px">
+      <p class="t-caption muted">Sổ tay địa điểm — miễn phí, không quảng cáo</p>
+      <p class="t-display">Mọi quán muốn đến, gói gọn trong một cuốn sổ.</p>
+      <p class="t-body muted">WhereToGo giúp bạn lưu quán ăn, quán uống, chỗ chơi và điểm du lịch — kèm ảnh, giá, giờ mở cửa và câu chuyện của riêng bạn.</p>
+      <span class="t-btn" style="align-self: flex-start; height: 48px; padding: 0 20px; border-radius: 12px; background: var(--accent); color: var(--on-accent); display: inline-flex; align-items: center">Bắt đầu lưu quán</span>
+    </div>
+  </div>
+  <!-- bottom safe area: leave empty -->
+  <div style="height: 34px; flex: none"></div>
+
+  <!-- overlay: surface at 96% -->
+  <div aria-hidden="true" style="position: absolute; inset: 0; background: var(--surface); opacity: .96"></div>
+
+  <!-- the gate -->
+  <section aria-labelledby="gate-title" style="position: absolute; inset: 0; display: flex; flex-direction: column; padding: 47px 24px 34px">
+    <div style="flex: 1; min-height: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 24px">
+      <span style="width: 72px; height: 72px; flex: none; border-radius: 999px; background: var(--surface-2); color: var(--text); display: flex; align-items: center; justify-content: center"><svg width="32" height="32" viewBox="0 0 512 512" aria-hidden="true" style="display: block; flex: none"><path d="M384 224v184a40 40 0 0 1-40 40H104a40 40 0 0 1-40-40V168a40 40 0 0 1 40-40h167.48M336 64h112v112M224 288 440 72" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32px"></path></svg></span>
+
+      <div style="display: flex; flex-direction: column; align-items: center; gap: 12px; text-align: center">
+        <h1 id="gate-title" class="t-h1">Mở bằng Safari hoặc Chrome để đăng nhập</h1>
+        <p class="t-body-sm muted">Bạn đang xem trong trình duyệt của <strong style="font-weight: 600; color: var(--text)">Zalo</strong>. Google không cho đăng nhập ở đây để bảo vệ tài khoản của bạn.</p>
+      </div>
+
+      <ol style="list-style: none; margin: 0; padding: 16px; width: 100%; border-radius: 16px; background: var(--surface-2); display: flex; flex-direction: column; gap: 12px">
+        <li style="display: flex; align-items: center; gap: 12px">
+          <span style="width: 32px; height: 32px; flex: none; border-radius: 999px; background: var(--surface); display: flex; align-items: center; justify-content: center; font-family: var(--serif); font-size: 17px; line-height: 22px; font-weight: 600">1</span>
+          <span class="t-body-sm" style="flex: 1">Bấm nút ba chấm <span style="display: inline-flex; width: 28px; height: 28px; border-radius: 999px; background: var(--surface); border: 1px solid var(--border); align-items: center; justify-content: center; vertical-align: middle"><svg width="16" height="16" viewBox="0 0 512 512" fill="currentColor" aria-hidden="true" style="display: block; flex: none"><circle cx="256" cy="256" r="48"></circle><circle cx="416" cy="256" r="48"></circle><circle cx="96" cy="256" r="48"></circle></svg></span> ở góc trên</span>
+        </li>
+        <li style="display: flex; align-items: center; gap: 12px">
+          <span style="width: 32px; height: 32px; flex: none; border-radius: 999px; background: var(--surface); display: flex; align-items: center; justify-content: center; font-family: var(--serif); font-size: 17px; line-height: 22px; font-weight: 600">2</span>
+          <span class="t-body-sm" style="flex: 1">Chọn <strong style="font-weight: 600">“Mở bằng trình duyệt”</strong></span>
+        </li>
+      </ol>
+
+      <div style="width: 100%; display: flex; flex-direction: column; align-items: center; gap: 8px">
+        <button type="button" class="t-btn" style="width: 100%; height: 48px; padding: 0 20px; border-radius: 12px; background: var(--accent); color: var(--on-accent); border: 0; display: inline-flex; align-items: center; justify-content: center; gap: 8px"><svg width="20" height="20" viewBox="0 0 512 512" aria-hidden="true" style="display: block; flex: none"><rect width="336" height="336" x="128" y="128" rx="57" ry="57" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="32px"></rect><path d="m383.5 128 .5-24a56.16 56.16 0 0 0-56-56H112a64.19 64.19 0 0 0-64 64v216a56.16 56.16 0 0 0 56 56h24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32px"></path></svg>Sao chép link</button>
+        <div style="width: 100%; display: flex; flex-direction: column; align-items: center; gap: 4px">
+          <button type="button" class="t-btn" style="width: 100%; height: 48px; padding: 0 20px; border-radius: 12px; background: var(--surface); color: var(--text); border: 1px solid var(--border-strong); display: inline-flex; align-items: center; justify-content: center; gap: 8px"><svg width="20" height="20" viewBox="0 0 512 512" aria-hidden="true" style="display: block; flex: none"><path d="M384 224v184a40 40 0 0 1-40 40H104a40 40 0 0 1-40-40V168a40 40 0 0 1 40-40h167.48M336 64h112v112M224 288 440 72" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32px"></path></svg>Mở bằng Chrome</button>
+          <p class="t-caption muted">Trên Android</p>
+        </div>
+        <button type="button" class="t-btn" style="height: 44px; padding: 0 12px; border-radius: 12px; background: transparent; color: var(--accent-text); border: 0">Vẫn xem trang</button>
+      </div>
+    </div>
+  </section>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"dark":{"editor":"boolean","default":false,"section":"Giao diện"},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const dark = this.props.dark ?? false;
+    return { mode: dark ? 'dark' : 'light', logoTile: dark ? 'var(--surface-2)' : '#1C1917' };
+  }
+}
+</script>
+</body>
+</html>

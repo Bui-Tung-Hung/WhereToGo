@@ -1,0 +1,620 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>Sơ đồ trang</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;600&amp;family=Newsreader:wght@400;600&amp;family=Roboto:wght@500&amp;display=swap" rel="stylesheet">
+<style>
+/* ===== WTG TOKENS v1 — identical in every artboard, do not edit ===== */
+body{margin:0}
+.wtg{--bg:#F5F2E9;--surface:#FBF9F4;--surface-2:#EDE8DC;--border:#E2DBCC;--border-strong:#8A8072;--text:#1C1917;--muted:#5C554B;--accent:#A8482A;--accent-pressed:#8F3D23;--on-accent:#FFFFFF;--accent-text:#96401F;--accent-soft:#F4E1D7;--success:#2D6E45;--success-bg:#E2EEE2;--warning:#8A5600;--warning-bg:#F5E6C8;--danger:#B3261E;--danger-bg:#F8E0DA;--on-danger:#FFFFFF;--focus:#2F5DA8;--inverse-bg:#1C1917;--inverse-text:#F5F2E9;--inverse-action:#F09D7B;--scrim:rgba(28,25,23,.45);--photo-edge:rgba(28,25,23,.08);--pill:rgba(251,249,244,.92);--dock:rgba(251,249,244,.96);--e1:0 1px 2px rgba(28,25,23,.06);--e2:0 8px 24px -8px rgba(28,25,23,.20);--g-fill:#FFFFFF;--g-stroke:#747775;--g-text:#1F1F1F;--ph-1:#D9C7A7;--ph-2:#C9B8A6;--ph-3:#B9C3AA;--ph-4:#D8B8A4;--ph-5:#C2C9CC;--ph-6:#D3C4A0;--ph-icon:rgba(28,25,23,.32);--viewer-bg:#0C0A09;--sans:'Be Vietnam Pro',system-ui,-apple-system,'Segoe UI',sans-serif;--serif:'Newsreader',Georgia,'Times New Roman',serif;color-scheme:light;background:var(--bg);color:var(--text);font-family:var(--sans);font-size:16px;line-height:24px;-webkit-font-smoothing:antialiased}
+.wtg.dark{--bg:#141311;--surface:#1E1C19;--surface-2:#2A2723;--border:#3A3631;--border-strong:#7D7466;--text:#F2EDE3;--muted:#B3AB9C;--accent:#E58A66;--accent-pressed:#CF7652;--on-accent:#1C1210;--accent-text:#F09D7B;--accent-soft:#3B2720;--success:#86CB9A;--success-bg:#1F3326;--warning:#E9B65E;--warning-bg:#3A2E17;--danger:#F49283;--danger-bg:#3E211D;--on-danger:#1C1210;--focus:#93B6F2;--inverse-bg:#F2EDE3;--inverse-text:#1C1917;--inverse-action:#96401F;--scrim:rgba(0,0,0,.60);--photo-edge:rgba(255,255,255,.06);--pill:rgba(30,28,25,.92);--dock:rgba(30,28,25,.96);--e1:none;--e2:0 8px 24px -8px rgba(0,0,0,.70);--g-fill:#131314;--g-stroke:#8E918F;--g-text:#E3E3E3;--ph-1:#4A4033;--ph-2:#463E37;--ph-3:#3D4436;--ph-4:#4D3A31;--ph-5:#3B4145;--ph-6:#48412F;--ph-icon:rgba(255,255,255,.30);color-scheme:dark}
+.wtg *{box-sizing:border-box}
+.wtg button,.wtg input,.wtg select,.wtg textarea{font:inherit;color:inherit}
+.wtg a{color:var(--accent-text);text-decoration:none}
+.wtg a:hover{color:var(--accent-text)}
+.wtg p a,.wtg li a{text-decoration:underline;text-underline-offset:3px}
+.wtg :focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+.t-display{font-family:var(--serif);font-size:36px;line-height:46px;font-weight:600;letter-spacing:-0.01em;margin:0}
+.t-h1{font-family:var(--serif);font-size:28px;line-height:36px;font-weight:600;margin:0}
+.t-h2{font-family:var(--serif);font-size:22px;line-height:30px;font-weight:600;margin:0}
+.t-name{font-family:var(--serif);font-size:17px;line-height:22px;font-weight:600;margin:0}
+.t-name-lg{font-family:var(--serif);font-size:24px;line-height:32px;font-weight:600;margin:0}
+.t-numeral{font-family:var(--serif);font-size:28px;line-height:36px;font-weight:600}
+.t-story{font-family:var(--serif);font-size:18px;line-height:28px;font-weight:400;margin:0}
+.t-title{font-size:17px;line-height:24px;font-weight:600;margin:0}
+.t-body{font-size:16px;line-height:24px;font-weight:400;margin:0}
+.t-btn{font-size:16px;line-height:24px;font-weight:600}
+.t-body-sm{font-size:15px;line-height:22px;font-weight:400;margin:0}
+.t-label{font-size:14px;line-height:20px;font-weight:600;margin:0}
+.t-caption{font-size:13px;line-height:18px;font-weight:400;margin:0}
+.t-micro{font-size:12px;line-height:16px;font-weight:600;white-space:nowrap}
+.muted{color:var(--muted)}
+/* ===== end WTG TOKENS v1 ===== */
+</style>
+</helmet>
+<div class="wtg {{mode}}" style="width: 1440px; height: 2450px; position: relative; overflow: hidden; background: var(--bg)">
+<div style="display: flex; flex-direction: column; gap: 24px; padding: 40px 40px 40px">
+
+  <!-- Tiêu đề -->
+  <section style="display: flex; align-items: flex-end; justify-content: space-between; gap: 32px">
+    <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 8px">
+      <p class="t-label" style="color: var(--accent-text)">Sổ tay · bản đồ các trang · 17/10/2026</p>
+      <h1 class="t-display" style="font-size: 52px; line-height: 66px">Sơ đồ trang — WhereToGo bản công khai</h1>
+      <p class="t-story muted" style="max-width: 900px">Mọi trang và bảng trượt của bản công khai, chia theo lúc người dùng gặp chúng. Bấm “Xem bản vẽ →” để mở bản vẽ chi tiết của trang đó.</p>
+    </div>
+    <a href="Main.dc.html" class="t-btn" style="flex: none; height: 48px; padding: 0 20px; border-radius: 12px; background: var(--surface); color: var(--text); border: 1px solid var(--border-strong); display: inline-flex; align-items: center; justify-content: center; gap: 8px">Xem hệ thiết kế →</a>
+  </section>
+
+  <!-- Chú giải -->
+  <section aria-label="Chú giải" style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px 32px; padding: 14px 20px; border-radius: 16px; background: var(--surface); border: 1px solid var(--border); box-shadow: var(--e1)">
+    <p class="t-label muted">Chú giải</p>
+    <div style="display: flex; align-items: center; gap: 10px">
+      <span class="t-micro" style="flex: none; height: 28px; padding: 0 10px; border-radius: 999px; background: var(--accent-soft); color: var(--accent-text); display: inline-flex; align-items: center">Mới</span>
+      <span class="t-body-sm">Trang mới, chưa có trong app hiện tại</span>
+    </div>
+    <div style="display: flex; align-items: center; gap: 10px">
+      <span class="t-micro" style="flex: none; height: 28px; padding: 0 10px; border-radius: 999px; background: var(--surface-2); color: var(--muted); display: inline-flex; align-items: center">Làm lại</span>
+      <span class="t-body-sm">Trang đã có, vẽ lại theo Sổ tay</span>
+    </div>
+    <p class="t-body-sm muted">Thẻ có “Xem bản vẽ →” đã có bản vẽ; thẻ không có liên kết chỉ được mô tả trong đặc tả.</p>
+  </section>
+
+  <!-- Bốn nhóm trang -->
+  <div style="display: flex; flex-wrap: wrap; align-items: flex-start; gap: 16px; padding-top: 8px">
+
+    <!-- Nhóm 1: Trang công khai -->
+    <section style="flex: 1 1 240px; min-width: 0; display: flex; flex-direction: column; gap: 12px">
+      <header style="min-height: 96px; display: flex; flex-direction: column; justify-content: flex-end; gap: 4px; padding-bottom: 12px; border-bottom: 1px solid var(--border-strong)">
+        <h2 class="t-h2">Trang công khai (không cần đăng nhập)</h2>
+        <p class="t-caption muted">8 trang · HTML tĩnh tại [TÊN MIỀN]/</p>
+      </header>
+
+      <div style="display: flex; flex-direction: column; gap: 4px; padding: 12px 14px 4px; border-radius: 16px; background: var(--surface); border: 1px solid var(--border); box-shadow: var(--e1)">
+        <div style="display: flex; align-items: flex-start; gap: 8px">
+          <h3 class="t-name" style="flex: 1; min-width: 0; padding-top: 3px">Trang giới thiệu</h3>
+          <span class="t-micro" style="flex: none; height: 28px; padding: 0 10px; border-radius: 999px; background: var(--accent-soft); color: var(--accent-text); display: inline-flex; align-items: center">Mới</span>
+        </div>
+        <p class="t-caption">Giới thiệu app; Google cần trang chủ công khai.</p>
+        <p class="t-caption muted">/ · web/site/index.html</p>
+        <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 0 16px; margin-top: auto">
+          <a href="LandingDesktop.dc.html" class="t-label" style="min-height: 44px; display: inline-flex; align-items: center">Xem bản vẽ →</a>
+          <a href="LandingPhoneDark.dc.html" class="t-label" style="min-height: 44px; display: inline-flex; align-items: center">Điện thoại →</a>
+        </div>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 4px; padding: 12px 14px; border-radius: 16px; background: var(--surface); border: 1px solid var(--border); box-shadow: var(--e1)">
+        <div style="display: flex; align-items: flex-start; gap: 8px">
+          <h3 class="t-name" style="flex: 1; min-width: 0; padding-top: 3px">Chính sách quyền riêng tư</h3>
+          <span class="t-micro" style="flex: none; height: 28px; padding: 0 10px; border-radius: 999px; background: var(--accent-soft); color: var(--accent-text); display: inline-flex; align-items: center">Mới</span>
+        </div>
+        <p class="t-caption">Công bố dữ liệu theo Luật 91 và Google.</p>
+        <p class="t-caption muted">/quyen-rieng-tu/ · web/site/</p>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 4px; padding: 12px 14px; border-radius: 16px; background: var(--surface); border: 1px solid var(--border); box-shadow: var(--e1)">
+        <div style="display: flex; align-items: flex-start; gap: 8px">
+          <h3 class="t-name" style="flex: 1; min-width: 0; padding-top: 3px">Điều khoản sử dụng</h3>
+          <span class="t-micro" style="flex: none; height: 28px; padding: 0 10px; border-radius: 999px; background: var(--accent-soft); color: var(--accent-text); display: inline-flex; align-items: center">Mới</span>
+        </div>
+        <p class="t-caption">Luật chơi: miễn phí, không cam kết, 16+.</p>
+        <p class="t-caption muted">/dieu-khoan/ · web/site/</p>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 4px; padding: 12px 14px; border-radius: 16px; background: var(--surface); border: 1px solid var(--border); box-shadow: var(--e1)">
+        <div style="display: flex; align-items: flex-start; gap: 8px">
+          <h3 class="t-name" style="flex: 1; min-width: 0; padding-top: 3px">Trợ giúp</h3>
+          <span class="t-micro" style="flex: none; height: 28px; padding: 0 10px; border-radius: 999px; background: var(--accent-soft); color: var(--accent-text); display: inline-flex; align-items: center">Mới</span>
+        </div>
+        <p class="t-caption">Câu hỏi thường gặp theo nhóm.</p>
+        <p class="t-caption muted">/tro-giup/ · web/site/</p>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 4px; padding: 12px 14px 4px; border-radius: 16px; background: var(--surface); border: 1px solid var(--border); box-shadow: var(--e1)">
+        <div style="display: flex; align-items: flex-start; gap: 8px">
+          <h3 class="t-name" style="flex: 1; min-width: 0; padding-top: 3px">Hướng dẫn cài app</h3>
+          <span class="t-micro" style="flex: none; height: 28px; padding: 0 10px; border-radius: 999px; background: var(--accent-soft); color: var(--accent-text); display: inline-flex; align-items: center">Mới</span>
+        </div>
+        <p class="t-caption">Thêm WhereToGo vào màn hình chính.</p>
+        <p class="t-caption muted">/cai-ung-dung/ · web/site/</p>
+        <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 0 16px; margin-top: auto">
+          <a href="CaiApp.dc.html" class="t-label" style="min-height: 44px; display: inline-flex; align-items: center">Xem bản vẽ →</a>
+        </div>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 4px; padding: 12px 14px; border-radius: 16px; background: var(--surface); border: 1px solid var(--border); box-shadow: var(--e1)">
+        <div style="display: flex; align-items: flex-start; gap: 8px">
+          <h3 class="t-name" style="flex: 1; min-width: 0; padding-top: 3px">404 (trang tĩnh)</h3>
+          <span class="t-micro" style="flex: none; height: 28px; padding: 0 10px; border-radius: 999px; background: var(--accent-soft); color: var(--accent-text); display: inline-flex; align-items: center">Mới</span>
+        </div>
+        <p class="t-caption">Link cũ hoặc gõ nhầm thì quay về.</p>
+        <p class="t-caption muted">/404.html · web/site/</p>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 4px; padding: 12px 14px; border-radius: 16px; background: var(--surface); border: 1px solid var(--border); box-shadow: var(--e1)">
+        <div style="display: flex; align-items: flex-start; gap: 8px">
+          <h3 class="t-name" style="flex: 1; min-width: 0; padding-top: 3px">Thông báo đã chuyển nhà</h3>
+          <span class="t-micro" style="flex: none; height: 28px; padding: 0 10px; border-radius: 999px; background: var(--accent-soft); color: var(--accent-text); display: inline-flex; align-items: center">Mới</span>
+        </div>
+        <p class="t-caption">Tạm thời: đưa bản cài cũ sang tên miền mới.</p>
+        <p class="t-caption muted">…github.io/WhereToGo/ · service worker tự huỷ</p>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 4px; padding: 12px 14px 4px; border-radius: 16px; background: var(--surface); border: 1px solid var(--border); box-shadow: var(--e1)">
+        <div style="display: flex; align-items: flex-start; gap: 8px">
+          <h3 class="t-name" style="flex: 1; min-width: 0; padding-top: 3px">Cổng trình duyệt trong app chat</h3>
+          <span class="t-micro" style="flex: none; height: 28px; padding: 0 10px; border-radius: 999px; background: var(--accent-soft); color: var(--accent-text); display: inline-flex; align-items: center">Mới</span>
+        </div>
+        <p class="t-caption">Zalo, Messenger chặn đăng nhập Google.</p>
+        <p class="t-caption muted">Lớp phủ, không có URL · inapp.js</p>
+        <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 0 16px; margin-top: auto">
+          <a href="InAppGate.dc.html" class="t-label" style="min-height: 44px; display: inline-flex; align-items: center">Xem bản vẽ →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Nhóm 2: Đăng nhập & bắt đầu -->
+    <section style="flex: 1 1 240px; min-width: 0; display: flex; flex-direction: column; gap: 12px">
+      <header style="min-height: 96px; display: flex; flex-direction: column; justify-content: flex-end; gap: 4px; padding-bottom: 12px; border-bottom: 1px solid var(--border-strong)">
+        <h2 class="t-h2">Đăng nhập &amp; bắt đầu</h2>
+        <p class="t-caption muted">7 trang · [TÊN MIỀN]/app/#/…</p>
+      </header>
+
+      <div style="display: flex; flex-direction: column; gap: 4px; padding: 12px 14px; border-radius: 16px; background: var(--surface); border: 1px solid var(--border); box-shadow: var(--e1)">
+        <div style="display: flex; align-items: flex-start; gap: 8px">
+          <h3 class="t-name" style="flex: 1; min-width: 0; padding-top: 3px">Màn hình khởi động</h3>
+          <span class="t-micro" style="flex: none; height: 28px; padding: 0 10px; border-radius: 999px; background: var(--accent-soft); color: var(--accent-text); display: inline-flex; align-items: center">Mới</span>
+        </div>
+        <p class="t-caption">Không để trắng màn hình khi đang tải.</p>
+        <p class="t-caption muted">/app/ · index.html (nội tuyến)</p>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 4px; padding: 12px 14px 4px; border-radius: 16px; background: var(--surface); border: 1px solid var(--border); box-shadow: var(--e1)">
+        <div style="display: flex; align-items: flex-start; gap: 8px">
+          <h3 class="t-name" style="flex: 1; min-width: 0; padding-top: 3px">Đăng nhập</h3>
+          <span class="t-micro" style="flex: none; height: 28px; padding: 0 10px; border-radius: 999px; background: var(--surface-2); color: var(--muted); display: inline-flex; align-items: center">Làm lại</span>
+        </div>
+        <p class="t-caption">Một nút Google, nói rõ dữ liệu nào được dùng.</p>
+        <p class="t-caption muted">#/login?next= · LoginPage.tsx</p>
+        <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 0 16px; margin-top: auto">
+          <a href="DangNhap.dc.html" class="t-label" style="min-height: 44px; display: inline-flex; align-items: center">Xem bản vẽ →</a>
+        </div>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 4px; padding: 12px 14px 4px; border-radius: 16px; background: var(--surface); border: 1px solid var(--border); box-shadow: var(--e1)">
+        <div style="display: flex; align-items: flex-start; gap: 8px">
+          <h3 class="t-name" style="flex: 1; min-width: 0; padding-top: 3px">Đồng ý (bước 1/4)</h3>
+          <span class="t-micro" style="flex: none; height: 28px; padding: 0 10px; border-radius: 999px; background: var(--accent-soft); color: var(--accent-text); display: inline-flex; align-items: center">Mới</span>
+        </div>
+        <p class="t-caption">Đồng ý từng việc; ô nào không chọn, app không làm.</p>
+        <p class="t-caption muted">#/welcome/1 · WelcomePage.tsx</p>
+        <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 0 16px; margin-top: auto">
+          <a href="BatDau1DongY.dc.html" class="t-label" style="min-height: 44px; display: inline-flex; align-items: center">Xem bản vẽ →</a>
+        </div>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 4px; padding: 12px 14px 4px; border-radius: 16px; background: var(--surface); border: 1px solid var(--border); box-shadow: var(--e1)">
+        <div style="display: flex; align-items: flex-start; gap: 8px">
+          <h3 class="t-name" style="flex: 1; min-width: 0; padding-top: 3px">Ảnh &amp; Drive (bước 2/4)</h3>
+          <span class="t-micro" style="flex: none; height: 28px; padding: 0 10px; border-radius: 999px; background: var(--accent-soft); color: var(--accent-text); display: inline-flex; align-items: center">Mới</span>
+        </div>
+        <p class="t-caption">Xin quyền drive.file sau khi đã đồng ý.</p>
+        <p class="t-caption muted">#/welcome/2 · WelcomePage.tsx</p>
+        <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 0 16px; margin-top: auto">
+          <a href="BatDau2DriveDark.dc.html" class="t-label" style="min-height: 44px; display: inline-flex; align-items: center">Xem bản vẽ →</a>
+        </div>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 4px; padding: 12px 14px 4px; border-radius: 16px; background: var(--surface); border: 1px solid var(--border); box-shadow: var(--e1)">
+        <div style="display: flex; align-items: flex-start; gap: 8px">
+          <h3 class="t-name" style="flex: 1; min-width: 0; padding-top: 3px">Chọn nhóm (bước 3/4)</h3>
+          <span class="t-micro" style="flex: none; height: 28px; padding: 0 10px; border-radius: 999px; background: var(--accent-soft); color: var(--accent-text); display: inline-flex; align-items: center">Mới</span>
+        </div>
+        <p class="t-caption">Tạo các ngăn lớn: Quán ăn, Quán uống…</p>
+        <p class="t-caption muted">#/welcome/3 · WelcomePage.tsx</p>
+        <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 0 16px; margin-top: auto">
+          <a href="BatDau3Nhom.dc.html" class="t-label" style="min-height: 44px; display: inline-flex; align-items: center">Xem bản vẽ →</a>
+        </div>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 4px; padding: 12px 14px; border-radius: 16px; background: var(--surface); border: 1px solid var(--border); box-shadow: var(--e1)">
+        <div style="display: flex; align-items: flex-start; gap: 8px">
+          <h3 class="t-name" style="flex: 1; min-width: 0; padding-top: 3px">Nơi đầu tiên (bước 4/4)</h3>
+          <span class="t-micro" style="flex: none; height: 28px; padding: 0 10px; border-radius: 999px; background: var(--accent-soft); color: var(--accent-text); display: inline-flex; align-items: center">Mới</span>
+        </div>
+        <p class="t-caption">Dán link Google Maps, mở form đã điền sẵn.</p>
+        <p class="t-caption muted">#/welcome/4 · WelcomePage.tsx</p>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 4px; padding: 12px 14px; border-radius: 16px; background: var(--surface); border: 1px solid var(--border); box-shadow: var(--e1)">
+        <div style="display: flex; align-items: flex-start; gap: 8px">
+          <h3 class="t-name" style="flex: 1; min-width: 0; padding-top: 3px">Đồng ý lại chính sách</h3>
+          <span class="t-micro" style="flex: none; height: 28px; padding: 0 10px; border-radius: 999px; background: var(--accent-soft); color: var(--accent-text); display: inline-flex; align-items: center">Mới</span>
+        </div>
+        <p class="t-caption">Hỏi lại khi chính sách thay đổi.</p>
+        <p class="t-caption muted">#/welcome/policy · PolicyUpdatePage.tsx</p>
+      </div>
+    </section>
+
+    <!-- Nhóm 3: App chính (rộng gấp đôi) -->
+    <section style="flex: 2 1 500px; min-width: 0; display: flex; flex-direction: column; gap: 12px">
+      <header style="min-height: 96px; display: flex; flex-direction: column; justify-content: flex-end; gap: 4px; padding-bottom: 12px; border-bottom: 1px solid var(--border-strong)">
+        <h2 class="t-h2">App chính</h2>
+        <p class="t-caption muted">12 trang · Trang chủ là trung tâm và là nơi duy nhất có dock</p>
+      </header>
+
+      <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; align-items: stretch">
+
+        <div style="display: flex; flex-direction: column; gap: 4px; padding: 12px 14px 4px; border-radius: 16px; background: var(--surface); border: 1px solid var(--border); box-shadow: var(--e1)">
+          <div style="display: flex; align-items: flex-start; gap: 8px">
+            <h3 class="t-name" style="flex: 1; min-width: 0; padding-top: 3px">Trang chủ</h3>
+            <span class="t-micro" style="flex: none; height: 28px; padding: 0 10px; border-radius: 999px; background: var(--surface-2); color: var(--muted); display: inline-flex; align-items: center">Làm lại</span>
+          </div>
+          <p class="t-caption">Trung tâm: quán hôm nay, nhóm, dock.</p>
+          <p class="t-caption muted">#/home · HomePage.tsx</p>
+          <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 0 16px; margin-top: auto">
+            <a href="Home.dc.html" class="t-label" style="min-height: 44px; display: inline-flex; align-items: center">Xem bản vẽ →</a>
+            <a href="HomeDark.dc.html" class="t-label" style="min-height: 44px; display: inline-flex; align-items: center">Bản tối →</a>
+            <a href="HomeMoi.dc.html" class="t-label" style="min-height: 44px; display: inline-flex; align-items: center">Người mới →</a>
+            <a href="HomeDesktop.dc.html" class="t-label" style="min-height: 44px; display: inline-flex; align-items: center">Máy tính →</a>
+          </div>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 4px; padding: 12px 14px 4px; border-radius: 16px; background: var(--surface); border: 1px solid var(--border); box-shadow: var(--e1)">
+          <div style="display: flex; align-items: flex-start; gap: 8px">
+            <h3 class="t-name" style="flex: 1; min-width: 0; padding-top: 3px">Trang chọn quán</h3>
+            <span class="t-micro" style="flex: none; height: 28px; padding: 0 10px; border-radius: 999px; background: var(--accent-soft); color: var(--accent-text); display: inline-flex; align-items: center">Mới</span>
+          </div>
+          <p class="t-caption">Lưới các quán trong một nhóm.</p>
+          <p class="t-caption muted">#/categories/:id · CategoryPage.tsx</p>
+          <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 0 16px; margin-top: auto">
+            <a href="NhomQuanUong.dc.html" class="t-label" style="min-height: 44px; display: inline-flex; align-items: center">Xem bản vẽ →</a>
+          </div>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 4px; padding: 12px 14px 4px; border-radius: 16px; background: var(--surface); border: 1px solid var(--border); box-shadow: var(--e1)">
+          <div style="display: flex; align-items: flex-start; gap: 8px">
+            <h3 class="t-name" style="flex: 1; min-width: 0; padding-top: 3px">Tìm kiếm</h3>
+            <span class="t-micro" style="flex: none; height: 28px; padding: 0 10px; border-radius: 999px; background: var(--accent-soft); color: var(--accent-text); display: inline-flex; align-items: center">Mới</span>
+          </div>
+          <p class="t-caption">Tìm mọi quán, lọc và sắp xếp.</p>
+          <p class="t-caption muted">#/search · SearchPage.tsx</p>
+          <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 0 16px; margin-top: auto">
+            <a href="TimKiem.dc.html" class="t-label" style="min-height: 44px; display: inline-flex; align-items: center">Xem bản vẽ →</a>
+          </div>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 4px; padding: 12px 14px 4px; border-radius: 16px; background: var(--surface); border: 1px solid var(--border); box-shadow: var(--e1)">
+          <div style="display: flex; align-items: flex-start; gap: 8px">
+            <h3 class="t-name" style="flex: 1; min-width: 0; padding-top: 3px">Yêu thích</h3>
+            <span class="t-micro" style="flex: none; height: 28px; padding: 0 10px; border-radius: 999px; background: var(--accent-soft); color: var(--accent-text); display: inline-flex; align-items: center">Mới</span>
+          </div>
+          <p class="t-caption">Danh sách rút gọn các quán đã thả tim.</p>
+          <p class="t-caption muted">#/favorites · FavoritesPage.tsx</p>
+          <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 0 16px; margin-top: auto">
+            <a href="YeuThichDark.dc.html" class="t-label" style="min-height: 44px; display: inline-flex; align-items: center">Xem bản vẽ →</a>
+          </div>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 4px; padding: 12px 14px 4px; border-radius: 16px; background: var(--surface); border: 1px solid var(--border); box-shadow: var(--e1)">
+          <div style="display: flex; align-items: flex-start; gap: 8px">
+            <h3 class="t-name" style="flex: 1; min-width: 0; padding-top: 3px">Gần tôi: hỏi</h3>
+            <span class="t-micro" style="flex: none; height: 28px; padding: 0 10px; border-radius: 999px; background: var(--accent-soft); color: var(--accent-text); display: inline-flex; align-items: center">Mới</span>
+          </div>
+          <p class="t-caption">Giải thích vị trí, chọn nhóm và bán kính.</p>
+          <p class="t-caption muted">#/nearby · NearbyAskPage.tsx</p>
+          <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 0 16px; margin-top: auto">
+            <a href="GanToiHoi.dc.html" class="t-label" style="min-height: 44px; display: inline-flex; align-items: center">Xem bản vẽ →</a>
+          </div>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 4px; padding: 12px 14px 4px; border-radius: 16px; background: var(--surface); border: 1px solid var(--border); box-shadow: var(--e1)">
+          <div style="display: flex; align-items: flex-start; gap: 8px">
+            <h3 class="t-name" style="flex: 1; min-width: 0; padding-top: 3px">Gần tôi: kết quả</h3>
+            <span class="t-micro" style="flex: none; height: 28px; padding: 0 10px; border-radius: 999px; background: var(--accent-soft); color: var(--accent-text); display: inline-flex; align-items: center">Mới</span>
+          </div>
+          <p class="t-caption">Danh sách theo khoảng cách; bản đồ ra sau.</p>
+          <p class="t-caption muted">#/nearby/results · NearbyResultsPage.tsx</p>
+          <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 0 16px; margin-top: auto">
+            <a href="GanToiDanhSach.dc.html" class="t-label" style="min-height: 44px; display: inline-flex; align-items: center">Xem bản vẽ →</a>
+            <a href="GanToiBanDoDark.dc.html" class="t-label" style="min-height: 44px; display: inline-flex; align-items: center">Bản đồ →</a>
+          </div>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 4px; padding: 12px 14px 4px; border-radius: 16px; background: var(--surface); border: 1px solid var(--border); box-shadow: var(--e1)">
+          <div style="display: flex; align-items: flex-start; gap: 8px">
+            <h3 class="t-name" style="flex: 1; min-width: 0; padding-top: 3px">Bốc thăm</h3>
+            <span class="t-micro" style="flex: none; height: 28px; padding: 0 10px; border-radius: 999px; background: var(--surface-2); color: var(--muted); display: inline-flex; align-items: center">Làm lại</span>
+          </div>
+          <p class="t-caption">App bốc tối đa 3 quán; không ưng thì bốc lại.</p>
+          <p class="t-caption muted">#/random · RandomPage.tsx</p>
+          <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 0 16px; margin-top: auto">
+            <a href="BocTham.dc.html" class="t-label" style="min-height: 44px; display: inline-flex; align-items: center">Xem bản vẽ →</a>
+          </div>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 4px; padding: 12px 14px 4px; border-radius: 16px; background: var(--surface); border: 1px solid var(--border); box-shadow: var(--e1)">
+          <div style="display: flex; align-items: flex-start; gap: 8px">
+            <h3 class="t-name" style="flex: 1; min-width: 0; padding-top: 3px">Vuốt chọn quán</h3>
+            <span class="t-micro" style="flex: none; height: 28px; padding: 0 10px; border-radius: 999px; background: var(--surface-2); color: var(--muted); display: inline-flex; align-items: center">Làm lại</span>
+          </div>
+          <p class="t-caption">Vuốt thẻ để cộng độ hot cho quán.</p>
+          <p class="t-caption muted">#/swipe · SwipePage.tsx</p>
+          <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 0 16px; margin-top: auto">
+            <a href="Vuot.dc.html" class="t-label" style="min-height: 44px; display: inline-flex; align-items: center">Xem bản vẽ →</a>
+          </div>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 4px; padding: 12px 14px 4px; border-radius: 16px; background: var(--surface); border: 1px solid var(--border); box-shadow: var(--e1)">
+          <div style="display: flex; align-items: flex-start; gap: 8px">
+            <h3 class="t-name" style="flex: 1; min-width: 0; padding-top: 3px">Chi tiết địa điểm</h3>
+            <span class="t-micro" style="flex: none; height: 28px; padding: 0 10px; border-radius: 999px; background: var(--surface-2); color: var(--muted); display: inline-flex; align-items: center">Làm lại</span>
+          </div>
+          <p class="t-caption">Trang sổ tay của một quán.</p>
+          <p class="t-caption muted">#/places/:id · PlaceDetailPage.tsx</p>
+          <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 0 16px; margin-top: auto">
+            <a href="ChiTiet.dc.html" class="t-label" style="min-height: 44px; display: inline-flex; align-items: center">Xem bản vẽ →</a>
+            <a href="ChiTietDuoiDark.dc.html" class="t-label" style="min-height: 44px; display: inline-flex; align-items: center">Phần dưới →</a>
+          </div>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 4px; padding: 12px 14px; border-radius: 16px; background: var(--surface); border: 1px solid var(--border); box-shadow: var(--e1)">
+          <div style="display: flex; align-items: flex-start; gap: 8px">
+            <h3 class="t-name" style="flex: 1; min-width: 0; padding-top: 3px">Trình xem ảnh</h3>
+            <span class="t-micro" style="flex: none; height: 28px; padding: 0 10px; border-radius: 999px; background: var(--accent-soft); color: var(--accent-text); display: inline-flex; align-items: center">Mới</span>
+          </div>
+          <p class="t-caption">Xem ảnh toàn màn hình; Back để đóng.</p>
+          <p class="t-caption muted">#/places/:id/photos/:n · PhotoViewerPage.tsx</p>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 4px; padding: 12px 14px 4px; border-radius: 16px; background: var(--surface); border: 1px solid var(--border); box-shadow: var(--e1)">
+          <div style="display: flex; align-items: flex-start; gap: 8px">
+            <h3 class="t-name" style="flex: 1; min-width: 0; padding-top: 3px">Thêm / sửa địa điểm</h3>
+            <span class="t-micro" style="flex: none; height: 28px; padding: 0 10px; border-radius: 999px; background: var(--surface-2); color: var(--muted); display: inline-flex; align-items: center">Làm lại</span>
+          </div>
+          <p class="t-caption">Biểu mẫu 4 phần, nút Lưu dính dưới.</p>
+          <p class="t-caption muted">#/places/new · PlaceFormPage.tsx</p>
+          <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 0 16px; margin-top: auto">
+            <a href="ThemDiaDiem.dc.html" class="t-label" style="min-height: 44px; display: inline-flex; align-items: center">Xem bản vẽ →</a>
+          </div>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 4px; padding: 12px 14px; border-radius: 16px; background: var(--surface); border: 1px solid var(--border); box-shadow: var(--e1)">
+          <div style="display: flex; align-items: flex-start; gap: 8px">
+            <h3 class="t-name" style="flex: 1; min-width: 0; padding-top: 3px">404 trong app</h3>
+            <span class="t-micro" style="flex: none; height: 28px; padding: 0 10px; border-radius: 999px; background: var(--accent-soft); color: var(--accent-text); display: inline-flex; align-items: center">Mới</span>
+          </div>
+          <p class="t-caption">Thay cho việc tự chuyển về Trang chủ.</p>
+          <p class="t-caption muted">#/* · NotFoundPage.tsx</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Nhóm 4: Tài khoản & dữ liệu -->
+    <section style="flex: 1 1 240px; min-width: 0; display: flex; flex-direction: column; gap: 12px">
+      <header style="min-height: 96px; display: flex; flex-direction: column; justify-content: flex-end; gap: 4px; padding-bottom: 12px; border-bottom: 1px solid var(--border-strong)">
+        <h2 class="t-h2">Tài khoản &amp; dữ liệu</h2>
+        <p class="t-caption muted">7 trang · mở từ avatar ở Trang chủ</p>
+      </header>
+
+      <div style="display: flex; flex-direction: column; gap: 4px; padding: 12px 14px 4px; border-radius: 16px; background: var(--surface); border: 1px solid var(--border); box-shadow: var(--e1)">
+        <div style="display: flex; align-items: flex-start; gap: 8px">
+          <h3 class="t-name" style="flex: 1; min-width: 0; padding-top: 3px">Tài khoản</h3>
+          <span class="t-micro" style="flex: none; height: 28px; padding: 0 10px; border-radius: 999px; background: var(--surface-2); color: var(--muted); display: inline-flex; align-items: center">Làm lại</span>
+        </div>
+        <p class="t-caption">Hồ sơ, Drive, giao diện, đăng xuất.</p>
+        <p class="t-caption muted">#/settings · SettingsPage.tsx</p>
+        <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 0 16px; margin-top: auto">
+          <a href="TaiKhoan.dc.html" class="t-label" style="min-height: 44px; display: inline-flex; align-items: center">Xem bản vẽ →</a>
+        </div>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 4px; padding: 12px 14px 4px; border-radius: 16px; background: var(--surface); border: 1px solid var(--border); box-shadow: var(--e1)">
+        <div style="display: flex; align-items: flex-start; gap: 8px">
+          <h3 class="t-name" style="flex: 1; min-width: 0; padding-top: 3px">Quản lý nhóm</h3>
+          <span class="t-micro" style="flex: none; height: 28px; padding: 0 10px; border-radius: 999px; background: var(--surface-2); color: var(--muted); display: inline-flex; align-items: center">Làm lại</span>
+        </div>
+        <p class="t-caption">Tạo, sửa, xoá nhóm; xem trước thẻ.</p>
+        <p class="t-caption muted">#/settings/categories</p>
+        <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 0 16px; margin-top: auto">
+          <a href="QuanLyNhom.dc.html" class="t-label" style="min-height: 44px; display: inline-flex; align-items: center">Xem bản vẽ →</a>
+        </div>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 4px; padding: 12px 14px; border-radius: 16px; background: var(--surface); border: 1px solid var(--border); box-shadow: var(--e1)">
+        <div style="display: flex; align-items: flex-start; gap: 8px">
+          <h3 class="t-name" style="flex: 1; min-width: 0; padding-top: 3px">Quản lý nhãn</h3>
+          <span class="t-micro" style="flex: none; height: 28px; padding: 0 10px; border-radius: 999px; background: var(--surface-2); color: var(--muted); display: inline-flex; align-items: center">Làm lại</span>
+        </div>
+        <p class="t-caption">Tạo, đổi tên, xoá nhãn.</p>
+        <p class="t-caption muted">#/settings/tags</p>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 4px; padding: 12px 14px 4px; border-radius: 16px; background: var(--surface); border: 1px solid var(--border); box-shadow: var(--e1)">
+        <div style="display: flex; align-items: flex-start; gap: 8px">
+          <h3 class="t-name" style="flex: 1; min-width: 0; padding-top: 3px">Quyền riêng tư &amp; dữ liệu</h3>
+          <span class="t-micro" style="flex: none; height: 28px; padding: 0 10px; border-radius: 999px; background: var(--accent-soft); color: var(--accent-text); display: inline-flex; align-items: center">Mới</span>
+        </div>
+        <p class="t-caption">Xem đồng ý, tải dữ liệu, ngắt Drive.</p>
+        <p class="t-caption muted">#/settings/privacy · PrivacyDataPage.tsx</p>
+        <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 0 16px; margin-top: auto">
+          <a href="QuyenRiengTu.dc.html" class="t-label" style="min-height: 44px; display: inline-flex; align-items: center">Xem bản vẽ →</a>
+        </div>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 4px; padding: 12px 14px 4px; border-radius: 16px; background: var(--surface); border: 1px solid var(--border); box-shadow: var(--e1)">
+        <div style="display: flex; align-items: flex-start; gap: 8px">
+          <h3 class="t-name" style="flex: 1; min-width: 0; padding-top: 3px">Xoá tài khoản</h3>
+          <span class="t-micro" style="flex: none; height: 28px; padding: 0 10px; border-radius: 999px; background: var(--accent-soft); color: var(--accent-text); display: inline-flex; align-items: center">Mới</span>
+        </div>
+        <p class="t-caption">Xoá vĩnh viễn, mời tải dữ liệu trước.</p>
+        <p class="t-caption muted">#/settings/privacy/delete · DeleteAccountPage.tsx</p>
+        <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 0 16px; margin-top: auto">
+          <a href="XoaTaiKhoanDark.dc.html" class="t-label" style="min-height: 44px; display: inline-flex; align-items: center">Xem bản vẽ →</a>
+        </div>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 4px; padding: 12px 14px; border-radius: 16px; background: var(--surface); border: 1px solid var(--border); box-shadow: var(--e1)">
+        <div style="display: flex; align-items: flex-start; gap: 8px">
+          <h3 class="t-name" style="flex: 1; min-width: 0; padding-top: 3px">Giới thiệu</h3>
+          <span class="t-micro" style="flex: none; height: 28px; padding: 0 10px; border-radius: 999px; background: var(--accent-soft); color: var(--accent-text); display: inline-flex; align-items: center">Mới</span>
+        </div>
+        <p class="t-caption">Phiên bản, người vận hành, mã nguồn, ghi công.</p>
+        <p class="t-caption muted">#/settings/about · AboutPage.tsx</p>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 4px; padding: 12px 14px 4px; border-radius: 16px; background: var(--surface); border: 1px solid var(--border); box-shadow: var(--e1)">
+        <div style="display: flex; align-items: flex-start; gap: 8px">
+          <h3 class="t-name" style="flex: 1; min-width: 0; padding-top: 3px">Cài ứng dụng</h3>
+          <span class="t-micro" style="flex: none; height: 28px; padding: 0 10px; border-radius: 999px; background: var(--accent-soft); color: var(--accent-text); display: inline-flex; align-items: center">Mới</span>
+        </div>
+        <p class="t-caption">Hướng dẫn thêm vào màn hình chính.</p>
+        <p class="t-caption muted">#/install · InstallPage.tsx</p>
+        <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 0 16px; margin-top: auto">
+          <a href="CaiApp.dc.html" class="t-label" style="min-height: 44px; display: inline-flex; align-items: center">Xem bản vẽ →</a>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Nhóm 5: Bảng trượt lên -->
+  <section style="display: flex; flex-direction: column; gap: 16px; padding: 24px; border-radius: 24px; background: var(--surface-2); margin-top: 8px">
+    <header style="display: flex; flex-direction: column; gap: 4px">
+      <h2 class="t-h2">Bảng trượt lên (sheets)</h2>
+      <p class="t-caption muted">Không phải trang: mở chồng lên trang đang xem. Trên điện thoại là bảng trượt, từ 768 px là hộp thoại 520 px.</p>
+    </header>
+    <div style="display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 12px; align-items: stretch">
+
+      <div style="display: flex; flex-direction: column; gap: 4px; padding: 12px 12px 4px; border-radius: 16px; background: var(--surface); border: 1px solid var(--border)">
+        <div style="display: flex; align-items: flex-start; gap: 6px">
+          <h3 class="t-label" style="flex: 1; min-width: 0; padding-top: 4px">Thông tin quán</h3>
+          <span class="t-micro" style="flex: none; height: 28px; padding: 0 10px; border-radius: 999px; background: var(--surface-2); color: var(--muted); display: inline-flex; align-items: center">Làm lại</span>
+        </div>
+        <p class="t-caption">Xem nhanh từ Trang chủ, Vuốt, Gần tôi.</p>
+        <div style="display: flex; align-items: center; margin-top: auto">
+          <a href="InfoSheet.dc.html" class="t-label" style="min-height: 44px; display: inline-flex; align-items: center">Xem bản vẽ →</a>
+        </div>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 4px; padding: 12px 12px 4px; border-radius: 16px; background: var(--surface); border: 1px solid var(--border)">
+        <div style="display: flex; align-items: flex-start; gap: 6px">
+          <h3 class="t-label" style="flex: 1; min-width: 0; padding-top: 4px">Bộ lọc</h3>
+          <span class="t-micro" style="flex: none; height: 28px; padding: 0 10px; border-radius: 999px; background: var(--accent-soft); color: var(--accent-text); display: inline-flex; align-items: center">Mới</span>
+        </div>
+        <p class="t-caption">Nhóm, giá, nhãn, trạng thái, sắp xếp.</p>
+        <div style="display: flex; align-items: center; margin-top: auto">
+          <a href="BoLoc.dc.html" class="t-label" style="min-height: 44px; display: inline-flex; align-items: center">Xem bản vẽ →</a>
+        </div>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 4px; padding: 12px; border-radius: 16px; background: var(--surface); border: 1px solid var(--border)">
+        <div style="display: flex; align-items: flex-start; gap: 6px">
+          <h3 class="t-label" style="flex: 1; min-width: 0; padding-top: 4px">Thêm lần đi</h3>
+          <span class="t-micro" style="flex: none; height: 28px; padding: 0 10px; border-radius: 999px; background: var(--surface-2); color: var(--muted); display: inline-flex; align-items: center">Làm lại</span>
+        </div>
+        <p class="t-caption">Ghi ngày và kỷ niệm của một lần đến.</p>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 4px; padding: 12px; border-radius: 16px; background: var(--surface); border: 1px solid var(--border)">
+        <div style="display: flex; align-items: flex-start; gap: 6px">
+          <h3 class="t-label" style="flex: 1; min-width: 0; padding-top: 4px">Giờ mở cửa</h3>
+          <span class="t-micro" style="flex: none; height: 28px; padding: 0 10px; border-radius: 999px; background: var(--surface-2); color: var(--muted); display: inline-flex; align-items: center">Làm lại</span>
+        </div>
+        <p class="t-caption">Sửa giờ từng ngày; mặc định “Chưa rõ giờ”.</p>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 4px; padding: 12px 12px 4px; border-radius: 16px; background: var(--surface); border: 1px solid var(--border)">
+        <div style="display: flex; align-items: flex-start; gap: 6px">
+          <h3 class="t-label" style="flex: 1; min-width: 0; padding-top: 4px">Soạn nhóm</h3>
+          <span class="t-micro" style="flex: none; height: 28px; padding: 0 10px; border-radius: 999px; background: var(--surface-2); color: var(--muted); display: inline-flex; align-items: center">Làm lại</span>
+        </div>
+        <p class="t-caption">Tên, câu gợi ý, biểu tượng, xem trước.</p>
+        <div style="display: flex; align-items: center; margin-top: auto">
+          <a href="QuanLyNhom.dc.html" class="t-label" style="min-height: 44px; display: inline-flex; align-items: center">Xem bản vẽ →</a>
+        </div>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 4px; padding: 12px; border-radius: 16px; background: var(--surface); border: 1px solid var(--border)">
+        <div style="display: flex; align-items: flex-start; gap: 6px">
+          <h3 class="t-label" style="flex: 1; min-width: 0; padding-top: 4px">Soạn nhãn</h3>
+          <span class="t-micro" style="flex: none; height: 28px; padding: 0 10px; border-radius: 999px; background: var(--accent-soft); color: var(--accent-text); display: inline-flex; align-items: center">Mới</span>
+        </div>
+        <p class="t-caption">Tạo nhãn mới và đổi tên nhãn.</p>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 4px; padding: 12px 12px 4px; border-radius: 16px; background: var(--surface); border: 1px solid var(--border)">
+        <div style="display: flex; align-items: flex-start; gap: 6px">
+          <h3 class="t-label" style="flex: 1; min-width: 0; padding-top: 4px">Cài app</h3>
+          <span class="t-micro" style="flex: none; height: 28px; padding: 0 10px; border-radius: 999px; background: var(--accent-soft); color: var(--accent-text); display: inline-flex; align-items: center">Mới</span>
+        </div>
+        <p class="t-caption">Hướng dẫn theo từng loại máy.</p>
+        <div style="display: flex; align-items: center; margin-top: auto">
+          <a href="CaiApp.dc.html" class="t-label" style="min-height: 44px; display: inline-flex; align-items: center">Xem bản vẽ →</a>
+        </div>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 4px; padding: 12px; border-radius: 16px; background: var(--surface); border: 1px solid var(--border)">
+        <div style="display: flex; align-items: flex-start; gap: 6px">
+          <h3 class="t-label" style="flex: 1; min-width: 0; padding-top: 4px">Đăng xuất</h3>
+          <span class="t-micro" style="flex: none; height: 28px; padding: 0 10px; border-radius: 999px; background: var(--accent-soft); color: var(--accent-text); display: inline-flex; align-items: center">Mới</span>
+        </div>
+        <p class="t-caption">Chỉ máy này hay mọi thiết bị.</p>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 4px; padding: 12px; border-radius: 16px; background: var(--surface); border: 1px solid var(--border)">
+        <div style="display: flex; align-items: flex-start; gap: 6px">
+          <h3 class="t-label" style="flex: 1; min-width: 0; padding-top: 4px">Kết nối Drive</h3>
+          <span class="t-micro" style="flex: none; height: 28px; padding: 0 10px; border-radius: 999px; background: var(--accent-soft); color: var(--accent-text); display: inline-flex; align-items: center">Mới</span>
+        </div>
+        <p class="t-caption">Cấp hoặc ngắt quyền lưu ảnh.</p>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 4px; padding: 12px; border-radius: 16px; background: var(--surface); border: 1px solid var(--border)">
+        <div style="display: flex; align-items: flex-start; gap: 6px">
+          <h3 class="t-label" style="flex: 1; min-width: 0; padding-top: 4px">Xin vị trí</h3>
+          <span class="t-micro" style="flex: none; height: 28px; padding: 0 10px; border-radius: 999px; background: var(--accent-soft); color: var(--accent-text); display: inline-flex; align-items: center">Mới</span>
+        </div>
+        <p class="t-caption">Giải thích trước khi trình duyệt hỏi.</p>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 4px; padding: 12px; border-radius: 16px; background: var(--surface); border: 1px solid var(--border)">
+        <div style="display: flex; align-items: flex-start; gap: 6px">
+          <h3 class="t-label" style="flex: 1; min-width: 0; padding-top: 4px">Xác nhận</h3>
+          <span class="t-micro" style="flex: none; height: 28px; padding: 0 10px; border-radius: 999px; background: var(--surface-2); color: var(--muted); display: inline-flex; align-items: center">Làm lại</span>
+        </div>
+        <p class="t-caption">Xoá quán, bỏ thay đổi, từ chối đồng ý.</p>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 4px; padding: 12px; border-radius: 16px; background: var(--surface); border: 1px solid var(--border)">
+        <div style="display: flex; align-items: flex-start; gap: 6px">
+          <h3 class="t-label" style="flex: 1; min-width: 0; padding-top: 4px">Hạn mức</h3>
+          <span class="t-micro" style="flex: none; height: 28px; padding: 0 10px; border-radius: 999px; background: var(--accent-soft); color: var(--accent-text); display: inline-flex; align-items: center">Mới</span>
+        </div>
+        <p class="t-caption">Báo khi kho đủ 1.000 địa điểm.</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<footer style="position: absolute; left: 40px; right: 40px; bottom: 20px; display: flex; justify-content: space-between; gap: 24px">
+  <p class="t-caption muted">Nguồn: đặc tả Sổ tay, mục 3 (danh mục trang) và mục 2 (điều hướng).</p>
+  <p class="t-caption muted">WhereToGo 0.3.0 · bản vẽ ngày 17/10/2026</p>
+</footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"dark":{"editor":"boolean","default":false,"section":"Giao diện"},"$preview":{"width":1440,"height":2450}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return { mode: (this.props.dark ?? false) ? 'dark' : 'light' };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>Vuốt chọn quán</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;600&amp;family=Newsreader:wght@400;600&amp;family=Roboto:wght@500&amp;display=swap" rel="stylesheet">
+<style>
+/* ===== WTG TOKENS v1 — identical in every artboard, do not edit ===== */
+body{margin:0}
+.wtg{--bg:#F5F2E9;--surface:#FBF9F4;--surface-2:#EDE8DC;--border:#E2DBCC;--border-strong:#8A8072;--text:#1C1917;--muted:#5C554B;--accent:#A8482A;--accent-pressed:#8F3D23;--on-accent:#FFFFFF;--accent-text:#96401F;--accent-soft:#F4E1D7;--success:#2D6E45;--success-bg:#E2EEE2;--warning:#8A5600;--warning-bg:#F5E6C8;--danger:#B3261E;--danger-bg:#F8E0DA;--on-danger:#FFFFFF;--focus:#2F5DA8;--inverse-bg:#1C1917;--inverse-text:#F5F2E9;--inverse-action:#F09D7B;--scrim:rgba(28,25,23,.45);--photo-edge:rgba(28,25,23,.08);--pill:rgba(251,249,244,.92);--dock:rgba(251,249,244,.96);--e1:0 1px 2px rgba(28,25,23,.06);--e2:0 8px 24px -8px rgba(28,25,23,.20);--g-fill:#FFFFFF;--g-stroke:#747775;--g-text:#1F1F1F;--ph-1:#D9C7A7;--ph-2:#C9B8A6;--ph-3:#B9C3AA;--ph-4:#D8B8A4;--ph-5:#C2C9CC;--ph-6:#D3C4A0;--ph-icon:rgba(28,25,23,.32);--viewer-bg:#0C0A09;--sans:'Be Vietnam Pro',system-ui,-apple-system,'Segoe UI',sans-serif;--serif:'Newsreader',Georgia,'Times New Roman',serif;color-scheme:light;background:var(--bg);color:var(--text);font-family:var(--sans);font-size:16px;line-height:24px;-webkit-font-smoothing:antialiased}
+.wtg.dark{--bg:#141311;--surface:#1E1C19;--surface-2:#2A2723;--border:#3A3631;--border-strong:#7D7466;--text:#F2EDE3;--muted:#B3AB9C;--accent:#E58A66;--accent-pressed:#CF7652;--on-accent:#1C1210;--accent-text:#F09D7B;--accent-soft:#3B2720;--success:#86CB9A;--success-bg:#1F3326;--warning:#E9B65E;--warning-bg:#3A2E17;--danger:#F49283;--danger-bg:#3E211D;--on-danger:#1C1210;--focus:#93B6F2;--inverse-bg:#F2EDE3;--inverse-text:#1C1917;--inverse-action:#96401F;--scrim:rgba(0,0,0,.60);--photo-edge:rgba(255,255,255,.06);--pill:rgba(30,28,25,.92);--dock:rgba(30,28,25,.96);--e1:none;--e2:0 8px 24px -8px rgba(0,0,0,.70);--g-fill:#131314;--g-stroke:#8E918F;--g-text:#E3E3E3;--ph-1:#4A4033;--ph-2:#463E37;--ph-3:#3D4436;--ph-4:#4D3A31;--ph-5:#3B4145;--ph-6:#48412F;--ph-icon:rgba(255,255,255,.30);color-scheme:dark}
+.wtg *{box-sizing:border-box}
+.wtg button,.wtg input,.wtg select,.wtg textarea{font:inherit;color:inherit}
+.wtg a{color:var(--accent-text);text-decoration:none}
+.wtg a:hover{color:var(--accent-text)}
+.wtg p a,.wtg li a{text-decoration:underline;text-underline-offset:3px}
+.wtg :focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+.t-display{font-family:var(--serif);font-size:36px;line-height:46px;font-weight:600;letter-spacing:-0.01em;margin:0}
+.t-h1{font-family:var(--serif);font-size:28px;line-height:36px;font-weight:600;margin:0}
+.t-h2{font-family:var(--serif);font-size:22px;line-height:30px;font-weight:600;margin:0}
+.t-name{font-family:var(--serif);font-size:17px;line-height:22px;font-weight:600;margin:0}
+.t-name-lg{font-family:var(--serif);font-size:24px;line-height:32px;font-weight:600;margin:0}
+.t-numeral{font-family:var(--serif);font-size:28px;line-height:36px;font-weight:600}
+.t-story{font-family:var(--serif);font-size:18px;line-height:28px;font-weight:400;margin:0}
+.t-title{font-size:17px;line-height:24px;font-weight:600;margin:0}
+.t-body{font-size:16px;line-height:24px;font-weight:400;margin:0}
+.t-btn{font-size:16px;line-height:24px;font-weight:600}
+.t-body-sm{font-size:15px;line-height:22px;font-weight:400;margin:0}
+.t-label{font-size:14px;line-height:20px;font-weight:600;margin:0}
+.t-caption{font-size:13px;line-height:18px;font-weight:400;margin:0}
+.t-micro{font-size:12px;line-height:16px;font-weight:600;white-space:nowrap}
+.muted{color:var(--muted)}
+/* ===== end WTG TOKENS v1 ===== */
+</style>
+</helmet>
+<div class="wtg {{mode}}" style="width: 390px; height: 844px; position: relative; overflow: hidden; display: flex; flex-direction: column; background: var(--bg)">
+  <!-- top safe area: leave empty -->
+  <div style="height: 47px; flex: none"></div>
+
+  <header style="height: 56px; flex: none; display: flex; align-items: center; gap: 4px; padding: 0 8px">
+    <a href="Home.dc.html" aria-label="Quay lại" style="width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; border-radius: 999px; color: var(--text)"><svg width="24" height="24" viewBox="0 0 512 512" aria-hidden="true" style="display: block; flex: none"><path d="M328 112 184 256l144 144" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="48px"></path></svg></a>
+    <div aria-hidden="true" style="width: 44px; height: 44px; flex: none"></div>
+    <h1 class="t-title" style="flex: 1; min-width: 0; text-align: center; line-height: 28px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap">Vuốt chọn quán</h1>
+    <button type="button" aria-label="Lọc, 1 bộ lọc đang bật" style="position: relative; width: 44px; height: 44px; padding: 0; display: flex; align-items: center; justify-content: center; border: 0; background: transparent; border-radius: 999px; color: var(--text)"><svg width="24" height="24" viewBox="0 0 512 512" aria-hidden="true" style="display: block; flex: none"><path d="M368 128h80M64 128h240M368 384h80M64 384h240M208 256h240M64 256h80" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32px"></path><circle cx="336" cy="128" r="32" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32px"></circle><circle cx="176" cy="256" r="32" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32px"></circle><circle cx="336" cy="384" r="32" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32px"></circle></svg><span aria-hidden="true" style="position: absolute; top: 4px; right: 2px; min-width: 18px; height: 18px; padding: 0 5px; border-radius: 999px; background: var(--text); color: var(--bg); font-size: 12px; line-height: 18px; font-weight: 600; display: flex; align-items: center; justify-content: center">1</span></button>
+    <a href="TaiKhoan.dc.html" aria-label="Tài khoản" style="width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; border-radius: 999px">
+      <span style="width: 32px; height: 32px; border-radius: 999px; background: var(--accent-soft); color: var(--accent-text); display: flex; align-items: center; justify-content: center; font-size: 13px; line-height: 18px; font-weight: 600">MA</span>
+    </a>
+  </header>
+
+  <div style="flex: none; height: 44px; padding: 0 16px; display: flex; align-items: center">
+    <p class="t-body-sm muted">Quán ăn · còn 14 thẻ ·</p>
+    <button type="button" class="t-label" style="height: 44px; padding: 0 8px; border: 0; background: transparent; color: var(--accent-text)">Xoá lọc</button>
+  </div>
+
+  <!-- card stack -->
+  <div style="position: relative; flex: 1; min-height: 0; margin: 0 24px">
+
+    <!-- second card peeking behind -->
+    <div aria-hidden="true" style="position: absolute; left: 0; right: 0; top: 24px; height: 472px; background: var(--surface); border: 1px solid var(--border); border-radius: 16px; box-shadow: var(--e1); overflow: hidden; transform: translateY(30px) scale(.94)">
+      <div style="width: 100%; aspect-ratio: 1 / 1; background: var(--ph-4)"></div>
+    </div>
+
+    <!-- front card, mid-drag to the right -->
+    <article aria-label="Phở Thìn Lò Đúc" style="position: absolute; left: 0; right: 0; top: 24px; background: var(--surface); border: 1px solid var(--border); border-radius: 16px; box-shadow: var(--e2); overflow: hidden; transform: translateX(24px) rotate(6deg); transform-origin: 50% 50%">
+      <div role="img" aria-label="Ảnh minh hoạ: Phở Thìn Lò Đúc" style="width: 100%; aspect-ratio: 1 / 1; background: var(--ph-6); box-shadow: inset 0 0 0 1px var(--photo-edge); display: flex; align-items: center; justify-content: center; color: var(--ph-icon)"><svg width="40" height="40" viewBox="0 0 512 512" aria-hidden="true" style="display: block; flex: none"><rect width="416" height="352" x="48" y="80" rx="48" ry="48" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="32px"></rect><circle cx="336" cy="176" r="32" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"></circle><path d="m304 335.79-90.66-90.49a32 32 0 0 0-43.87-1.3L48 352M224 432l123.34-123.34a32 32 0 0 1 43.11-2L464 368" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32px"></path></svg></div>
+
+      <!-- drag stamp: +1 hot, circled in red pen -->
+      <div aria-hidden="true" style="position: absolute; left: 42px; top: 38px; height: 40px; padding: 0 14px; border-radius: 999px; background: var(--pill); color: var(--accent-text); font-family: var(--serif); font-size: 22px; line-height: 30px; font-weight: 600; display: flex; align-items: center; white-space: nowrap">+1 hot<svg width="130" height="64" viewBox="0 0 72 56" preserveAspectRatio="none" aria-hidden="true" style="position: absolute; left: -18px; top: -12px; pointer-events: none"><path d="M10 33 C 5 16, 30 4, 50 7 C 66 10, 70 26, 60 39 C 49 52, 18 54, 9 42 C 4 35, 9 22, 22 15" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round" vector-effect="non-scaling-stroke"></path></svg></div>
+
+      <div style="padding: 16px; display: flex; flex-direction: column; gap: 8px">
+        <div style="display: flex; align-items: center; justify-content: space-between">
+          <span class="t-micro" style="height: 28px; padding: 0 10px; border-radius: 999px; background: var(--accent-soft); color: var(--accent-text); display: inline-flex; align-items: center; gap: 4px"><svg width="16" height="16" viewBox="0 0 512 512" aria-hidden="true" style="display: block; flex: none"><path d="m57.49 47.74 368.43 368.43a37.28 37.28 0 0 1 0 52.72 37.29 37.29 0 0 1-52.72 0l-90-91.55a32 32 0 0 1-9.2-22.43v-5.53a32 32 0 0 0-9.52-22.78l-11.62-10.73a32 32 0 0 0-29.8-7.44 48.53 48.53 0 0 1-46.56-12.63l-85.43-85.44C40.39 159.68 21.74 83.15 57.49 47.74Z" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="32px"></path><path d="m400 32-77.25 77.25A64 64 0 0 0 304 154.51v14.86a16 16 0 0 1-4.69 11.32L288 192M320 224l11.31-11.31a16 16 0 0 1 11.32-4.69h14.86a64 64 0 0 0 45.26-18.75L480 112M440 72l-80 80M200 368l-99.72 100.28a40 40 0 0 1-56.56 0h0a40 40 0 0 1 0-56.56L128 328" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32px"></path></svg>Quán ăn</span>
+          <span class="t-label" style="display: inline-flex; align-items: center; gap: 4px; color: var(--text)"><svg width="18" height="18" viewBox="0 0 512 512" aria-hidden="true" style="display: block; flex: none"><path d="M112 320c0-93 124-165 96-272 66 0 192 96 192 272a144 144 0 0 1-288 0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32px"></path><path d="M320 368c0 57.71-32 80-64 80s-64-22.29-64-80 40-86 32-128c42 0 96 70.29 96 128" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32px"></path></svg>Độ hot 3</span>
+        </div>
+        <h2 class="t-name-lg">Phở Thìn Lò Đúc</h2>
+        <p class="t-body-sm muted">60.000–80.000 ₫ · 13 Lò Đúc</p>
+      </div>
+    </article>
+  </div>
+
+  <!-- action row + first-run hint -->
+  <div style="flex: none; padding: 12px 16px 34px; display: flex; flex-direction: column; align-items: center; gap: 8px">
+    <div style="width: 100%; display: flex; align-items: flex-start; justify-content: space-between; padding: 0 8px">
+
+      <button type="button" aria-label="Hoàn tác" style="margin-top: 10px; width: 44px; height: 44px; padding: 0; border: 0; border-radius: 999px; background: var(--surface-2); color: var(--text); display: flex; align-items: center; justify-content: center"><svg width="24" height="24" viewBox="0 0 512 512" aria-hidden="true" style="display: block; flex: none"><path d="M240 424v-96c116.4 0 159.39 33.76 208 96 0-119.23-39.57-240-208-240V88L64 256Z" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="32px"></path></svg></button>
+
+      <button type="button" aria-label="Bỏ qua" style="width: 64px; padding: 0; border: 0; background: transparent; display: flex; flex-direction: column; align-items: center; gap: 4px">
+        <span style="width: 64px; height: 64px; border-radius: 999px; background: var(--surface); border: 1px solid var(--border-strong); box-shadow: var(--e1); color: var(--text); display: flex; align-items: center; justify-content: center"><svg width="28" height="28" viewBox="0 0 512 512" aria-hidden="true" style="display: block; flex: none"><path d="M368 368 144 144M368 144 144 368" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32px"></path></svg></span>
+        <span class="t-micro muted">Bỏ qua</span>
+      </button>
+
+      <button type="button" aria-label="Yêu thích" style="width: 64px; padding: 0; border: 0; background: transparent; display: flex; flex-direction: column; align-items: center; gap: 4px">
+        <span style="width: 64px; height: 64px; display: flex; align-items: center; justify-content: center"><span style="width: 52px; height: 52px; border-radius: 999px; background: var(--surface); border: 1px solid var(--border-strong); box-shadow: var(--e1); color: var(--text); display: flex; align-items: center; justify-content: center"><svg width="24" height="24" viewBox="0 0 512 512" aria-hidden="true" style="display: block; flex: none"><path d="M352.92 80C288 80 256 144 256 144s-32-64-96.92-64c-52.76 0-94.54 44.14-95.08 96.81-1.1 109.33 86.73 187.08 183 252.42a16 16 0 0 0 18 0c96.26-65.34 184.09-143.09 183-252.42-.54-52.67-42.32-96.81-95.08-96.81" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32px"></path></svg></span></span>
+        <span class="t-micro muted">Yêu thích</span>
+      </button>
+
+      <button type="button" aria-label="Hot, cộng 1 độ hot" style="width: 64px; padding: 0; border: 0; background: transparent; display: flex; flex-direction: column; align-items: center; gap: 4px">
+        <span style="width: 64px; height: 64px; border-radius: 999px; background: var(--accent); color: var(--on-accent); box-shadow: var(--e2); display: flex; align-items: center; justify-content: center"><svg width="28" height="28" viewBox="0 0 512 512" fill="currentColor" aria-hidden="true" style="display: block; flex: none"><path d="M394.23 197.56a300.4 300.4 0 0 0-53.37-90C301.2 61.65 249.05 32 208 32a16 16 0 0 0-15.48 20c13.87 53-14.88 97.07-45.31 143.72C122 234.36 96 274.27 96 320c0 88.22 71.78 160 160 160s160-71.78 160-160c0-43.3-7.32-84.49-21.77-122.44m-105.9 221.13C278 429.69 265.05 432 256 432s-22-2.31-32.33-13.31S208 390.24 208 368c0-25.14 8.82-44.28 17.34-62.78 4.95-10.74 10-21.67 13-33.37a8 8 0 0 1 12.49-4.51A126.5 126.5 0 0 1 275 292c18.17 24 29 52.42 29 76 0 22.24-5.42 39.77-15.67 50.69"></path></svg></span>
+        <span class="t-micro" style="color: var(--accent-text)">Hot</span>
+      </button>
+
+      <button type="button" aria-label="Thông tin" style="margin-top: 10px; width: 44px; height: 44px; padding: 0; border: 0; border-radius: 999px; background: var(--surface-2); color: var(--text); display: flex; align-items: center; justify-content: center"><svg width="24" height="24" viewBox="0 0 512 512" aria-hidden="true" style="display: block; flex: none"><path d="M248 64C146.39 64 64 146.39 64 248s82.39 184 184 184 184-82.39 184-184S349.61 64 248 64Z" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"></path><path d="M220 220h32v116" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32px"></path><path d="M208 340h88" fill="none" stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="32px"></path><path fill="currentColor" d="M248 130a26 26 0 1 0 26 26 26 26 0 0 0-26-26"></path></svg></button>
+
+    </div>
+    <p class="t-caption muted" style="text-align: center">Vuốt phải: +1 độ hot · Vuốt trái: bỏ qua</p>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"dark":{"editor":"boolean","default":false,"section":"Giao diện"},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return { mode: (this.props.dark ?? false) ? 'dark' : 'light' };
+  }
+}
+</script>
+</body>
+</html>

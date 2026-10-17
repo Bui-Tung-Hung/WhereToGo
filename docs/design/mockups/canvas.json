@@ -1,0 +1,81 @@
+{
+  "v": 3,
+  "createdOnFiles": {"v": 1, "at": "2026-10-17T09:29:34Z"},
+  "title": "WhereToGo – Thiết kế mới",
+  "launch": {"view": "canvas", "page": "app"},
+  "pages": [
+    {"id": "tongquan", "name": "Tổng quan"},
+    {"id": "congkhai", "name": "Trang công khai"},
+    {"id": "batdau", "name": "Đăng nhập & bắt đầu"},
+    {"id": "app", "name": "App chính"},
+    {"id": "taikhoan", "name": "Tài khoản & dữ liệu"},
+    {"id": "maytinh", "name": "Máy tính"},
+    {"id": "huong", "name": "Các hướng đã cân nhắc"}
+  ],
+  "boards": {
+    "Main.dc.html": {"x": 0, "y": 0, "w": 1440, "h": 8200, "title": "Hệ thiết kế Sổ tay", "page": "tongquan"},
+    "SoDoTrang.dc.html": {"x": 1520, "y": 0, "w": 1440, "h": 2450, "title": "Sơ đồ trang", "page": "tongquan", "is_interactive": true},
+
+    "LandingDesktop.dc.html": {"x": 0, "y": 0, "w": 1280, "h": 4500, "title": "L1 · Trang giới thiệu (máy tính)", "page": "congkhai", "expand": "fill", "is_interactive": true},
+    "LandingPhoneDark.dc.html": {"x": 1360, "y": 0, "w": 390, "h": 6600, "title": "L2 · Trang giới thiệu (điện thoại, tối)", "page": "congkhai", "radius": 40, "is_interactive": true},
+    "InAppGate.dc.html": {"x": 1830, "y": 0, "w": 390, "h": 844, "title": "1 · Mở bằng trình duyệt (Zalo)", "page": "congkhai", "radius": 40, "is_interactive": true},
+    "DangNhap.dc.html": {"x": 2300, "y": 0, "w": 390, "h": 844, "title": "2 · Đăng nhập", "page": "congkhai", "radius": 40, "is_interactive": true},
+
+    "BatDau1DongY.dc.html": {"x": 0, "y": 0, "w": 390, "h": 1320, "title": "3 · Bước 1/4 — Đồng ý", "page": "batdau", "radius": 40, "is_interactive": true},
+    "BatDau2DriveDark.dc.html": {"x": 470, "y": 0, "w": 390, "h": 844, "title": "4 · Bước 2/4 — Chưa có Drive (tối)", "page": "batdau", "radius": 40, "is_interactive": true},
+    "BatDau3Nhom.dc.html": {"x": 940, "y": 0, "w": 390, "h": 844, "title": "5 · Bước 3/4 — Nhóm", "page": "batdau", "radius": 40, "is_interactive": true},
+    "HomeMoi.dc.html": {"x": 1410, "y": 0, "w": 390, "h": 844, "title": "6 · Trang chủ — người mới", "page": "batdau", "radius": 40, "is_interactive": true},
+
+    "Home.dc.html": {"x": 0, "y": 0, "w": 390, "h": 844, "title": "7 · Trang chủ", "page": "app", "radius": 40, "is_interactive": true},
+    "HomeDark.dc.html": {"x": 470, "y": 0, "w": 390, "h": 844, "title": "8 · Trang chủ (tối)", "page": "app", "radius": 40, "is_interactive": true},
+    "InfoSheet.dc.html": {"x": 940, "y": 0, "w": 390, "h": 844, "title": "9 · Bảng thông tin nhanh", "page": "app", "radius": 40, "is_interactive": true},
+    "NhomQuanUong.dc.html": {"x": 1410, "y": 0, "w": 390, "h": 1180, "title": "10 · Trang chọn quán — Quán uống", "page": "app", "radius": 40, "is_interactive": true},
+    "TimKiem.dc.html": {"x": 1880, "y": 0, "w": 390, "h": 844, "title": "11 · Tìm kiếm", "page": "app", "radius": 40, "is_interactive": true},
+    "BoLoc.dc.html": {"x": 2350, "y": 0, "w": 390, "h": 844, "title": "12 · Bộ lọc", "page": "app", "radius": 40, "is_interactive": true},
+    "YeuThichDark.dc.html": {"x": 2820, "y": 0, "w": 390, "h": 1020, "title": "13 · Yêu thích (tối)", "page": "app", "radius": 40, "is_interactive": true},
+
+    "GanToiHoi.dc.html": {"x": 0, "y": 1600, "w": 390, "h": 844, "title": "14 · Gần tôi — hỏi", "page": "app", "radius": 40, "is_interactive": true},
+    "GanToiDanhSach.dc.html": {"x": 470, "y": 1600, "w": 390, "h": 844, "title": "15 · Gần tôi — danh sách", "page": "app", "radius": 40, "is_interactive": true},
+    "GanToiBanDoDark.dc.html": {"x": 940, "y": 1600, "w": 390, "h": 844, "title": "16 · Gần tôi — bản đồ (tối)", "page": "app", "radius": 40, "is_interactive": true},
+    "BocTham.dc.html": {"x": 1410, "y": 1600, "w": 390, "h": 844, "title": "17 · Bốc thăm", "page": "app", "radius": 40, "is_interactive": true},
+    "Vuot.dc.html": {"x": 1880, "y": 1600, "w": 390, "h": 844, "title": "18 · Vuốt chọn quán", "page": "app", "radius": 40, "is_interactive": true},
+
+    "ChiTiet.dc.html": {"x": 0, "y": 2864, "w": 390, "h": 844, "title": "19 · Chi tiết — đầu trang", "page": "app", "radius": 40, "is_interactive": true},
+    "ChiTietDuoiDark.dc.html": {"x": 470, "y": 2864, "w": 390, "h": 844, "title": "20 · Chi tiết — đã cuộn (tối)", "page": "app", "radius": 40, "is_interactive": true},
+    "ThemDiaDiem.dc.html": {"x": 940, "y": 2864, "w": 390, "h": 1800, "title": "21 · Thêm địa điểm (cả form)", "page": "app", "radius": 40, "is_interactive": true},
+
+    "TaiKhoan.dc.html": {"x": 0, "y": 0, "w": 390, "h": 1264, "title": "22 · Tài khoản", "page": "taikhoan", "radius": 40, "is_interactive": true},
+    "QuyenRiengTu.dc.html": {"x": 470, "y": 0, "w": 390, "h": 1264, "title": "23 · Quyền riêng tư & dữ liệu", "page": "taikhoan", "radius": 40, "is_interactive": true},
+    "XoaTaiKhoanDark.dc.html": {"x": 940, "y": 0, "w": 390, "h": 844, "title": "24 · Xoá tài khoản (tối)", "page": "taikhoan", "radius": 40, "is_interactive": true},
+    "QuanLyNhom.dc.html": {"x": 1410, "y": 0, "w": 390, "h": 844, "title": "25 · Quản lý nhóm + bảng sửa", "page": "taikhoan", "radius": 40, "is_interactive": true},
+    "CaiApp.dc.html": {"x": 1880, "y": 0, "w": 390, "h": 844, "title": "26 · Cài lên màn hình chính", "page": "taikhoan", "radius": 40, "is_interactive": true},
+
+    "HomeDesktop.dc.html": {"x": 0, "y": 0, "w": 1280, "h": 1056, "title": "Trang chủ trên máy tính", "page": "maytinh", "expand": "fill", "is_interactive": true},
+
+    "HuongA.dc.html": {"x": 0, "y": 0, "w": 1000, "h": 1000, "title": "A · Sổ tay (đã chọn)", "page": "huong", "is_interactive": true},
+    "HuongB.dc.html": {"x": 1080, "y": 0, "w": 1000, "h": 1000, "title": "B · Hôm nay đi đâu?", "page": "huong"},
+    "HuongC.dc.html": {"x": 2160, "y": 0, "w": 1000, "h": 1000, "title": "C · Bản đồ của riêng bạn", "page": "huong"}
+  },
+  "order": [
+    "Main.dc.html", "SoDoTrang.dc.html",
+    "LandingDesktop.dc.html", "LandingPhoneDark.dc.html", "InAppGate.dc.html", "DangNhap.dc.html",
+    "BatDau1DongY.dc.html", "BatDau2DriveDark.dc.html", "BatDau3Nhom.dc.html", "HomeMoi.dc.html",
+    "Home.dc.html", "HomeDark.dc.html", "InfoSheet.dc.html", "NhomQuanUong.dc.html", "TimKiem.dc.html", "BoLoc.dc.html", "YeuThichDark.dc.html",
+    "GanToiHoi.dc.html", "GanToiDanhSach.dc.html", "GanToiBanDoDark.dc.html", "BocTham.dc.html", "Vuot.dc.html",
+    "ChiTiet.dc.html", "ChiTietDuoiDark.dc.html", "ThemDiaDiem.dc.html",
+    "TaiKhoan.dc.html", "QuyenRiengTu.dc.html", "XoaTaiKhoanDark.dc.html", "QuanLyNhom.dc.html", "CaiApp.dc.html",
+    "HomeDesktop.dc.html",
+    "HuongA.dc.html", "HuongB.dc.html", "HuongC.dc.html"
+  ],
+  "notes": {
+    "t-app1": {"x": 0, "y": -300, "text": "Trang chủ, nhóm, tìm kiếm, yêu thích", "kind": "title1", "maxW": 3210, "page": "app"},
+    "t-app2": {"x": 0, "y": 1300, "text": "Chọn giúp: Gần tôi, Bốc thăm, Vuốt", "kind": "title1", "maxW": 2270, "page": "app"},
+    "t-app3": {"x": 0, "y": 2564, "text": "Trang địa điểm và form thêm", "kind": "title1", "maxW": 1330, "page": "app"},
+    "t-batdau": {"x": 0, "y": -300, "text": "Đăng nhập lần đầu: đồng ý, Drive, nhóm, trang chủ trống", "kind": "title1", "maxW": 1800, "page": "batdau"},
+    "t-congkhai": {"x": 0, "y": -300, "text": "Trang công khai (không cần đăng nhập)", "kind": "title1", "maxW": 2690, "page": "congkhai"},
+    "t-taikhoan": {"x": 0, "y": -300, "text": "Tài khoản, quyền riêng tư, quản lý nhóm, cài app", "kind": "title1", "maxW": 2270, "page": "taikhoan"},
+    "t-huong": {"x": 0, "y": -300, "text": "Ba hướng đã cân nhắc — A được chọn", "kind": "title1", "maxW": 3160, "page": "huong"},
+    "t-tongquan": {"x": 0, "y": -300, "text": "Hệ thiết kế Sổ tay và sơ đồ trang", "kind": "title1", "maxW": 2960, "page": "tongquan"}
+  },
+  "designSystems": []
+}

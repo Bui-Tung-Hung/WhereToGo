@@ -1,6 +1,7 @@
 # KẾ HOẠCH GIAO DIỆN MỚI — PHẦN 2: MỘT PHONG CÁCH, ĐỦ TRANG, MỞ CÔNG KHAI
 
 Ngày: 2026-10-17. Chế độ: **PLAN** (chưa thực hiện cho tới khi user gõ `ENTER EXECUTE MODE`).
+Bộ tài liệu đi kèm (đặc tả tiếng Anh, bản vẽ, research, hướng dẫn cho agent): [design/README.md](design/README.md).
 Nguồn quyết định: [UI-REDESIGN.md](UI-REDESIGN.md) (U1–U45 của user, M1–M8 mặc định), [PLAN-UI-1.md](PLAN-UI-1.md) (P1–P37 mặc định kỹ thuật của phần 1), [PLAN.md](PLAN.md) (D1–D26), và 3 câu trả lời của user ngày 2026-10-17: (1) mở app cho mọi người (công khai, nhiều người dùng); (2) MỘT phong cách chung cho mọi trang, có cả sáng và tối; (3) cần kế hoạch kèm bản vẽ mẫu.
 
 Quy ước giống PLAN.md:
@@ -1649,6 +1650,8 @@ Q1–Q5 cần bạn trả lời sớm (phần việc của P0, mục 12). Với 
 ## 14. Bản vẽ mẫu
 
 **Link:** https://claude.ai/artifact/KGhAgZzQq1ZEp3huRjWz9K
+
+**Mã nguồn bản vẽ trong repo:** [design/mockups/](design/mockups/) (34 file `.dc.html` và `canvas.json`). Agent không mở được canvas riêng tư nên đọc các file này; cách đọc và bảng tra màn ↔ file ↔ mục ở [design/README.md](design/README.md).
 
 Bản vẽ nằm trên một canvas (trang vẽ giao diện trên claude.ai) **riêng tư**: chỉ bạn mở được cho tới khi bạn tự chia sẻ. Canvas là bản vẽ để duyệt hướng, không phải màn đã dựng; khi làm (P1–P7), chép câu chữ trong ngoặc kép nguyên văn.
 

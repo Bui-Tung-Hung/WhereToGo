@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>Bắt đầu: Google Drive</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;600&amp;family=Newsreader:wght@400;600&amp;family=Roboto:wght@500&amp;display=swap" rel="stylesheet">
+<style>
+/* ===== WTG TOKENS v1 — identical in every artboard, do not edit ===== */
+body{margin:0}
+.wtg{--bg:#F5F2E9;--surface:#FBF9F4;--surface-2:#EDE8DC;--border:#E2DBCC;--border-strong:#8A8072;--text:#1C1917;--muted:#5C554B;--accent:#A8482A;--accent-pressed:#8F3D23;--on-accent:#FFFFFF;--accent-text:#96401F;--accent-soft:#F4E1D7;--success:#2D6E45;--success-bg:#E2EEE2;--warning:#8A5600;--warning-bg:#F5E6C8;--danger:#B3261E;--danger-bg:#F8E0DA;--on-danger:#FFFFFF;--focus:#2F5DA8;--inverse-bg:#1C1917;--inverse-text:#F5F2E9;--inverse-action:#F09D7B;--scrim:rgba(28,25,23,.45);--photo-edge:rgba(28,25,23,.08);--pill:rgba(251,249,244,.92);--dock:rgba(251,249,244,.96);--e1:0 1px 2px rgba(28,25,23,.06);--e2:0 8px 24px -8px rgba(28,25,23,.20);--g-fill:#FFFFFF;--g-stroke:#747775;--g-text:#1F1F1F;--ph-1:#D9C7A7;--ph-2:#C9B8A6;--ph-3:#B9C3AA;--ph-4:#D8B8A4;--ph-5:#C2C9CC;--ph-6:#D3C4A0;--ph-icon:rgba(28,25,23,.32);--viewer-bg:#0C0A09;--sans:'Be Vietnam Pro',system-ui,-apple-system,'Segoe UI',sans-serif;--serif:'Newsreader',Georgia,'Times New Roman',serif;color-scheme:light;background:var(--bg);color:var(--text);font-family:var(--sans);font-size:16px;line-height:24px;-webkit-font-smoothing:antialiased}
+.wtg.dark{--bg:#141311;--surface:#1E1C19;--surface-2:#2A2723;--border:#3A3631;--border-strong:#7D7466;--text:#F2EDE3;--muted:#B3AB9C;--accent:#E58A66;--accent-pressed:#CF7652;--on-accent:#1C1210;--accent-text:#F09D7B;--accent-soft:#3B2720;--success:#86CB9A;--success-bg:#1F3326;--warning:#E9B65E;--warning-bg:#3A2E17;--danger:#F49283;--danger-bg:#3E211D;--on-danger:#1C1210;--focus:#93B6F2;--inverse-bg:#F2EDE3;--inverse-text:#1C1917;--inverse-action:#96401F;--scrim:rgba(0,0,0,.60);--photo-edge:rgba(255,255,255,.06);--pill:rgba(30,28,25,.92);--dock:rgba(30,28,25,.96);--e1:none;--e2:0 8px 24px -8px rgba(0,0,0,.70);--g-fill:#131314;--g-stroke:#8E918F;--g-text:#E3E3E3;--ph-1:#4A4033;--ph-2:#463E37;--ph-3:#3D4436;--ph-4:#4D3A31;--ph-5:#3B4145;--ph-6:#48412F;--ph-icon:rgba(255,255,255,.30);color-scheme:dark}
+.wtg *{box-sizing:border-box}
+.wtg button,.wtg input,.wtg select,.wtg textarea{font:inherit;color:inherit}
+.wtg a{color:var(--accent-text);text-decoration:none}
+.wtg a:hover{color:var(--accent-text)}
+.wtg p a,.wtg li a{text-decoration:underline;text-underline-offset:3px}
+.wtg :focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+.t-display{font-family:var(--serif);font-size:36px;line-height:46px;font-weight:600;letter-spacing:-0.01em;margin:0}
+.t-h1{font-family:var(--serif);font-size:28px;line-height:36px;font-weight:600;margin:0}
+.t-h2{font-family:var(--serif);font-size:22px;line-height:30px;font-weight:600;margin:0}
+.t-name{font-family:var(--serif);font-size:17px;line-height:22px;font-weight:600;margin:0}
+.t-name-lg{font-family:var(--serif);font-size:24px;line-height:32px;font-weight:600;margin:0}
+.t-numeral{font-family:var(--serif);font-size:28px;line-height:36px;font-weight:600}
+.t-story{font-family:var(--serif);font-size:18px;line-height:28px;font-weight:400;margin:0}
+.t-title{font-size:17px;line-height:24px;font-weight:600;margin:0}
+.t-body{font-size:16px;line-height:24px;font-weight:400;margin:0}
+.t-btn{font-size:16px;line-height:24px;font-weight:600}
+.t-body-sm{font-size:15px;line-height:22px;font-weight:400;margin:0}
+.t-label{font-size:14px;line-height:20px;font-weight:600;margin:0}
+.t-caption{font-size:13px;line-height:18px;font-weight:400;margin:0}
+.t-micro{font-size:12px;line-height:16px;font-weight:600;white-space:nowrap}
+.muted{color:var(--muted)}
+/* ===== end WTG TOKENS v1 ===== */
+</style>
+</helmet>
+<div class="wtg {{mode}}" style="width: 390px; height: 844px; position: relative; overflow: hidden; display: flex; flex-direction: column; background: var(--bg)">
+  <!-- top safe area: leave empty -->
+  <div style="height: 47px; flex: none"></div>
+
+  <!-- back + stepper (step 2 of 4) -->
+  <header style="height: 56px; flex: none; display: flex; align-items: center; gap: 8px; padding: 0 16px 0 8px">
+    <a href="BatDau1DongY.dc.html" aria-label="Quay lại" style="width: 44px; height: 44px; flex: none; display: flex; align-items: center; justify-content: center; border-radius: 999px; color: var(--text)"><svg width="24" height="24" viewBox="0 0 512 512" aria-hidden="true" style="display: block; flex: none"><path d="M328 112 184 256l144 144" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="48px"></path></svg></a>
+    <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 8px">
+      <p class="t-caption muted">Bước 2/4</p>
+      <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 4px"><span style="height: 4px; border-radius: 999px; background: var(--accent)"></span><span style="height: 4px; border-radius: 999px; background: var(--accent)"></span><span style="height: 4px; border-radius: 999px; background: var(--border-strong)"></span><span style="height: 4px; border-radius: 999px; background: var(--border-strong)"></span></div>
+    </div>
+  </header>
+
+  <main style="flex: 1; min-height: 0; display: flex; flex-direction: column; justify-content: space-between; gap: 24px; padding: 32px 16px 16px">
+
+    <div style="display: flex; flex-direction: column; align-items: center; gap: 24px">
+      <span style="width: 72px; height: 72px; flex: none; border-radius: 999px; background: var(--warning-bg); color: var(--warning); display: flex; align-items: center; justify-content: center"><svg width="32" height="32" viewBox="0 0 512 512" aria-hidden="true" style="display: block; flex: none"><path d="M85.57 446.25h340.86a32 32 0 0 0 28.17-47.17L284.18 82.58c-12.09-22.44-44.27-22.44-56.36 0L57.4 399.08a32 32 0 0 0 28.17 47.17" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32px"></path><path d="m250.26 195.39 5.74 122 5.73-121.95a5.74 5.74 0 0 0-5.79-6h0a5.74 5.74 0 0 0-5.68 5.95" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32px"></path><path fill="currentColor" d="M256 397.25a20 20 0 1 1 20-20 20 20 0 0 1-20 20"></path></svg></span>
+      <div style="display: flex; flex-direction: column; align-items: center; gap: 12px; text-align: center; max-width: 340px">
+        <h1 class="t-h1">Google chưa cho phép lưu ảnh</h1>
+        <p class="t-body-sm muted">Ở màn hình Google, ô quyền Google Drive đang bị bỏ chọn. Không sao — mọi thứ khác vẫn dùng được, chỉ chưa thêm được ảnh.</p>
+      </div>
+      <div style="width: 100%; display: flex; flex-direction: column; gap: 8px">
+        <button type="button" class="t-btn" style="width: 100%; height: 48px; padding: 0 20px; border-radius: 12px; background: var(--accent); color: var(--on-accent); border: 0; display: inline-flex; align-items: center; justify-content: center; gap: 8px">Thử lại</button>
+        <a href="BatDau3Nhom.dc.html" class="t-btn" style="width: 100%; height: 44px; padding: 0 12px; border-radius: 12px; background: transparent; color: var(--accent-text); display: inline-flex; align-items: center; justify-content: center">Để sau</a>
+      </div>
+    </div>
+
+    <section aria-labelledby="why-title" style="display: flex; flex-direction: column; gap: 8px; padding: 16px; border-radius: 16px; background: var(--surface-2)">
+      <div style="display: flex; align-items: center; gap: 8px; color: var(--text)">
+        <svg width="20" height="20" viewBox="0 0 512 512" aria-hidden="true" style="display: block; flex: none"><path d="M336 176 225.2 304 176 255.8" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32px"></path><path d="M463.1 112.37C373.68 96.33 336.71 84.45 256 48c-80.71 36.45-117.68 48.33-207.1 64.37C32.7 369.13 240.58 457.79 256 464c15.42-6.21 223.3-94.87 207.1-351.63" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32px"></path></svg>
+        <h2 id="why-title" class="t-label">Vì sao cần quyền này?</h2>
+      </div>
+      <p class="t-body-sm muted">Google sẽ hỏi bạn có cho WhereToGo xem, tạo và xoá các tệp Drive do chính ứng dụng này tạo không. Đây là quyền hẹp nhất: app không đọc được tệp nào khác của bạn.</p>
+    </section>
+
+  </main>
+
+  <!-- bottom safe area: leave empty -->
+  <div style="height: 34px; flex: none"></div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"dark":{"editor":"boolean","default":true,"section":"Giao diện"},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return { mode: (this.props.dark ?? true) ? 'dark' : 'light' };
+  }
+}
+</script>
+</body>
+</html>

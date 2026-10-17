@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>Trang chủ tối</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;600&amp;family=Newsreader:wght@400;600&amp;family=Roboto:wght@500&amp;display=swap" rel="stylesheet">
+<style>
+/* ===== WTG TOKENS v1 — identical in every artboard, do not edit ===== */
+body{margin:0}
+.wtg{--bg:#F5F2E9;--surface:#FBF9F4;--surface-2:#EDE8DC;--border:#E2DBCC;--border-strong:#8A8072;--text:#1C1917;--muted:#5C554B;--accent:#A8482A;--accent-pressed:#8F3D23;--on-accent:#FFFFFF;--accent-text:#96401F;--accent-soft:#F4E1D7;--success:#2D6E45;--success-bg:#E2EEE2;--warning:#8A5600;--warning-bg:#F5E6C8;--danger:#B3261E;--danger-bg:#F8E0DA;--on-danger:#FFFFFF;--focus:#2F5DA8;--inverse-bg:#1C1917;--inverse-text:#F5F2E9;--inverse-action:#F09D7B;--scrim:rgba(28,25,23,.45);--photo-edge:rgba(28,25,23,.08);--pill:rgba(251,249,244,.92);--dock:rgba(251,249,244,.96);--e1:0 1px 2px rgba(28,25,23,.06);--e2:0 8px 24px -8px rgba(28,25,23,.20);--g-fill:#FFFFFF;--g-stroke:#747775;--g-text:#1F1F1F;--ph-1:#D9C7A7;--ph-2:#C9B8A6;--ph-3:#B9C3AA;--ph-4:#D8B8A4;--ph-5:#C2C9CC;--ph-6:#D3C4A0;--ph-icon:rgba(28,25,23,.32);--viewer-bg:#0C0A09;--sans:'Be Vietnam Pro',system-ui,-apple-system,'Segoe UI',sans-serif;--serif:'Newsreader',Georgia,'Times New Roman',serif;color-scheme:light;background:var(--bg);color:var(--text);font-family:var(--sans);font-size:16px;line-height:24px;-webkit-font-smoothing:antialiased}
+.wtg.dark{--bg:#141311;--surface:#1E1C19;--surface-2:#2A2723;--border:#3A3631;--border-strong:#7D7466;--text:#F2EDE3;--muted:#B3AB9C;--accent:#E58A66;--accent-pressed:#CF7652;--on-accent:#1C1210;--accent-text:#F09D7B;--accent-soft:#3B2720;--success:#86CB9A;--success-bg:#1F3326;--warning:#E9B65E;--warning-bg:#3A2E17;--danger:#F49283;--danger-bg:#3E211D;--on-danger:#1C1210;--focus:#93B6F2;--inverse-bg:#F2EDE3;--inverse-text:#1C1917;--inverse-action:#96401F;--scrim:rgba(0,0,0,.60);--photo-edge:rgba(255,255,255,.06);--pill:rgba(30,28,25,.92);--dock:rgba(30,28,25,.96);--e1:none;--e2:0 8px 24px -8px rgba(0,0,0,.70);--g-fill:#131314;--g-stroke:#8E918F;--g-text:#E3E3E3;--ph-1:#4A4033;--ph-2:#463E37;--ph-3:#3D4436;--ph-4:#4D3A31;--ph-5:#3B4145;--ph-6:#48412F;--ph-icon:rgba(255,255,255,.30);color-scheme:dark}
+.wtg *{box-sizing:border-box}
+.wtg button,.wtg input,.wtg select,.wtg textarea{font:inherit;color:inherit}
+.wtg a{color:var(--accent-text);text-decoration:none}
+.wtg a:hover{color:var(--accent-text)}
+.wtg p a,.wtg li a{text-decoration:underline;text-underline-offset:3px}
+.wtg :focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+.t-display{font-family:var(--serif);font-size:36px;line-height:46px;font-weight:600;letter-spacing:-0.01em;margin:0}
+.t-h1{font-family:var(--serif);font-size:28px;line-height:36px;font-weight:600;margin:0}
+.t-h2{font-family:var(--serif);font-size:22px;line-height:30px;font-weight:600;margin:0}
+.t-name{font-family:var(--serif);font-size:17px;line-height:22px;font-weight:600;margin:0}
+.t-name-lg{font-family:var(--serif);font-size:24px;line-height:32px;font-weight:600;margin:0}
+.t-numeral{font-family:var(--serif);font-size:28px;line-height:36px;font-weight:600}
+.t-story{font-family:var(--serif);font-size:18px;line-height:28px;font-weight:400;margin:0}
+.t-title{font-size:17px;line-height:24px;font-weight:600;margin:0}
+.t-body{font-size:16px;line-height:24px;font-weight:400;margin:0}
+.t-btn{font-size:16px;line-height:24px;font-weight:600}
+.t-body-sm{font-size:15px;line-height:22px;font-weight:400;margin:0}
+.t-label{font-size:14px;line-height:20px;font-weight:600;margin:0}
+.t-caption{font-size:13px;line-height:18px;font-weight:400;margin:0}
+.t-micro{font-size:12px;line-height:16px;font-weight:600;white-space:nowrap}
+.muted{color:var(--muted)}
+/* ===== end WTG TOKENS v1 ===== */
+</style>
+</helmet>
+<div class="wtg {{mode}}" style="width: 390px; height: 844px; position: relative; overflow: hidden; display: flex; flex-direction: column; background: var(--bg)">
+  <!-- top safe area: leave empty -->
+  <div style="height: 47px; flex: none"></div>
+
+  <header style="height: 56px; flex: none; display: flex; align-items: center; gap: 8px; padding: 0 8px 0 16px">
+    <div style="font-family: var(--serif); font-size: 22px; line-height: 30px; font-weight: 600; flex: 1">WhereToGo</div>
+    <a href="TaiKhoan.dc.html" aria-label="Tài khoản" style="width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; border-radius: 999px">
+      <span style="width: 32px; height: 32px; border-radius: 999px; background: var(--accent-soft); color: var(--accent-text); display: flex; align-items: center; justify-content: center; font-size: 13px; line-height: 18px; font-weight: 600">MA</span>
+    </a>
+  </header>
+
+  <main style="flex: 1; min-height: 0; overflow: hidden">
+    <div style="display: flex; flex-direction: column; gap: 12px; padding: 0 16px 110px">
+
+      <div style="display: flex; flex-direction: column; gap: 4px">
+        <p class="t-caption muted">Thứ Bảy, 17 tháng 10</p>
+
+        <!-- Daily pick card -->
+        <div style="position: relative; background: var(--surface); border: 1px solid var(--border); border-radius: 16px; box-shadow: var(--e1)">
+          <a href="InfoSheet.dc.html" style="display: flex; flex-direction: column; padding: 12px 16px; border-radius: 16px; color: var(--text)">
+            <div class="t-label" style="color: var(--accent-text)">Hôm nay thử quán này</div>
+            <svg width="150" height="10" viewBox="0 0 150 10" aria-hidden="true" style="display: block; margin-top: -3px"><path d="M3 7 C 40 2, 95 1, 147 5" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round"></path></svg>
+            <div role="img" aria-label="Ảnh minh hoạ: Bún chả Hương Liên" style="margin-top: 8px; aspect-ratio: 16 / 10; width: 100%; border-radius: 12px; background: var(--ph-1); box-shadow: inset 0 0 0 1px var(--photo-edge); display: flex; align-items: center; justify-content: center; color: var(--ph-icon)"><svg width="32" height="32" viewBox="0 0 512 512" aria-hidden="true" style="display: block; flex: none"><rect width="416" height="352" x="48" y="80" rx="48" ry="48" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="32px"></rect><circle cx="336" cy="176" r="32" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"></circle><path d="m304 335.79-90.66-90.49a32 32 0 0 0-43.87-1.3L48 352M224 432l123.34-123.34a32 32 0 0 1 43.11-2L464 368" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32px"></path></svg></div>
+            <div style="margin-top: 10px; display: flex; flex-direction: column">
+              <h2 class="t-h2">Bún chả Hương Liên</h2>
+              <p class="t-caption muted">Quán ăn · 50.000–90.000 ₫</p>
+              <p class="t-label" style="margin-top: 2px; display: flex; align-items: center; gap: 4px; color: var(--success)"><svg width="16" height="16" viewBox="0 0 512 512" aria-hidden="true" style="display: block; flex: none"><path d="M256 64C150 64 64 150 64 256s86 192 192 192 192-86 192-192S362 64 256 64Z" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"></path><path d="M256 128v144h96" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32px"></path></svg><span>Đang mở · đóng lúc 20:30</span></p>
+            </div>
+          </a>
+          <button type="button" aria-label="Đổi quán khác" style="position: absolute; top: 2px; right: 4px; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; border: 0; background: transparent; border-radius: 999px; color: var(--text)"><svg width="24" height="24" viewBox="0 0 512 512" aria-hidden="true" style="display: block; flex: none"><path d="M320 146s24.36-12-64-12a160 160 0 1 0 160 160" fill="none" stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="32px"></path><path d="m256 58 80 80-80 80" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32px"></path></svg></button>
+        </div>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 6px">
+        <div style="display: flex; align-items: center; justify-content: space-between; min-height: 36px">
+          <h2 class="t-h2">Nhóm của bạn</h2>
+          <a href="QuanLyNhom.dc.html" class="t-btn" style="height: 44px; padding: 0 12px; margin: -4px -12px -4px 0; border-radius: 12px; display: inline-flex; align-items: center; color: var(--accent-text)">Sửa</a>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 12px">
+
+          <!-- Quán ăn -->
+          <a href="Home.dc.html" style="display: flex; flex-direction: column; gap: 12px; padding: 16px; background: var(--surface); border: 1px solid var(--border); border-radius: 16px; box-shadow: var(--e1); color: var(--text)">
+            <div style="display: flex; align-items: center; gap: 8px">
+              <span style="width: 32px; height: 32px; flex: none; border-radius: 999px; background: var(--surface-2); color: var(--text); display: flex; align-items: center; justify-content: center"><svg width="20" height="20" viewBox="0 0 512 512" aria-hidden="true" style="display: block; flex: none"><path d="m57.49 47.74 368.43 368.43a37.28 37.28 0 0 1 0 52.72 37.29 37.29 0 0 1-52.72 0l-90-91.55a32 32 0 0 1-9.2-22.43v-5.53a32 32 0 0 0-9.52-22.78l-11.62-10.73a32 32 0 0 0-29.8-7.44 48.53 48.53 0 0 1-46.56-12.63l-85.43-85.44C40.39 159.68 21.74 83.15 57.49 47.74Z" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="32px"></path><path d="m400 32-77.25 77.25A64 64 0 0 0 304 154.51v14.86a16 16 0 0 1-4.69 11.32L288 192M320 224l11.31-11.31a16 16 0 0 1 11.32-4.69h14.86a64 64 0 0 0 45.26-18.75L480 112M440 72l-80 80M200 368l-99.72 100.28a40 40 0 0 1-56.56 0h0a40 40 0 0 1 0-56.56L128 328" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32px"></path></svg></span>
+              <span class="t-label muted">Quán ăn · 12 quán</span>
+            </div>
+            <div class="t-h2">Chán cơm thì ăn gì?</div>
+            <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 2px">
+              <div aria-hidden="true" style="aspect-ratio: 1 / 1; border-radius: 8px; background: var(--ph-1); box-shadow: inset 0 0 0 1px var(--photo-edge); display: flex; align-items: center; justify-content: center; color: var(--ph-icon)"><svg width="20" height="20" viewBox="0 0 512 512" aria-hidden="true" style="display: block; flex: none"><rect width="416" height="352" x="48" y="80" rx="48" ry="48" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="32px"></rect><circle cx="336" cy="176" r="32" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"></circle><path d="m304 335.79-90.66-90.49a32 32 0 0 0-43.87-1.3L48 352M224 432l123.34-123.34a32 32 0 0 1 43.11-2L464 368" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32px"></path></svg></div>
+              <div aria-hidden="true" style="aspect-ratio: 1 / 1; border-radius: 8px; background: var(--ph-6); box-shadow: inset 0 0 0 1px var(--photo-edge); display: flex; align-items: center; justify-content: center; color: var(--ph-icon)"><svg width="20" height="20" viewBox="0 0 512 512" aria-hidden="true" style="display: block; flex: none"><rect width="416" height="352" x="48" y="80" rx="48" ry="48" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="32px"></rect><circle cx="336" cy="176" r="32" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"></circle><path d="m304 335.79-90.66-90.49a32 32 0 0 0-43.87-1.3L48 352M224 432l123.34-123.34a32 32 0 0 1 43.11-2L464 368" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32px"></path></svg></div>
+              <div aria-hidden="true" style="aspect-ratio: 1 / 1; border-radius: 8px; background: var(--ph-4); box-shadow: inset 0 0 0 1px var(--photo-edge); display: flex; align-items: center; justify-content: center; color: var(--ph-icon)"><svg width="20" height="20" viewBox="0 0 512 512" aria-hidden="true" style="display: block; flex: none"><rect width="416" height="352" x="48" y="80" rx="48" ry="48" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="32px"></rect><circle cx="336" cy="176" r="32" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"></circle><path d="m304 335.79-90.66-90.49a32 32 0 0 0-43.87-1.3L48 352M224 432l123.34-123.34a32 32 0 0 1 43.11-2L464 368" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32px"></path></svg></div>
+              <div style="aspect-ratio: 1 / 1; border-radius: 8px; background: var(--surface-2); display: flex; align-items: center; justify-content: center; font-family: var(--serif); font-size: 22px; line-height: 30px; font-weight: 600; color: var(--text)">+9</div>
+            </div>
+          </a>
+
+          <!-- Quán uống -->
+          <a href="NhomQuanUong.dc.html" style="display: flex; flex-direction: column; gap: 12px; padding: 16px; background: var(--surface); border: 1px solid var(--border); border-radius: 16px; box-shadow: var(--e1); color: var(--text)">
+            <div style="display: flex; align-items: center; gap: 8px">
+              <span style="width: 32px; height: 32px; flex: none; border-radius: 999px; background: var(--surface-2); color: var(--text); display: flex; align-items: center; justify-content: center"><svg width="20" height="20" viewBox="0 0 512 512" aria-hidden="true" style="display: block; flex: none"><path d="M368 80h64a16 16 0 0 1 16 16v34a46 46 0 0 1-46 46h-34M96 80h272v192a80 80 0 0 1-80 80H176a80 80 0 0 1-80-80zM64 416h336" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32px"></path></svg></span>
+              <span class="t-label muted">Quán uống · 8 quán</span>
+            </div>
+            <div class="t-h2">Chán nước thì uống gì?</div>
+            <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 2px">
+              <div aria-hidden="true" style="aspect-ratio: 1 / 1; border-radius: 8px; background: var(--ph-3); box-shadow: inset 0 0 0 1px var(--photo-edge); display: flex; align-items: center; justify-content: center; color: var(--ph-icon)"><svg width="20" height="20" viewBox="0 0 512 512" aria-hidden="true" style="display: block; flex: none"><rect width="416" height="352" x="48" y="80" rx="48" ry="48" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="32px"></rect><circle cx="336" cy="176" r="32" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"></circle><path d="m304 335.79-90.66-90.49a32 32 0 0 0-43.87-1.3L48 352M224 432l123.34-123.34a32 32 0 0 1 43.11-2L464 368" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32px"></path></svg></div>
+              <div aria-hidden="true" style="aspect-ratio: 1 / 1; border-radius: 8px; background: var(--ph-2); box-shadow: inset 0 0 0 1px var(--photo-edge); display: flex; align-items: center; justify-content: center; color: var(--ph-icon)"><svg width="20" height="20" viewBox="0 0 512 512" aria-hidden="true" style="display: block; flex: none"><rect width="416" height="352" x="48" y="80" rx="48" ry="48" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="32px"></rect><circle cx="336" cy="176" r="32" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"></circle><path d="m304 335.79-90.66-90.49a32 32 0 0 0-43.87-1.3L48 352M224 432l123.34-123.34a32 32 0 0 1 43.11-2L464 368" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32px"></path></svg></div>
+              <div aria-hidden="true" style="aspect-ratio: 1 / 1; border-radius: 8px; background: var(--ph-5); box-shadow: inset 0 0 0 1px var(--photo-edge); display: flex; align-items: center; justify-content: center; color: var(--ph-icon)"><svg width="20" height="20" viewBox="0 0 512 512" aria-hidden="true" style="display: block; flex: none"><rect width="416" height="352" x="48" y="80" rx="48" ry="48" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="32px"></rect><circle cx="336" cy="176" r="32" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"></circle><path d="m304 335.79-90.66-90.49a32 32 0 0 0-43.87-1.3L48 352M224 432l123.34-123.34a32 32 0 0 1 43.11-2L464 368" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32px"></path></svg></div>
+              <div style="aspect-ratio: 1 / 1; border-radius: 8px; background: var(--surface-2); display: flex; align-items: center; justify-content: center; font-family: var(--serif); font-size: 22px; line-height: 30px; font-weight: 600; color: var(--text)">+5</div>
+            </div>
+          </a>
+
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Dock -->
+  <nav aria-label="Điều hướng chính" style="position: absolute; left: 0; right: 0; bottom: 0; height: 98px; padding: 0 8px 34px; background: var(--dock); border-top: 1px solid var(--border); box-shadow: var(--e2); display: grid; grid-template-columns: 1fr 1fr 64px 1fr 1fr; align-items: center">
+    <a href="TimKiem.dc.html" style="height: 56px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; color: var(--muted)"><svg width="24" height="24" viewBox="0 0 512 512" aria-hidden="true" style="display: block; flex: none"><path d="M221.09 64a157.09 157.09 0 1 0 157.09 157.09A157.1 157.1 0 0 0 221.09 64Z" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"></path><path d="M338.29 338.29 448 448" fill="none" stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="32px"></path></svg><span class="t-micro">Tìm</span></a>
+    <a href="YeuThichDark.dc.html" style="height: 56px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; color: var(--muted)"><svg width="24" height="24" viewBox="0 0 512 512" aria-hidden="true" style="display: block; flex: none"><path d="M352.92 80C288 80 256 144 256 144s-32-64-96.92-64c-52.76 0-94.54 44.14-95.08 96.81-1.1 109.33 86.73 187.08 183 252.42a16 16 0 0 0 18 0c96.26-65.34 184.09-143.09 183-252.42-.54-52.67-42.32-96.81-95.08-96.81" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32px"></path></svg><span class="t-micro">Yêu thích</span></a>
+    <a href="ThemDiaDiem.dc.html" style="height: 76px; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; gap: 2px; color: var(--muted); transform: translateY(-12px)">
+      <span style="width: 56px; height: 56px; border-radius: 999px; background: var(--accent); color: var(--on-accent); display: flex; align-items: center; justify-content: center; box-shadow: var(--e2)"><svg width="28" height="28" viewBox="0 0 512 512" aria-hidden="true" style="display: block; flex: none"><path d="M256 112v288M400 256H112" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32px"></path></svg></span><span class="t-micro">Thêm</span></a>
+    <a href="Vuot.dc.html" style="height: 56px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; color: var(--muted)"><svg width="24" height="24" viewBox="0 0 512 512" aria-hidden="true" style="display: block; flex: none"><path d="m434.8 137.65-149.36-68.1c-16.19-7.4-42.69-7.4-58.88 0L77.3 137.65c-17.6 8-17.6 21.09 0 29.09l148 67.5c16.89 7.7 44.69 7.7 61.58 0l148-67.5c17.52-8 17.52-21.1-.08-29.09M160 308.52l-82.7 37.11c-17.6 8-17.6 21.1 0 29.1l148 67.5c16.89 7.69 44.69 7.69 61.58 0l148-67.5c17.6-8 17.6-21.1 0-29.1l-79.94-38.47" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32px"></path><path d="m160 204.48-82.8 37.16c-17.6 8-17.6 21.1 0 29.1l148 67.49c16.89 7.7 44.69 7.7 61.58 0l148-67.49c17.7-8 17.7-21.1.1-29.1L352 204.48" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32px"></path></svg><span class="t-micro">Vuốt</span></a>
+    <a href="BocTham.dc.html" style="height: 56px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; color: var(--muted)"><svg width="24" height="24" viewBox="0 0 512 512" aria-hidden="true" style="display: block; flex: none"><path d="m400 304 48 48-48 48M400 112l48 48-48 48M64 352h85.19a80 80 0 0 0 66.56-35.62L256 256" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32px"></path><path d="M64 160h85.19a80 80 0 0 1 66.56 35.62l80.5 120.76A80 80 0 0 0 362.81 352H416M416 160h-53.19a80 80 0 0 0-66.56 35.62L288 208" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32px"></path></svg><span class="t-micro">Bốc thăm</span></a>
+  </nav>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"dark":{"editor":"boolean","default":true,"section":"Giao diện"},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return { mode: (this.props.dark ?? true) ? 'dark' : 'light' };
+  }
+}
+</script>
+</body>
+</html>

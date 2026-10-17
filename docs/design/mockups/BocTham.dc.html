@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>Bốc thăm</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;600&amp;family=Newsreader:wght@400;600&amp;family=Roboto:wght@500&amp;display=swap" rel="stylesheet">
+<style>
+/* ===== WTG TOKENS v1 — identical in every artboard, do not edit ===== */
+body{margin:0}
+.wtg{--bg:#F5F2E9;--surface:#FBF9F4;--surface-2:#EDE8DC;--border:#E2DBCC;--border-strong:#8A8072;--text:#1C1917;--muted:#5C554B;--accent:#A8482A;--accent-pressed:#8F3D23;--on-accent:#FFFFFF;--accent-text:#96401F;--accent-soft:#F4E1D7;--success:#2D6E45;--success-bg:#E2EEE2;--warning:#8A5600;--warning-bg:#F5E6C8;--danger:#B3261E;--danger-bg:#F8E0DA;--on-danger:#FFFFFF;--focus:#2F5DA8;--inverse-bg:#1C1917;--inverse-text:#F5F2E9;--inverse-action:#F09D7B;--scrim:rgba(28,25,23,.45);--photo-edge:rgba(28,25,23,.08);--pill:rgba(251,249,244,.92);--dock:rgba(251,249,244,.96);--e1:0 1px 2px rgba(28,25,23,.06);--e2:0 8px 24px -8px rgba(28,25,23,.20);--g-fill:#FFFFFF;--g-stroke:#747775;--g-text:#1F1F1F;--ph-1:#D9C7A7;--ph-2:#C9B8A6;--ph-3:#B9C3AA;--ph-4:#D8B8A4;--ph-5:#C2C9CC;--ph-6:#D3C4A0;--ph-icon:rgba(28,25,23,.32);--viewer-bg:#0C0A09;--sans:'Be Vietnam Pro',system-ui,-apple-system,'Segoe UI',sans-serif;--serif:'Newsreader',Georgia,'Times New Roman',serif;color-scheme:light;background:var(--bg);color:var(--text);font-family:var(--sans);font-size:16px;line-height:24px;-webkit-font-smoothing:antialiased}
+.wtg.dark{--bg:#141311;--surface:#1E1C19;--surface-2:#2A2723;--border:#3A3631;--border-strong:#7D7466;--text:#F2EDE3;--muted:#B3AB9C;--accent:#E58A66;--accent-pressed:#CF7652;--on-accent:#1C1210;--accent-text:#F09D7B;--accent-soft:#3B2720;--success:#86CB9A;--success-bg:#1F3326;--warning:#E9B65E;--warning-bg:#3A2E17;--danger:#F49283;--danger-bg:#3E211D;--on-danger:#1C1210;--focus:#93B6F2;--inverse-bg:#F2EDE3;--inverse-text:#1C1917;--inverse-action:#96401F;--scrim:rgba(0,0,0,.60);--photo-edge:rgba(255,255,255,.06);--pill:rgba(30,28,25,.92);--dock:rgba(30,28,25,.96);--e1:none;--e2:0 8px 24px -8px rgba(0,0,0,.70);--g-fill:#131314;--g-stroke:#8E918F;--g-text:#E3E3E3;--ph-1:#4A4033;--ph-2:#463E37;--ph-3:#3D4436;--ph-4:#4D3A31;--ph-5:#3B4145;--ph-6:#48412F;--ph-icon:rgba(255,255,255,.30);color-scheme:dark}
+.wtg *{box-sizing:border-box}
+.wtg button,.wtg input,.wtg select,.wtg textarea{font:inherit;color:inherit}
+.wtg a{color:var(--accent-text);text-decoration:none}
+.wtg a:hover{color:var(--accent-text)}
+.wtg p a,.wtg li a{text-decoration:underline;text-underline-offset:3px}
+.wtg :focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+.t-display{font-family:var(--serif);font-size:36px;line-height:46px;font-weight:600;letter-spacing:-0.01em;margin:0}
+.t-h1{font-family:var(--serif);font-size:28px;line-height:36px;font-weight:600;margin:0}
+.t-h2{font-family:var(--serif);font-size:22px;line-height:30px;font-weight:600;margin:0}
+.t-name{font-family:var(--serif);font-size:17px;line-height:22px;font-weight:600;margin:0}
+.t-name-lg{font-family:var(--serif);font-size:24px;line-height:32px;font-weight:600;margin:0}
+.t-numeral{font-family:var(--serif);font-size:28px;line-height:36px;font-weight:600}
+.t-story{font-family:var(--serif);font-size:18px;line-height:28px;font-weight:400;margin:0}
+.t-title{font-size:17px;line-height:24px;font-weight:600;margin:0}
+.t-body{font-size:16px;line-height:24px;font-weight:400;margin:0}
+.t-btn{font-size:16px;line-height:24px;font-weight:600}
+.t-body-sm{font-size:15px;line-height:22px;font-weight:400;margin:0}
+.t-label{font-size:14px;line-height:20px;font-weight:600;margin:0}
+.t-caption{font-size:13px;line-height:18px;font-weight:400;margin:0}
+.t-micro{font-size:12px;line-height:16px;font-weight:600;white-space:nowrap}
+.muted{color:var(--muted)}
+/* ===== end WTG TOKENS v1 ===== */
+</style>
+</helmet>
+<div class="wtg {{mode}}" style="width: 390px; height: 844px; position: relative; overflow: hidden; display: flex; flex-direction: column; background: var(--bg)">
+  <!-- top safe area: leave empty -->
+  <div style="height: 47px; flex: none"></div>
+
+  <header style="height: 56px; flex: none; display: flex; align-items: center; gap: 4px; padding: 0 8px">
+    <a href="Home.dc.html" aria-label="Quay lại" style="width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; border-radius: 999px; color: var(--text)"><svg width="24" height="24" viewBox="0 0 512 512" aria-hidden="true" style="display: block; flex: none"><path d="M328 112 184 256l144 144" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="48px"></path></svg></a>
+    <div style="flex: 1; min-width: 0"></div>
+  </header>
+
+  <main style="flex: 1; min-height: 0; overflow: hidden; padding: 4px 16px 0; display: flex; flex-direction: column; gap: 16px">
+
+    <div style="display: flex; flex-direction: column; gap: 4px">
+      <h1 class="t-h1">Bốc thăm</h1>
+      <p class="t-body-sm muted">Chọn một nhóm, app bốc tối đa 3 nơi. Không ưng thì bốc lại.</p>
+    </div>
+
+    <div role="group" aria-label="Nhóm" style="margin: 0 -16px; padding: 0 16px; display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none">
+      <button type="button" aria-pressed="true" class="t-label" style="flex: none; height: 36px; padding: 0 14px 0 10px; border-radius: 999px; background: var(--accent-soft); border: 1px solid var(--accent); color: var(--accent-text); display: inline-flex; align-items: center; gap: 6px; white-space: nowrap"><svg width="16" height="16" viewBox="0 0 512 512" aria-hidden="true" style="display: block; flex: none"><path d="M416 128 192 384l-96-96" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32px"></path></svg>Quán ăn</button>
+      <button type="button" aria-pressed="false" class="t-label" style="flex: none; height: 36px; padding: 0 14px; border-radius: 999px; background: var(--surface-2); border: 1px solid var(--border-strong); color: var(--text); display: inline-flex; align-items: center; gap: 6px; white-space: nowrap">Quán uống</button>
+      <button type="button" aria-pressed="false" class="t-label" style="flex: none; height: 36px; padding: 0 14px; border-radius: 999px; background: var(--surface-2); border: 1px solid var(--border-strong); color: var(--text); display: inline-flex; align-items: center; gap: 6px; white-space: nowrap">Chỗ chơi</button>
+      <button type="button" aria-pressed="false" class="t-label" style="flex: none; height: 36px; padding: 0 14px; border-radius: 999px; background: var(--surface-2); border: 1px solid var(--border-strong); color: var(--text); display: inline-flex; align-items: center; gap: 6px; white-space: nowrap">Du lịch</button>
+    </div>
+
+    <ol role="list" style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 12px">
+
+      <!-- 1 · chosen -->
+      <li style="background: var(--surface); border: 2px solid var(--accent); border-radius: 16px; padding: 11px; box-shadow: var(--e1); display: flex; flex-direction: column; gap: 12px">
+        <div style="display: flex; gap: 12px; align-items: center">
+          <div style="position: relative; width: 40px; height: 44px; flex: none; display: flex; align-items: center; justify-content: center">
+            <svg width="52" height="42" viewBox="0 0 72 56" aria-hidden="true" style="position: absolute; left: -6px; top: 1px; pointer-events: none"><path d="M10 33 C 5 16, 30 4, 50 7 C 66 10, 70 26, 60 39 C 49 52, 18 54, 9 42 C 4 35, 9 22, 22 15" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linecap="round"></path></svg>
+            <span class="t-numeral" style="position: relative">1</span>
+          </div>
+          <div role="img" aria-label="Ảnh minh hoạ: Phở Thìn Lò Đúc" style="width: 88px; height: 88px; flex: none; border-radius: 8px; background: var(--ph-6); box-shadow: inset 0 0 0 1px var(--photo-edge); display: flex; align-items: center; justify-content: center; color: var(--ph-icon)"><svg width="24" height="24" viewBox="0 0 512 512" aria-hidden="true" style="display: block; flex: none"><rect width="416" height="352" x="48" y="80" rx="48" ry="48" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="32px"></rect><circle cx="336" cy="176" r="32" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"></circle><path d="m304 335.79-90.66-90.49a32 32 0 0 0-43.87-1.3L48 352M224 432l123.34-123.34a32 32 0 0 1 43.11-2L464 368" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32px"></path></svg></div>
+          <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px">
+            <h2 class="t-name"><span style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap">Đã chốt: </span>Phở Thìn Lò Đúc</h2>
+            <p class="t-caption muted">60.000–80.000 ₫ · <span style="color: var(--success)">Đang mở</span></p>
+          </div>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px">
+          <button type="button" class="t-btn" style="height: 44px; padding: 0 12px; border-radius: 12px; background: var(--accent); color: var(--on-accent); border: 0; display: inline-flex; align-items: center; justify-content: center; gap: 8px"><svg width="20" height="20" viewBox="0 0 512 512" aria-hidden="true" style="display: block; flex: none"><path d="M448 64 64 240.14h200a8 8 0 0 1 8 8V448Z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32px"></path></svg>Chỉ đường</button>
+          <a href="ChiTiet.dc.html" class="t-btn" style="height: 44px; padding: 0 12px; border-radius: 12px; background: var(--surface); color: var(--text); border: 1px solid var(--border-strong); display: inline-flex; align-items: center; justify-content: center; gap: 8px">Xem đầy đủ</a>
+        </div>
+      </li>
+
+      <!-- 2 -->
+      <li style="background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 12px; box-shadow: var(--e1); display: flex; gap: 12px; align-items: center">
+        <div style="width: 40px; height: 44px; flex: none; display: flex; align-items: center; justify-content: center"><span class="t-numeral">2</span></div>
+        <div role="img" aria-label="Ảnh minh hoạ: Bánh cuốn Thanh Vân" style="width: 88px; height: 88px; flex: none; border-radius: 8px; background: var(--ph-3); box-shadow: inset 0 0 0 1px var(--photo-edge); display: flex; align-items: center; justify-content: center; color: var(--ph-icon)"><svg width="24" height="24" viewBox="0 0 512 512" aria-hidden="true" style="display: block; flex: none"><rect width="416" height="352" x="48" y="80" rx="48" ry="48" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="32px"></rect><circle cx="336" cy="176" r="32" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"></circle><path d="m304 335.79-90.66-90.49a32 32 0 0 0-43.87-1.3L48 352M224 432l123.34-123.34a32 32 0 0 1 43.11-2L464 368" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32px"></path></svg></div>
+        <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; align-items: flex-start">
+          <h2 class="t-name">Bánh cuốn Thanh Vân</h2>
+          <p class="t-caption muted">30.000–50.000 ₫ · <span style="color: var(--success)">Đang mở</span></p>
+          <button type="button" class="t-btn" style="margin-top: 6px; height: 44px; padding: 0 16px; border-radius: 12px; background: var(--surface); color: var(--text); border: 1px solid var(--border-strong); white-space: nowrap">Chốt quán này</button>
+        </div>
+      </li>
+
+      <!-- 3 · no photo -->
+      <li style="background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 12px; box-shadow: var(--e1); display: flex; gap: 12px; align-items: center">
+        <div style="width: 40px; height: 44px; flex: none; display: flex; align-items: center; justify-content: center"><span class="t-numeral">3</span></div>
+        <div role="img" aria-label="Chưa có ảnh: Ốc Đào" style="width: 88px; height: 88px; flex: none; border-radius: 8px; background: var(--surface-2); box-shadow: inset 0 0 0 1px var(--photo-edge); display: flex; align-items: center; justify-content: center; font-family: var(--serif); font-size: 32px; line-height: 44px; font-weight: 600; color: var(--muted)">Ố</div>
+        <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; align-items: flex-start">
+          <h2 class="t-name">Ốc Đào</h2>
+          <p class="t-caption muted">80.000–200.000 ₫ · Đã đóng</p>
+          <button type="button" class="t-btn" style="margin-top: 6px; height: 44px; padding: 0 16px; border-radius: 12px; background: var(--surface); color: var(--text); border: 1px solid var(--border-strong); white-space: nowrap">Chốt quán này</button>
+        </div>
+      </li>
+
+    </ol>
+  </main>
+
+  <footer style="flex: none; padding: 12px 16px 34px; background: var(--bg); border-top: 1px solid var(--border)">
+    <button type="button" class="t-btn" style="height: 48px; width: 100%; border-radius: 12px; background: var(--surface); color: var(--text); border: 1px solid var(--border-strong); display: flex; align-items: center; justify-content: center; gap: 8px"><svg width="20" height="20" viewBox="0 0 512 512" aria-hidden="true" style="display: block; flex: none"><path d="m400 304 48 48-48 48M400 112l48 48-48 48M64 352h85.19a80 80 0 0 0 66.56-35.62L256 256" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32px"></path><path d="M64 160h85.19a80 80 0 0 1 66.56 35.62l80.5 120.76A80 80 0 0 0 362.81 352H416M416 160h-53.19a80 80 0 0 0-66.56 35.62L288 208" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32px"></path></svg>Bốc lại</button>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"dark":{"editor":"boolean","default":false,"section":"Giao diện"},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return { mode: (this.props.dark ?? false) ? 'dark' : 'light' };
+  }
+}
+</script>
+</body>
+</html>

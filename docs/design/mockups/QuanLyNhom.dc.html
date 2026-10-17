@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>Quản lý nhóm</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;600&amp;family=Newsreader:wght@400;600&amp;family=Roboto:wght@500&amp;display=swap" rel="stylesheet">
+<style>
+/* ===== WTG TOKENS v1 — identical in every artboard, do not edit ===== */
+body{margin:0}
+.wtg{--bg:#F5F2E9;--surface:#FBF9F4;--surface-2:#EDE8DC;--border:#E2DBCC;--border-strong:#8A8072;--text:#1C1917;--muted:#5C554B;--accent:#A8482A;--accent-pressed:#8F3D23;--on-accent:#FFFFFF;--accent-text:#96401F;--accent-soft:#F4E1D7;--success:#2D6E45;--success-bg:#E2EEE2;--warning:#8A5600;--warning-bg:#F5E6C8;--danger:#B3261E;--danger-bg:#F8E0DA;--on-danger:#FFFFFF;--focus:#2F5DA8;--inverse-bg:#1C1917;--inverse-text:#F5F2E9;--inverse-action:#F09D7B;--scrim:rgba(28,25,23,.45);--photo-edge:rgba(28,25,23,.08);--pill:rgba(251,249,244,.92);--dock:rgba(251,249,244,.96);--e1:0 1px 2px rgba(28,25,23,.06);--e2:0 8px 24px -8px rgba(28,25,23,.20);--g-fill:#FFFFFF;--g-stroke:#747775;--g-text:#1F1F1F;--ph-1:#D9C7A7;--ph-2:#C9B8A6;--ph-3:#B9C3AA;--ph-4:#D8B8A4;--ph-5:#C2C9CC;--ph-6:#D3C4A0;--ph-icon:rgba(28,25,23,.32);--viewer-bg:#0C0A09;--sans:'Be Vietnam Pro',system-ui,-apple-system,'Segoe UI',sans-serif;--serif:'Newsreader',Georgia,'Times New Roman',serif;color-scheme:light;background:var(--bg);color:var(--text);font-family:var(--sans);font-size:16px;line-height:24px;-webkit-font-smoothing:antialiased}
+.wtg.dark{--bg:#141311;--surface:#1E1C19;--surface-2:#2A2723;--border:#3A3631;--border-strong:#7D7466;--text:#F2EDE3;--muted:#B3AB9C;--accent:#E58A66;--accent-pressed:#CF7652;--on-accent:#1C1210;--accent-text:#F09D7B;--accent-soft:#3B2720;--success:#86CB9A;--success-bg:#1F3326;--warning:#E9B65E;--warning-bg:#3A2E17;--danger:#F49283;--danger-bg:#3E211D;--on-danger:#1C1210;--focus:#93B6F2;--inverse-bg:#F2EDE3;--inverse-text:#1C1917;--inverse-action:#96401F;--scrim:rgba(0,0,0,.60);--photo-edge:rgba(255,255,255,.06);--pill:rgba(30,28,25,.92);--dock:rgba(30,28,25,.96);--e1:none;--e2:0 8px 24px -8px rgba(0,0,0,.70);--g-fill:#131314;--g-stroke:#8E918F;--g-text:#E3E3E3;--ph-1:#4A4033;--ph-2:#463E37;--ph-3:#3D4436;--ph-4:#4D3A31;--ph-5:#3B4145;--ph-6:#48412F;--ph-icon:rgba(255,255,255,.30);color-scheme:dark}
+.wtg *{box-sizing:border-box}
+.wtg button,.wtg input,.wtg select,.wtg textarea{font:inherit;color:inherit}
+.wtg a{color:var(--accent-text);text-decoration:none}
+.wtg a:hover{color:var(--accent-text)}
+.wtg p a,.wtg li a{text-decoration:underline;text-underline-offset:3px}
+.wtg :focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+.t-display{font-family:var(--serif);font-size:36px;line-height:46px;font-weight:600;letter-spacing:-0.01em;margin:0}
+.t-h1{font-family:var(--serif);font-size:28px;line-height:36px;font-weight:600;margin:0}
+.t-h2{font-family:var(--serif);font-size:22px;line-height:30px;font-weight:600;margin:0}
+.t-name{font-family:var(--serif);font-size:17px;line-height:22px;font-weight:600;margin:0}
+.t-name-lg{font-family:var(--serif);font-size:24px;line-height:32px;font-weight:600;margin:0}
+.t-numeral{font-family:var(--serif);font-size:28px;line-height:36px;font-weight:600}
+.t-story{font-family:var(--serif);font-size:18px;line-height:28px;font-weight:400;margin:0}
+.t-title{font-size:17px;line-height:24px;font-weight:600;margin:0}
+.t-body{font-size:16px;line-height:24px;font-weight:400;margin:0}
+.t-btn{font-size:16px;line-height:24px;font-weight:600}
+.t-body-sm{font-size:15px;line-height:22px;font-weight:400;margin:0}
+.t-label{font-size:14px;line-height:20px;font-weight:600;margin:0}
+.t-caption{font-size:13px;line-height:18px;font-weight:400;margin:0}
+.t-micro{font-size:12px;line-height:16px;font-weight:600;white-space:nowrap}
+.muted{color:var(--muted)}
+/* ===== end WTG TOKENS v1 ===== */
+</style>
+</helmet>
+<div class="wtg {{mode}}" style="width: 390px; height: 844px; position: relative; overflow: hidden; display: flex; flex-direction: column; background: var(--bg)">
+  <!-- top safe area: leave empty -->
+  <div style="height: 47px; flex: none"></div>
+
+  <!-- Trang bên dưới (bị scrim làm mờ, không tương tác khi sheet mở) -->
+  <div inert="" aria-hidden="true" style="flex: 1; min-height: 0; display: flex; flex-direction: column">
+    <header style="height: 56px; flex: none; display: flex; align-items: center; gap: 4px; padding: 0 8px">
+      <a href="TaiKhoan.dc.html" aria-label="Quay lại" style="width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; border-radius: 999px; color: var(--text)"><svg width="24" height="24" viewBox="0 0 512 512" aria-hidden="true" style="display: block; flex: none"><path d="M328 112 184 256l144 144" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="48px"></path></svg></a>
+      <div class="t-title" style="flex: 1; min-width: 0"></div>
+    </header>
+
+    <main style="padding: 0 16px; display: flex; flex-direction: column; gap: 16px">
+      <h1 class="t-h1" style="padding-top: 4px">Quản lý nhóm</h1>
+
+      <button type="button" class="t-btn" style="width: 100%; height: 48px; padding: 0 20px; border-radius: 12px; background: var(--surface); color: var(--text); border: 1px solid var(--border-strong); display: inline-flex; align-items: center; justify-content: center; gap: 8px"><svg width="20" height="20" viewBox="0 0 512 512" aria-hidden="true" style="display: block; flex: none"><path d="M256 112v288M400 256H112" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32px"></path></svg>Nhóm mới</button>
+
+      <ul style="list-style: none; margin: 0; padding: 0; background: var(--surface); border: 1px solid var(--border); border-radius: 16px; box-shadow: var(--e1); overflow: hidden">
+        <li style="display: flex; align-items: center; gap: 12px; min-height: 72px; padding: 12px 4px 12px 16px">
+          <span style="width: 40px; height: 40px; flex: none; border-radius: 999px; background: var(--surface-2); color: var(--text); display: flex; align-items: center; justify-content: center"><svg width="20" height="20" viewBox="0 0 512 512" aria-hidden="true" style="display: block; flex: none"><path d="m57.49 47.74 368.43 368.43a37.28 37.28 0 0 1 0 52.72 37.29 37.29 0 0 1-52.72 0l-90-91.55a32 32 0 0 1-9.2-22.43v-5.53a32 32 0 0 0-9.52-22.78l-11.62-10.73a32 32 0 0 0-29.8-7.44 48.53 48.53 0 0 1-46.56-12.63l-85.43-85.44C40.39 159.68 21.74 83.15 57.49 47.74Z" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="32px"></path><path d="m400 32-77.25 77.25A64 64 0 0 0 304 154.51v14.86a16 16 0 0 1-4.69 11.32L288 192M320 224l11.31-11.31a16 16 0 0 1 11.32-4.69h14.86a64 64 0 0 0 45.26-18.75L480 112M440 72l-80 80M200 368l-99.72 100.28a40 40 0 0 1-56.56 0h0a40 40 0 0 1 0-56.56L128 328" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32px"></path></svg></span>
+          <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px">
+            <div class="t-name" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; padding-top: 2px">Quán ăn</div>
+            <div class="t-caption muted" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis">12 địa điểm · Chán cơm thì ăn gì?</div>
+          </div>
+          <button type="button" aria-label="Tuỳ chọn nhóm Quán ăn" style="width: 44px; height: 44px; flex: none; display: flex; align-items: center; justify-content: center; border: 0; background: transparent; border-radius: 999px; color: var(--muted)"><svg width="24" height="24" viewBox="0 0 512 512" fill="currentColor" aria-hidden="true" style="display: block; flex: none"><circle cx="256" cy="256" r="48"></circle><circle cx="416" cy="256" r="48"></circle><circle cx="96" cy="256" r="48"></circle></svg></button>
+        </li>
+        <li style="display: flex; align-items: center; gap: 12px; min-height: 72px; padding: 12px 4px 12px 16px; border-top: 1px solid var(--border)">
+          <span style="width: 40px; height: 40px; flex: none; border-radius: 999px; background: var(--surface-2); color: var(--text); display: flex; align-items: center; justify-content: center"><svg width="20" height="20" viewBox="0 0 512 512" aria-hidden="true" style="display: block; flex: none"><path d="M368 80h64a16 16 0 0 1 16 16v34a46 46 0 0 1-46 46h-34M96 80h272v192a80 80 0 0 1-80 80H176a80 80 0 0 1-80-80zM64 416h336" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32px"></path></svg></span>
+          <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px">
+            <div class="t-name" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; padding-top: 2px">Quán uống</div>
+            <div class="t-caption muted" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis">8 địa điểm · Chán nước thì uống gì?</div>
+          </div>
+          <button type="button" aria-label="Tuỳ chọn nhóm Quán uống" style="width: 44px; height: 44px; flex: none; display: flex; align-items: center; justify-content: center; border: 0; background: transparent; border-radius: 999px; color: var(--muted)"><svg width="24" height="24" viewBox="0 0 512 512" fill="currentColor" aria-hidden="true" style="display: block; flex: none"><circle cx="256" cy="256" r="48"></circle><circle cx="416" cy="256" r="48"></circle><circle cx="96" cy="256" r="48"></circle></svg></button>
+        </li>
+        <li style="display: flex; align-items: center; gap: 12px; min-height: 72px; padding: 12px 4px 12px 16px; border-top: 1px solid var(--border)">
+          <span style="width: 40px; height: 40px; flex: none; border-radius: 999px; background: var(--surface-2); color: var(--text); display: flex; align-items: center; justify-content: center"><svg width="20" height="20" viewBox="0 0 512 512" aria-hidden="true" style="display: block; flex: none"><path d="M467.51 248.83c-18.4-83.18-45.69-136.24-89.43-149.17A91.5 91.5 0 0 0 352 96c-26.89 0-48.11 16-96 16s-69.15-16-96-16a99 99 0 0 0-27.2 3.66C89 112.59 61.94 165.7 43.33 248.83c-19 84.91-15.56 152 21.58 164.88 26 9 49.25-9.61 71.27-37 25-31.2 55.79-40.8 119.82-40.8s93.62 9.6 118.66 40.8c22 27.41 46.11 45.79 71.42 37.16 41.02-14.01 40.44-79.13 21.43-165.04Z" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"></path><circle cx="292" cy="224" r="20"></circle><path d="M336 288a20 20 0 1 1 20-19.95A20 20 0 0 1 336 288"></path><circle cx="336" cy="180" r="20"></circle><circle cx="380" cy="224" r="20"></circle><path d="M160 176v96M208 224h-96" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32px"></path></svg></span>
+          <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px">
+            <div class="t-name" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; padding-top: 2px">Chỗ chơi</div>
+            <div class="t-caption muted" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis">5 địa điểm · Chán ở nhà thì đi đâu?</div>
+          </div>
+          <button type="button" aria-label="Tuỳ chọn nhóm Chỗ chơi" style="width: 44px; height: 44px; flex: none; display: flex; align-items: center; justify-content: center; border: 0; background: transparent; border-radius: 999px; color: var(--muted)"><svg width="24" height="24" viewBox="0 0 512 512" fill="currentColor" aria-hidden="true" style="display: block; flex: none"><circle cx="256" cy="256" r="48"></circle><circle cx="416" cy="256" r="48"></circle><circle cx="96" cy="256" r="48"></circle></svg></button>
+        </li>
+        <li style="display: flex; align-items: center; gap: 12px; min-height: 72px; padding: 12px 4px 12px 16px; border-top: 1px solid var(--border)">
+          <span style="width: 40px; height: 40px; flex: none; border-radius: 999px; background: var(--surface-2); color: var(--text); display: flex; align-items: center; justify-content: center"><svg width="20" height="20" viewBox="0 0 512 512" aria-hidden="true" style="display: block; flex: none"><path d="M407.72 224c-3.4 0-14.79.1-18 .3l-64.9 1.7a1.83 1.83 0 0 1-1.69-.9L193.55 67.56a9 9 0 0 0-6.66-3.56H160l73 161a2.35 2.35 0 0 1-2.26 3.35l-121.69 1.8a8.06 8.06 0 0 1-6.6-3.1l-37-45c-3-3.9-8.62-6-13.51-6H33.08c-1.29 0-1.1 1.21-.75 2.43l19.84 71.42a16.3 16.3 0 0 1 0 11.9L32.31 333c-.59 1.95-.52 3 1.77 3H52c8.14 0 9.25-1.06 13.41-6.3l37.7-45.7a8.19 8.19 0 0 1 6.6-3.1l120.68 2.7a2.7 2.7 0 0 1 2.43 3.74L160 448h26.64a9 9 0 0 0 6.65-3.55L323.14 287c.39-.6 2-.9 2.69-.9l63.9 1.7c3.3.2 14.59.3 18 .3C452 288.1 480 275.93 480 256s-27.88-32-72.28-32" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32px"></path></svg></span>
+          <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px">
+            <div class="t-name" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; padding-top: 2px">Du lịch</div>
+            <div class="t-caption muted" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis">3 địa điểm · Cuối tuần trốn đi đâu?</div>
+          </div>
+          <button type="button" aria-label="Tuỳ chọn nhóm Du lịch" style="width: 44px; height: 44px; flex: none; display: flex; align-items: center; justify-content: center; border: 0; background: transparent; border-radius: 999px; color: var(--muted)"><svg width="24" height="24" viewBox="0 0 512 512" fill="currentColor" aria-hidden="true" style="display: block; flex: none"><circle cx="256" cy="256" r="48"></circle><circle cx="416" cy="256" r="48"></circle><circle cx="96" cy="256" r="48"></circle></svg></button>
+        </li>
+      </ul>
+    </main>
+  </div>
+
+  <!-- scrim -->
+  <div style="position: absolute; inset: 0; background: var(--scrim)"></div>
+
+  <!-- Sheet: Nhóm mới -->
+  <section role="dialog" aria-modal="true" aria-labelledby="sheet-title" style="position: absolute; left: 0; right: 0; bottom: 0; max-height: 780px; display: flex; flex-direction: column; background: var(--surface); border-radius: 24px 24px 0 0; border: 1px solid var(--border); border-bottom: 0; box-shadow: var(--e2)">
+    <div style="flex: none; padding: 8px 16px 0">
+      <div style="width: 36px; height: 5px; border-radius: 999px; background: var(--border-strong); margin: 0 auto"></div>
+      <div style="margin-top: 4px; height: 44px; display: flex; align-items: center; gap: 8px">
+        <h2 id="sheet-title" class="t-h2" style="flex: 1; min-width: 0">Nhóm mới</h2>
+        <button type="button" aria-label="Đóng" style="width: 44px; height: 44px; margin-right: -8px; display: flex; align-items: center; justify-content: center; border: 0; background: transparent; border-radius: 999px; color: var(--text)"><svg width="24" height="24" viewBox="0 0 512 512" aria-hidden="true" style="display: block; flex: none"><path d="M368 368 144 144M368 144 144 368" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32px"></path></svg></button>
+      </div>
+    </div>
+
+    <div style="flex: 1 1 auto; min-height: 0; overflow: hidden; padding: 12px 16px 0; display: flex; flex-direction: column; gap: 12px">
+      <div style="display: flex; flex-direction: column; gap: 4px">
+        <label for="n-ten" class="t-label">Tên (bắt buộc)</label>
+        <input id="n-ten" type="text" value="Ăn vặt" class="t-body" style="height: 48px; padding: 0 14px; border-radius: 12px; background: var(--surface); border: 1px solid var(--border-strong); color: var(--text); width: 100%">
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 4px">
+        <label for="n-goiy" class="t-label">Câu gợi ý</label>
+        <input id="n-goiy" type="text" value="Đói giữa buổi thì ăn gì?" aria-describedby="n-goiy-h" class="t-body" style="height: 48px; padding: 0 14px; border-radius: 12px; background: var(--surface); border: 1px solid var(--border-strong); color: var(--text); width: 100%">
+        <p id="n-goiy-h" class="t-caption muted">Câu lớn trên thẻ nhóm ở Trang chủ. Để trống thì dùng “Hôm nay đi đâu?”</p>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 4px">
+        <span id="l-icon" class="t-label">Biểu tượng</span>
+        <div role="radiogroup" aria-labelledby="l-icon" style="display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 6px">
+          <button type="button" role="radio" aria-checked="false" aria-label="Nhà hàng" style="height: 44px; padding: 0; border-radius: 12px; border: 1px solid var(--border); background: var(--surface-2); color: var(--text); display: flex; align-items: center; justify-content: center"><svg width="24" height="24" viewBox="0 0 512 512" aria-hidden="true" style="display: block; flex: none"><path d="m57.49 47.74 368.43 368.43a37.28 37.28 0 0 1 0 52.72 37.29 37.29 0 0 1-52.72 0l-90-91.55a32 32 0 0 1-9.2-22.43v-5.53a32 32 0 0 0-9.52-22.78l-11.62-10.73a32 32 0 0 0-29.8-7.44 48.53 48.53 0 0 1-46.56-12.63l-85.43-85.44C40.39 159.68 21.74 83.15 57.49 47.74Z" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="32px"></path><path d="m400 32-77.25 77.25A64 64 0 0 0 304 154.51v14.86a16 16 0 0 1-4.69 11.32L288 192M320 224l11.31-11.31a16 16 0 0 1 11.32-4.69h14.86a64 64 0 0 0 45.26-18.75L480 112M440 72l-80 80M200 368l-99.72 100.28a40 40 0 0 1-56.56 0h0a40 40 0 0 1 0-56.56L128 328" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32px"></path></svg></button>
+          <button type="button" role="radio" aria-checked="false" aria-label="Đồ ăn nhanh" style="height: 44px; padding: 0; border-radius: 12px; border: 1px solid var(--border); background: var(--surface-2); color: var(--text); display: flex; align-items: center; justify-content: center"><svg width="24" height="24" viewBox="0 0 512 512" aria-hidden="true" style="display: block; flex: none"><path d="M322 416c0 35.35-20.65 64-56 64H134c-35.35 0-56-28.65-56-64M336 336c17.67 0 32 17.91 32 40h0c0 22.09-14.33 40-32 40H64c-17.67 0-32-17.91-32-40h0c0-22.09 14.33-40 32-40" fill="none" stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="32px"></path><path d="M344 336H179.31a8 8 0 0 0-5.65 2.34l-26.83 26.83a4 4 0 0 1-5.66 0l-26.83-26.83a8 8 0 0 0-5.65-2.34H56a24 24 0 0 1-24-24h0a24 24 0 0 1 24-24h288a24 24 0 0 1 24 24h0a24 24 0 0 1-24 24ZM64 276v-.22c0-55 45-83.78 100-83.78h72c55 0 100 29 100 84v-.22M241 112l7.44 63.97" fill="none" stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="32px"></path><path d="M256 480h139.31a32 32 0 0 0 31.91-29.61L463 112" fill="none" stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="32px"></path><path d="m368 112 16-64 47-16" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32px"></path><path d="M224 112h256" fill="none" stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="32px"></path></svg></button>
+          <button type="button" role="radio" aria-checked="false" aria-label="Pizza" style="height: 44px; padding: 0; border-radius: 12px; border: 1px solid var(--border); background: var(--surface-2); color: var(--text); display: flex; align-items: center; justify-content: center"><svg width="24" height="24" viewBox="0 0 512 512" aria-hidden="true" style="display: block; flex: none"><path d="M404.76 123.08C358.37 104.18 309.69 96 256 96s-106.1 9-148.9 26.68c-8.08 3.3-15.26 9-10.07 19.5C101.24 150.71 203 375 241.66 455a15.94 15.94 0 0 0 28.72 0l144.05-312.22c3.19-6.9.9-15.4-9.67-19.7Z" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"></path><path d="M436.38 82.68C384.31 62.08 320.17 48 256 48S128.65 60.78 75.48 82.08C70.79 84 62 88.43 64.41 95.88L74.09 120c4 8.2 8.67 8.2 15.06 8.2 1.79 0 4.29-1 7.28-2.18A442.5 442.5 0 0 1 256 96c56.76 0 114.91 12 159.6 30 3.59 1.4 5.59 2.18 7.28 2.18 6.58 0 10.38 2.19 15-8.1L447.65 96c2.01-6-4.99-10.82-11.27-13.32Z" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"></path><circle cx="192" cy="192" r="32"></circle><circle cx="320" cy="208" r="32"></circle><circle cx="256" cy="320" r="32"></circle></svg></button>
+          <button type="button" role="radio" aria-checked="true" aria-label="Kem" style="height: 44px; padding: 0; border-radius: 12px; border: 1px solid var(--accent); background: var(--accent-soft); color: var(--accent-text); display: flex; align-items: center; justify-content: center"><svg width="24" height="24" viewBox="0 0 512 512" aria-hidden="true" style="display: block; flex: none"><path d="m352 256-96 224-62-145" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32px"></path><path d="M299.42 223.48C291.74 239.75 275.18 252 256 252c-13.1 0-27-5-33.63-9.76C216.27 237.87 208 240 208 250v62a24.07 24.07 0 0 1-24 24h0a24.07 24.07 0 0 1-24-24v-56h-2c-35.35 0-62-28.65-62-64a64 64 0 0 1 64-64h8v-8a88 88 0 0 1 176 0v8h8a64 64 0 0 1 0 128c-21.78 0-42-13-52.59-32.51Z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32px"></path></svg></button>
+          <button type="button" role="radio" aria-checked="false" aria-label="Cà phê" style="height: 44px; padding: 0; border-radius: 12px; border: 1px solid var(--border); background: var(--surface-2); color: var(--text); display: flex; align-items: center; justify-content: center"><svg width="24" height="24" viewBox="0 0 512 512" aria-hidden="true" style="display: block; flex: none"><path d="M368 80h64a16 16 0 0 1 16 16v34a46 46 0 0 1-46 46h-34M96 80h272v192a80 80 0 0 1-80 80H176a80 80 0 0 1-80-80zM64 416h336" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32px"></path></svg></button>
+          <button type="button" role="radio" aria-checked="false" aria-label="Bia" style="height: 44px; padding: 0; border-radius: 12px; border: 1px solid var(--border); background: var(--surface-2); color: var(--text); display: flex; align-items: center; justify-content: center"><svg width="24" height="24" viewBox="0 0 512 512" aria-hidden="true" style="display: block; flex: none"><path d="M352 200v240a40.12 40.12 0 0 1-40 40H136a40.12 40.12 0 0 1-40-40V224" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32px"></path><path d="M352 224h40a56.16 56.16 0 0 1 56 56v80a56.16 56.16 0 0 1-56 56h-40" fill="none" stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="32px"></path><path d="M224 256v160M288 256v160M160 256v160M320 112a48 48 0 0 1 0 96c-13.25 0-29.31-7.31-38-16H160c-8 22-27 32-48 32a48 48 0 0 1 0-96 47.9 47.9 0 0 1 26 9" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32px"></path><path d="M91.86 132.43a40 40 0 1 1 60.46-52S160 91 160 96M145.83 64.71C163.22 44.89 187.57 32 216 32c52.38 0 94 42.84 94 95.21a95 95 0 0 1-1.67 17.79" fill="none" stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="32px"></path></svg></button>
+          <button type="button" role="radio" aria-checked="false" aria-label="Rượu vang" style="height: 44px; padding: 0; border-radius: 12px; border: 1px solid var(--border); background: var(--surface-2); color: var(--text); display: flex; align-items: center; justify-content: center"><svg width="24" height="24" viewBox="0 0 512 512" aria-hidden="true" style="display: block; flex: none"><path d="M398.57 80H113.43v16S87.51 272 256 272 398.57 96 398.57 96ZM256 272v160" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="32px"></path><path d="M352 432H160" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32px"></path><path d="M112 160h288" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="32px"></path></svg></button>
+          <button type="button" role="radio" aria-checked="false" aria-label="Trò chơi" style="height: 44px; padding: 0; border-radius: 12px; border: 1px solid var(--border); background: var(--surface-2); color: var(--text); display: flex; align-items: center; justify-content: center"><svg width="24" height="24" viewBox="0 0 512 512" aria-hidden="true" style="display: block; flex: none"><path d="M467.51 248.83c-18.4-83.18-45.69-136.24-89.43-149.17A91.5 91.5 0 0 0 352 96c-26.89 0-48.11 16-96 16s-69.15-16-96-16a99 99 0 0 0-27.2 3.66C89 112.59 61.94 165.7 43.33 248.83c-19 84.91-15.56 152 21.58 164.88 26 9 49.25-9.61 71.27-37 25-31.2 55.79-40.8 119.82-40.8s93.62 9.6 118.66 40.8c22 27.41 46.11 45.79 71.42 37.16 41.02-14.01 40.44-79.13 21.43-165.04Z" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"></path><circle cx="292" cy="224" r="20"></circle><path d="M336 288a20 20 0 1 1 20-19.95A20 20 0 0 1 336 288"></path><circle cx="336" cy="180" r="20"></circle><circle cx="380" cy="224" r="20"></circle><path d="M160 176v96M208 224h-96" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32px"></path></svg></button>
+          <button type="button" role="radio" aria-checked="false" aria-label="Phim" style="height: 44px; padding: 0; border-radius: 12px; border: 1px solid var(--border); background: var(--surface-2); color: var(--text); display: flex; align-items: center; justify-content: center"><svg width="24" height="24" viewBox="0 0 512 512" aria-hidden="true" style="display: block; flex: none"><rect width="416" height="320" x="48" y="96" rx="28" ry="28" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="32px"></rect><rect width="80" height="80" x="384" y="336" rx="28" ry="28" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="32px"></rect><rect width="80" height="80" x="384" y="256" rx="28" ry="28" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="32px"></rect><rect width="80" height="80" x="384" y="176" rx="28" ry="28" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="32px"></rect><rect width="80" height="80" x="384" y="96" rx="28" ry="28" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="32px"></rect><rect width="80" height="80" x="48" y="336" rx="28" ry="28" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="32px"></rect><rect width="80" height="80" x="48" y="256" rx="28" ry="28" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="32px"></rect><rect width="80" height="80" x="48" y="176" rx="28" ry="28" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="32px"></rect><rect width="80" height="80" x="48" y="96" rx="28" ry="28" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="32px"></rect><rect width="256" height="160" x="128" y="96" rx="28" ry="28" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="32px"></rect><rect width="256" height="160" x="128" y="256" rx="28" ry="28" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="32px"></rect></svg></button>
+          <button type="button" role="radio" aria-checked="false" aria-label="Âm nhạc" style="height: 44px; padding: 0; border-radius: 12px; border: 1px solid var(--border); background: var(--surface-2); color: var(--text); display: flex; align-items: center; justify-content: center"><svg width="24" height="24" viewBox="0 0 512 512" aria-hidden="true" style="display: block; flex: none"><path d="M192 218v-6c0-14.84 10-27 24.24-30.59l174.59-46.68A20 20 0 0 1 416 154v22" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32px"></path><path d="M416 295.94v80c0 13.91-8.93 25.59-22 30l-22 8c-25.9 8.72-52-10.42-52-38h0a33.37 33.37 0 0 1 23-32l51-18.15c13.07-4.4 22-15.94 22-29.85V58a10 10 0 0 0-12.6-9.61L204 102a16.48 16.48 0 0 0-12 16v226c0 13.91-8.93 25.6-22 30l-52 18c-13.88 4.68-22 17.22-22 32h0c0 27.58 26.52 46.55 52 38l22-8c13.07-4.4 22-16.08 22-30v-80" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32px"></path></svg></button>
+        </div>
+        <p class="t-caption muted" style="margin-top: 2px">Đã chọn: Kem</p>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 4px">
+        <span id="l-prev" class="t-label">Xem trước trên Trang chủ</span>
+        <div role="group" aria-labelledby="l-prev" style="padding: 12px; border-radius: 16px; background: var(--bg)">
+          <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 16px; box-shadow: var(--e1); padding: 12px 16px; display: flex; flex-direction: column; gap: 8px">
+            <div style="display: flex; align-items: center; gap: 8px">
+              <span style="width: 32px; height: 32px; flex: none; border-radius: 999px; background: var(--surface-2); color: var(--text); display: flex; align-items: center; justify-content: center"><svg width="20" height="20" viewBox="0 0 512 512" aria-hidden="true" style="display: block; flex: none"><path d="m352 256-96 224-62-145" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32px"></path><path d="M299.42 223.48C291.74 239.75 275.18 252 256 252c-13.1 0-27-5-33.63-9.76C216.27 237.87 208 240 208 250v62a24.07 24.07 0 0 1-24 24h0a24.07 24.07 0 0 1-24-24v-56h-2c-35.35 0-62-28.65-62-64a64 64 0 0 1 64-64h8v-8a88 88 0 0 1 176 0v8h8a64 64 0 0 1 0 128c-21.78 0-42-13-52.59-32.51Z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32px"></path></svg></span>
+              <p class="t-label muted">Ăn vặt · 0 quán</p>
+            </div>
+            <p class="t-h2">Đói giữa buổi thì ăn gì?</p>
+            <div style="height: 48px; padding: 0 12px; border-radius: 12px; background: var(--surface-2); display: flex; align-items: center; justify-content: center">
+              <p class="t-caption muted">Chưa có địa điểm · <span style="color: var(--accent-text)">Thêm vào Ăn vặt</span></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="flex: none; padding: 12px 16px 34px; border-top: 1px solid var(--border); display: flex; gap: 12px">
+      <button type="button" class="t-btn" style="height: 48px; padding: 0 20px; border-radius: 12px; background: transparent; color: var(--accent-text); border: 0">Huỷ</button>
+      <button type="button" class="t-btn" style="flex: 1; height: 48px; padding: 0 20px; border-radius: 12px; background: var(--accent); color: var(--on-accent); border: 0; display: inline-flex; align-items: center; justify-content: center">Lưu</button>
+    </div>
+  </section>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"dark":{"editor":"boolean","default":false,"section":"Giao diện"},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return { mode: (this.props.dark ?? false) ? 'dark' : 'light' };
+  }
+}
+</script>
+</body>
+</html>

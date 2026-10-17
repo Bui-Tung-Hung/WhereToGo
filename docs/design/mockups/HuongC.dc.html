@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>Hướng C · Bản đồ của riêng bạn</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&amp;family=Newsreader:wght@400;600&amp;family=Roboto:wght@500&amp;display=swap" rel="stylesheet">
+<style>
+/* ===== WTG TOKENS v1 — identical in every artboard, do not edit ===== */
+body{margin:0}
+.wtg{--bg:#F5F2E9;--surface:#FBF9F4;--surface-2:#EDE8DC;--border:#E2DBCC;--border-strong:#8A8072;--text:#1C1917;--muted:#5C554B;--accent:#A8482A;--accent-pressed:#8F3D23;--on-accent:#FFFFFF;--accent-text:#96401F;--accent-soft:#F4E1D7;--success:#2D6E45;--success-bg:#E2EEE2;--warning:#8A5600;--warning-bg:#F5E6C8;--danger:#B3261E;--danger-bg:#F8E0DA;--on-danger:#FFFFFF;--focus:#2F5DA8;--inverse-bg:#1C1917;--inverse-text:#F5F2E9;--inverse-action:#F09D7B;--scrim:rgba(28,25,23,.45);--photo-edge:rgba(28,25,23,.08);--pill:rgba(251,249,244,.92);--dock:rgba(251,249,244,.96);--e1:0 1px 2px rgba(28,25,23,.06);--e2:0 8px 24px -8px rgba(28,25,23,.20);--g-fill:#FFFFFF;--g-stroke:#747775;--g-text:#1F1F1F;--ph-1:#D9C7A7;--ph-2:#C9B8A6;--ph-3:#B9C3AA;--ph-4:#D8B8A4;--ph-5:#C2C9CC;--ph-6:#D3C4A0;--ph-icon:rgba(28,25,23,.32);--viewer-bg:#0C0A09;--sans:'Be Vietnam Pro',system-ui,-apple-system,'Segoe UI',sans-serif;--serif:'Newsreader',Georgia,'Times New Roman',serif;color-scheme:light;background:var(--bg);color:var(--text);font-family:var(--sans);font-size:16px;line-height:24px;-webkit-font-smoothing:antialiased}
+.wtg.dark{--bg:#141311;--surface:#1E1C19;--surface-2:#2A2723;--border:#3A3631;--border-strong:#7D7466;--text:#F2EDE3;--muted:#B3AB9C;--accent:#E58A66;--accent-pressed:#CF7652;--on-accent:#1C1210;--accent-text:#F09D7B;--accent-soft:#3B2720;--success:#86CB9A;--success-bg:#1F3326;--warning:#E9B65E;--warning-bg:#3A2E17;--danger:#F49283;--danger-bg:#3E211D;--on-danger:#1C1210;--focus:#93B6F2;--inverse-bg:#F2EDE3;--inverse-text:#1C1917;--inverse-action:#96401F;--scrim:rgba(0,0,0,.60);--photo-edge:rgba(255,255,255,.06);--pill:rgba(30,28,25,.92);--dock:rgba(30,28,25,.96);--e1:none;--e2:0 8px 24px -8px rgba(0,0,0,.70);--g-fill:#131314;--g-stroke:#8E918F;--g-text:#E3E3E3;--ph-1:#4A4033;--ph-2:#463E37;--ph-3:#3D4436;--ph-4:#4D3A31;--ph-5:#3B4145;--ph-6:#48412F;--ph-icon:rgba(255,255,255,.30);color-scheme:dark}
+.wtg *{box-sizing:border-box}
+.wtg button,.wtg input,.wtg select,.wtg textarea{font:inherit;color:inherit}
+.wtg a{color:var(--accent-text);text-decoration:none}
+.wtg a:hover{color:var(--accent-text)}
+.wtg p a,.wtg li a{text-decoration:underline;text-underline-offset:3px}
+.wtg :focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+.t-display{font-family:var(--serif);font-size:36px;line-height:46px;font-weight:600;letter-spacing:-0.01em;margin:0}
+.t-h1{font-family:var(--serif);font-size:28px;line-height:36px;font-weight:600;margin:0}
+.t-h2{font-family:var(--serif);font-size:22px;line-height:30px;font-weight:600;margin:0}
+.t-name{font-family:var(--serif);font-size:17px;line-height:22px;font-weight:600;margin:0}
+.t-name-lg{font-family:var(--serif);font-size:24px;line-height:32px;font-weight:600;margin:0}
+.t-numeral{font-family:var(--serif);font-size:28px;line-height:36px;font-weight:600}
+.t-story{font-family:var(--serif);font-size:18px;line-height:28px;font-weight:400;margin:0}
+.t-title{font-size:17px;line-height:24px;font-weight:600;margin:0}
+.t-body{font-size:16px;line-height:24px;font-weight:400;margin:0}
+.t-btn{font-size:16px;line-height:24px;font-weight:600}
+.t-body-sm{font-size:15px;line-height:22px;font-weight:400;margin:0}
+.t-label{font-size:14px;line-height:20px;font-weight:600;margin:0}
+.t-caption{font-size:13px;line-height:18px;font-weight:400;margin:0}
+.t-micro{font-size:12px;line-height:16px;font-weight:600;white-space:nowrap}
+.muted{color:var(--muted)}
+/* ===== end WTG TOKENS v1 ===== */
+/* ===== Hướng C "Bản đồ của riêng bạn" — token riêng (thay WTG trong phạm vi .dirC; một phông duy nhất) ===== */
+.dirC{--serif:var(--sans);--bg:#F4F4F1;--surface:#FFFFFF;--surface-2:#EAEAE6;--border:#DADAD4;--border-strong:#868680;--text:#16171A;--muted:#5A5C61;--accent:#2F44C8;--accent-pressed:#293CB0;--on-accent:#FFFFFF;--accent-text:#2B3DB8;--accent-soft:#E5E8FA;--success:#1C7339;--success-bg:#E1F2E5;--warning:#8A5300;--warning-bg:#FAEFD6;--danger:#B3261E;--danger-bg:#FBE6E4;--focus:#2F44C8;--scrim:rgba(14,15,17,.45);--pill:rgba(255,255,255,.92);--dock:#FFFFFF;--e1:none;--e2:0 2px 8px rgba(22,23,26,.08)}
+.dirC.dark{--bg:#0E0F11;--surface:#18191C;--surface-2:#232428;--border:#313338;--border-strong:#73767D;--text:#EDEDEA;--muted:#A2A4AA;--accent:#8D9CFF;--accent-pressed:#7C89E0;--on-accent:#0B1033;--accent-text:#A5B1FF;--accent-soft:#20264D;--success:#5CCB82;--success-bg:#14301E;--warning:#F0B848;--warning-bg:#33270D;--danger:#FF8B7E;--danger-bg:#3A1714;--focus:#A5B1FF;--scrim:rgba(0,0,0,.60);--pill:rgba(24,25,28,.92);--dock:#18191C;--e2:none}
+.dirC .c-board-title{font-size:36px;line-height:48px;font-weight:700;letter-spacing:-0.01em;margin:0}
+.dirC .c-display{font-size:34px;line-height:44px;font-weight:700;letter-spacing:-0.01em;margin:0}
+</style>
+</helmet>
+<div class="wtg dirC {{mode}}" style="width: 1000px; height: 1000px; position: relative; overflow: hidden; box-sizing: border-box; display: flex; align-items: center; gap: 32px; padding: 0 32px; background: var(--surface-2)">
+
+  <!-- RIGHT: direction description (first in DOM so the h1 comes first) -->
+  <section aria-label="Giới thiệu hướng thiết kế C" style="order: 2; flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 20px">
+
+    <div style="display: flex; flex-direction: column; gap: 8px">
+      <div style="display: flex; align-items: center; gap: 8px">
+        <span class="t-label muted">Hướng C</span>
+        <span class="t-micro" style="height: 28px; padding: 0 10px; border-radius: 999px; background: var(--surface); border: 1px solid var(--border-strong); color: var(--muted); display: inline-flex; align-items: center">Không được chọn</span>
+      </div>
+      <h1 class="c-board-title">Bản đồ của riêng bạn</h1>
+    </div>
+
+    <p class="t-body-sm">Một cuốn sổ địa điểm gọn gàng, đồng thời là tấm bản đồ. Nền xám dịu và chỉ một màu xanh mực như bút bi học trò: xanh nghĩa là “chạm được” hoặc “quán của bạn trên bản đồ”. Chỉ một phông chữ, và thanh điều hướng 5 nút quen thuộc ở mọi trang.</p>
+
+    <div style="display: flex; flex-direction: column; gap: 8px">
+      <h2 class="t-label muted">Bảng màu (bản sáng)</h2>
+      <ul style="list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 10px">
+        <li style="display: flex; flex-direction: column; gap: 4px; min-width: 0"><span style="height: 44px; border-radius: 12px; background: #F4F4F1; box-shadow: inset 0 0 0 1px var(--border-strong)"></span><span class="t-micro">Nền</span><span class="t-caption muted">#F4F4F1</span></li>
+        <li style="display: flex; flex-direction: column; gap: 4px; min-width: 0"><span style="height: 44px; border-radius: 12px; background: #FFFFFF; box-shadow: inset 0 0 0 1px var(--border-strong)"></span><span class="t-micro">Thẻ</span><span class="t-caption muted">#FFFFFF</span></li>
+        <li style="display: flex; flex-direction: column; gap: 4px; min-width: 0"><span style="height: 44px; border-radius: 12px; background: #EAEAE6; box-shadow: inset 0 0 0 1px var(--border-strong)"></span><span class="t-micro">Xám nhạt</span><span class="t-caption muted">#EAEAE6</span></li>
+        <li style="display: flex; flex-direction: column; gap: 4px; min-width: 0"><span style="height: 44px; border-radius: 12px; background: #16171A; box-shadow: inset 0 0 0 1px var(--border-strong)"></span><span class="t-micro">Chữ</span><span class="t-caption muted">#16171A</span></li>
+        <li style="display: flex; flex-direction: column; gap: 4px; min-width: 0"><span style="height: 44px; border-radius: 12px; background: #2F44C8; box-shadow: inset 0 0 0 1px var(--border-strong)"></span><span class="t-micro">Xanh mực</span><span class="t-caption muted">#2F44C8</span></li>
+        <li style="display: flex; flex-direction: column; gap: 4px; min-width: 0"><span style="height: 44px; border-radius: 12px; background: #E5E8FA; box-shadow: inset 0 0 0 1px var(--border-strong)"></span><span class="t-micro">Xanh nhạt</span><span class="t-caption muted">#E5E8FA</span></li>
+      </ul>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 8px">
+      <h2 class="t-label muted">Cặp chữ</h2>
+      <div style="display: flex; align-items: center; gap: 16px; padding: 16px; border-radius: 12px; background: var(--surface); border: 1px solid var(--border)">
+        <span aria-hidden="true" style="font-size: 56px; line-height: 72px; font-weight: 700; flex: none">Aa</span>
+        <div style="display: flex; flex-direction: column; gap: 2px; min-width: 0">
+          <div style="font-size: 24px; line-height: 32px; font-weight: 700">Bún chả Hương Liên</div>
+          <p class="t-body-sm">Quán ăn · 50.000–90.000 ₫ · Đang mở</p>
+          <p class="t-caption muted">Chỉ một phông Be Vietnam Pro, khác nhau ở độ đậm nhạt</p>
+        </div>
+      </div>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px">
+      <div style="display: flex; flex-direction: column; gap: 8px">
+        <h2 class="t-h2">Điểm mạnh</h2>
+        <ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px">
+          <li style="display: flex; gap: 8px; align-items: flex-start"><span style="margin-top: 2px; color: var(--success)"><svg width="16" height="16" viewBox="0 0 512 512" aria-hidden="true" style="display: block; flex: none"><path d="M416 128 192 384l-96-96" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="48px"></path></svg></span><span style="font-size: 14px; line-height: 20px">Chữ dễ đọc nhất và danh sách gọn nhất khi có hơn 300 địa điểm</span></li>
+          <li style="display: flex; gap: 8px; align-items: flex-start"><span style="margin-top: 2px; color: var(--success)"><svg width="16" height="16" viewBox="0 0 512 512" aria-hidden="true" style="display: block; flex: none"><path d="M416 128 192 384l-96-96" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="48px"></path></svg></span><span style="font-size: 14px; line-height: 20px">Dễ làm nhất: một phông (khoảng 136 KB), dùng nhiều thành phần có sẵn</span></li>
+          <li style="display: flex; gap: 8px; align-items: flex-start"><span style="margin-top: 2px; color: var(--success)"><svg width="16" height="16" viewBox="0 0 512 512" aria-hidden="true" style="display: block; flex: none"><path d="M416 128 192 384l-96-96" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="48px"></path></svg></span><span style="font-size: 14px; line-height: 20px">Thanh dưới 5 nút ở mọi trang, trang nào cũng tới được ngay</span></li>
+        </ul>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 8px">
+        <h2 class="t-h2">Điểm yếu</h2>
+        <ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px">
+          <li style="display: flex; gap: 8px; align-items: flex-start"><span style="margin-top: 2px; color: var(--warning)"><svg width="16" height="16" viewBox="0 0 512 512" aria-hidden="true" style="display: block; flex: none"><path d="M448 256c0-106-86-192-192-192S64 150 64 256s86 192 192 192 192-86 192-192Z" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"></path><path d="M250.26 166.05 256 288l5.73-121.95a5.74 5.74 0 0 0-5.79-6h0a5.74 5.74 0 0 0-5.68 6" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32px"></path><path d="M256 367.91a20 20 0 1 1 20-20 20 20 0 0 1-20 20"></path></svg></span><span style="font-size: 14px; line-height: 20px">Trông như mọi app công cụ; bỏ mất Trang chủ kem và chữ có chân bạn đã duyệt</span></li>
+          <li style="display: flex; gap: 8px; align-items: flex-start"><span style="margin-top: 2px; color: var(--warning)"><svg width="16" height="16" viewBox="0 0 512 512" aria-hidden="true" style="display: block; flex: none"><path d="M448 256c0-106-86-192-192-192S64 150 64 256s86 192 192 192 192-86 192-192Z" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"></path><path d="M250.26 166.05 256 288l5.73-121.95a5.74 5.74 0 0 0-5.79-6h0a5.74 5.74 0 0 0-5.68 6" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32px"></path><path d="M256 367.91a20 20 0 1 1 20-20 20 20 0 0 1-20 20"></path></svg></span><span style="font-size: 14px; line-height: 20px">Bản đồ làm tab chính: nặng máy và gửi mọi khu vực đã lưu cho OpenFreeMap</span></li>
+          <li style="display: flex; gap: 8px; align-items: flex-start"><span style="margin-top: 2px; color: var(--warning)"><svg width="16" height="16" viewBox="0 0 512 512" aria-hidden="true" style="display: block; flex: none"><path d="M448 256c0-106-86-192-192-192S64 150 64 256s86 192 192 192 192-86 192-192Z" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"></path><path d="M250.26 166.05 256 288l5.73-121.95a5.74 5.74 0 0 0-5.79-6h0a5.74 5.74 0 0 0-5.68 6" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32px"></path><path d="M256 367.91a20 20 0 1 1 20-20 20 20 0 0 1-20 20"></path></svg></span><span style="font-size: 14px; line-height: 20px">Thanh dưới nằm trong từng trang nên trượt theo khi chuyển trang; ảnh trong màn Vuốt bị thu nhỏ</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="t-caption muted">Đã lấy sang bản cuối: danh sách gọn cho nhiều địa điểm, bộ lọc lưu trong địa chỉ trang, ghim bản đồ gom cụm, trang xoá tài khoản riêng.</p>
+
+  </section>
+
+  <!-- LEFT: phone, Hướng C home -->
+  <div style="order: 1; flex: none; width: 390px; height: 844px; position: relative; overflow: hidden; display: flex; flex-direction: column; background: var(--bg); border-radius: 44px; box-shadow: 0 0 0 1px var(--border-strong), var(--e2)">
+    <!-- top safe area: leave empty -->
+    <div style="height: 47px; flex: none"></div>
+
+    <header style="height: 56px; flex: none; display: flex; align-items: center; padding: 0 4px 0 16px">
+      <div class="c-display" style="flex: 1">WhereToGo</div>
+      <button type="button" aria-label="Yêu thích" style="width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; border: 0; background: transparent; border-radius: 999px; color: var(--text)"><svg width="24" height="24" viewBox="0 0 512 512" aria-hidden="true" style="display: block; flex: none"><path d="M352.92 80C288 80 256 144 256 144s-32-64-96.92-64c-52.76 0-94.54 44.14-95.08 96.81-1.1 109.33 86.73 187.08 183 252.42a16 16 0 0 0 18 0c96.26-65.34 184.09-143.09 183-252.42-.54-52.67-42.32-96.81-95.08-96.81" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32px"></path></svg></button>
+      <button type="button" aria-label="Tài khoản" style="width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; border: 0; background: transparent; border-radius: 999px"><span style="width: 32px; height: 32px; border-radius: 999px; background: var(--accent-soft); color: var(--accent-text); display: flex; align-items: center; justify-content: center; font-size: 13px; line-height: 18px; font-weight: 600">MA</span></button>
+    </header>
+
+    <main style="flex: 1; min-height: 0; overflow: hidden">
+      <div style="display: flex; flex-direction: column; gap: 16px; padding: 4px 16px 110px">
+
+        <!-- Search field -->
+        <button type="button" class="t-body" style="height: 48px; padding: 0 14px; border-radius: 12px; background: var(--surface-2); border: 0; color: var(--muted); display: flex; align-items: center; gap: 10px; text-align: left; width: 100%"><svg width="20" height="20" viewBox="0 0 512 512" aria-hidden="true" style="display: block; flex: none"><path d="M221.09 64a157.09 157.09 0 1 0 157.09 157.09A157.1 157.1 0 0 0 221.09 64Z" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"></path><path d="M338.29 338.29 448 448" fill="none" stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="32px"></path></svg><span>Tìm quán, địa chỉ, nhãn…</span></button>
+
+        <!-- Daily pick -->
+        <div style="position: relative; background: var(--surface); border: 1px solid var(--border); border-radius: 12px">
+          <button type="button" style="display: flex; gap: 12px; align-items: flex-start; width: 100%; padding: 12px; border: 0; background: transparent; border-radius: 12px; color: var(--text); text-align: left">
+            <span role="img" aria-label="Ảnh minh hoạ: Bún chả Hương Liên" style="width: 80px; height: 80px; flex: none; border-radius: 8px; background: var(--ph-1); box-shadow: inset 0 0 0 1px var(--photo-edge); display: flex; align-items: center; justify-content: center; color: var(--ph-icon)"><svg width="24" height="24" viewBox="0 0 512 512" aria-hidden="true" style="display: block; flex: none"><rect width="416" height="352" x="48" y="80" rx="48" ry="48" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="32px"></rect><circle cx="336" cy="176" r="32" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"></circle><path d="m304 335.79-90.66-90.49a32 32 0 0 0-43.87-1.3L48 352M224 432l123.34-123.34a32 32 0 0 1 43.11-2L464 368" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32px"></path></svg></span>
+            <span style="flex: 1; min-width: 0; display: flex; flex-direction: column">
+              <span style="display: block; font-size: 13px; line-height: 18px; font-weight: 600; color: var(--accent-text)">Hôm nay thử quán này</span>
+              <span class="t-title" style="display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; padding-top: 2px">Bún chả Hương Liên</span>
+              <span class="t-caption muted" style="display: block">Quán ăn · 50.000–90.000 ₫</span>
+              <span style="display: flex; align-items: center; gap: 4px; font-size: 13px; line-height: 18px; font-weight: 600; color: var(--success)"><svg width="16" height="16" viewBox="0 0 512 512" aria-hidden="true" style="display: block; flex: none"><path d="M256 64C150 64 64 150 64 256s86 192 192 192 192-86 192-192S362 64 256 64Z" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"></path><path d="M256 128v144h96" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32px"></path></svg><span>Đang mở · đóng lúc 20:30</span></span>
+            </span>
+          </button>
+          <button type="button" aria-label="Đổi quán khác" style="position: absolute; top: 2px; right: 4px; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; border: 0; background: transparent; border-radius: 999px; color: var(--text)"><svg width="24" height="24" viewBox="0 0 512 512" aria-hidden="true" style="display: block; flex: none"><path d="M320 146s24.36-12-64-12a160 160 0 1 0 160 160" fill="none" stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="32px"></path><path d="m256 58 80 80-80 80" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32px"></path></svg></button>
+        </div>
+
+        <!-- Nhóm của bạn: 2-column grid -->
+        <section aria-label="Nhóm của bạn" style="display: flex; flex-direction: column; gap: 8px">
+          <div style="display: flex; align-items: center; justify-content: space-between; min-height: 36px">
+            <h2 class="t-h2">Nhóm của bạn</h2>
+            <button type="button" class="t-btn" style="height: 44px; padding: 0 12px; margin: -4px -12px -4px 0; border: 0; background: transparent; border-radius: 12px; color: var(--accent-text)">Sửa</button>
+          </div>
+
+          <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px">
+
+            <!-- Quán ăn -->
+            <button type="button" style="display: flex; flex-direction: column; align-items: flex-start; gap: 8px; padding: 16px; background: var(--surface); border: 1px solid var(--border); border-radius: 12px; color: var(--text); text-align: left; min-width: 0">
+              <span style="display: flex; flex-direction: column"><span class="t-label" style="color: var(--accent-text)">Quán ăn</span><span class="t-caption muted">12 địa điểm</span></span>
+              <span class="t-title" style="display: block">Chán cơm thì ăn gì?</span>
+              <span style="display: flex; align-items: center; margin-top: auto">
+                <span aria-hidden="true" style="width: 28px; height: 28px; flex: none; border-radius: 999px; background: var(--ph-1); box-shadow: 0 0 0 2px var(--surface)"></span>
+                <span aria-hidden="true" style="width: 28px; height: 28px; flex: none; margin-left: -10px; border-radius: 999px; background: var(--ph-6); box-shadow: 0 0 0 2px var(--surface)"></span>
+                <span aria-hidden="true" style="width: 28px; height: 28px; flex: none; margin-left: -10px; border-radius: 999px; background: var(--ph-4); box-shadow: 0 0 0 2px var(--surface)"></span>
+                <span aria-hidden="true" style="width: 28px; height: 28px; flex: none; margin-left: -10px; border-radius: 999px; background: var(--ph-2); box-shadow: 0 0 0 2px var(--surface)"></span>
+                <span aria-hidden="true" style="width: 28px; height: 28px; flex: none; margin-left: -10px; border-radius: 999px; background: var(--ph-3); box-shadow: 0 0 0 2px var(--surface)"></span>
+                <span class="t-micro" style="margin-left: 6px; height: 28px; padding: 0 8px; border-radius: 999px; background: var(--surface-2); display: inline-flex; align-items: center">+7</span>
+              </span>
+            </button>
+
+            <!-- Quán uống -->
+            <button type="button" style="display: flex; flex-direction: column; align-items: flex-start; gap: 8px; padding: 16px; background: var(--surface); border: 1px solid var(--border); border-radius: 12px; color: var(--text); text-align: left; min-width: 0">
+              <span style="display: flex; flex-direction: column"><span class="t-label" style="color: var(--accent-text)">Quán uống</span><span class="t-caption muted">8 địa điểm</span></span>
+              <span class="t-title" style="display: block">Chán nước thì uống gì?</span>
+              <span style="display: flex; align-items: center; margin-top: auto">
+                <span aria-hidden="true" style="width: 28px; height: 28px; flex: none; border-radius: 999px; background: var(--ph-3); box-shadow: 0 0 0 2px var(--surface)"></span>
+                <span aria-hidden="true" style="width: 28px; height: 28px; flex: none; margin-left: -10px; border-radius: 999px; background: var(--ph-2); box-shadow: 0 0 0 2px var(--surface)"></span>
+                <span aria-hidden="true" style="width: 28px; height: 28px; flex: none; margin-left: -10px; border-radius: 999px; background: var(--ph-5); box-shadow: 0 0 0 2px var(--surface)"></span>
+                <span aria-hidden="true" style="width: 28px; height: 28px; flex: none; margin-left: -10px; border-radius: 999px; background: var(--ph-6); box-shadow: 0 0 0 2px var(--surface)"></span>
+                <span aria-hidden="true" style="width: 28px; height: 28px; flex: none; margin-left: -10px; border-radius: 999px; background: var(--ph-4); box-shadow: 0 0 0 2px var(--surface)"></span>
+                <span class="t-micro" style="margin-left: 6px; height: 28px; padding: 0 8px; border-radius: 999px; background: var(--surface-2); display: inline-flex; align-items: center">+3</span>
+              </span>
+            </button>
+
+            <!-- Chỗ chơi -->
+            <button type="button" style="display: flex; flex-direction: column; align-items: flex-start; gap: 8px; padding: 16px; background: var(--surface); border: 1px solid var(--border); border-radius: 12px; color: var(--text); text-align: left; min-width: 0">
+              <span style="display: flex; flex-direction: column"><span class="t-label" style="color: var(--accent-text)">Chỗ chơi</span><span class="t-caption muted">5 địa điểm</span></span>
+              <span class="t-title" style="display: block">Chán ở nhà thì đi đâu?</span>
+              <span style="display: flex; align-items: center; margin-top: auto">
+                <span aria-hidden="true" style="width: 28px; height: 28px; flex: none; border-radius: 999px; background: var(--ph-5); box-shadow: 0 0 0 2px var(--surface)"></span>
+                <span aria-hidden="true" style="width: 28px; height: 28px; flex: none; margin-left: -10px; border-radius: 999px; background: var(--ph-3); box-shadow: 0 0 0 2px var(--surface)"></span>
+                <span aria-hidden="true" style="width: 28px; height: 28px; flex: none; margin-left: -10px; border-radius: 999px; background: var(--ph-1); box-shadow: 0 0 0 2px var(--surface)"></span>
+                <span aria-hidden="true" style="width: 28px; height: 28px; flex: none; margin-left: -10px; border-radius: 999px; background: var(--ph-2); box-shadow: 0 0 0 2px var(--surface)"></span>
+                <span aria-hidden="true" style="width: 28px; height: 28px; flex: none; margin-left: -10px; border-radius: 999px; background: var(--ph-4); box-shadow: 0 0 0 2px var(--surface)"></span>
+              </span>
+            </button>
+
+            <!-- Du lịch -->
+            <button type="button" style="display: flex; flex-direction: column; align-items: flex-start; gap: 8px; padding: 16px; background: var(--surface); border: 1px solid var(--border); border-radius: 12px; color: var(--text); text-align: left; min-width: 0">
+              <span style="display: flex; flex-direction: column"><span class="t-label" style="color: var(--accent-text)">Du lịch</span><span class="t-caption muted">3 địa điểm</span></span>
+              <span class="t-title" style="display: block">Cuối tuần trốn đi đâu?</span>
+              <span style="display: flex; align-items: center; margin-top: auto">
+                <span aria-hidden="true" style="width: 28px; height: 28px; flex: none; border-radius: 999px; background: var(--ph-3); box-shadow: 0 0 0 2px var(--surface)"></span>
+                <span aria-hidden="true" style="width: 28px; height: 28px; flex: none; margin-left: -10px; border-radius: 999px; background: var(--ph-5); box-shadow: 0 0 0 2px var(--surface)"></span>
+                <span aria-hidden="true" style="width: 28px; height: 28px; flex: none; margin-left: -10px; border-radius: 999px; background: var(--ph-6); box-shadow: 0 0 0 2px var(--surface)"></span>
+              </span>
+            </button>
+
+          </div>
+        </section>
+
+        <!-- Gần tôi -->
+        <button type="button" style="display: flex; align-items: center; gap: 12px; padding: 14px 16px; background: var(--surface); border: 1px solid var(--border); border-radius: 12px; color: var(--text); text-align: left; width: 100%">
+          <span style="width: 40px; height: 40px; flex: none; border-radius: 999px; background: var(--accent-soft); color: var(--accent-text); display: flex; align-items: center; justify-content: center"><svg width="24" height="24" viewBox="0 0 512 512" aria-hidden="true" style="display: block; flex: none"><path d="M256 96V56M256 456v-40" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="48px"></path><path d="M256 112a144 144 0 1 0 144 144 144 144 0 0 0-144-144Z" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"></path><path d="M416 256h40M56 256h40" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="48px"></path></svg></span>
+          <span style="flex: 1; min-width: 0; display: flex; flex-direction: column"><span class="t-label" style="color: var(--accent-text)">Gần tôi</span><span class="t-title" style="display: block">Quanh đây có gì?</span></span>
+          <span style="color: var(--muted)"><svg width="20" height="20" viewBox="0 0 512 512" aria-hidden="true" style="display: block; flex: none"><path d="m184 112 144 144-144 144" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="48px"></path></svg></span>
+        </button>
+
+      </div>
+    </main>
+
+    <!-- Tab bar -->
+    <nav aria-label="Điều hướng chính" style="position: absolute; left: 0; right: 0; bottom: 0; height: 94px; padding: 0 4px 34px; background: var(--dock); border-top: 1px solid var(--border); display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); align-items: center">
+      <button type="button" aria-current="page" style="height: 56px; border: 0; background: transparent; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; color: var(--accent-text)"><svg width="24" height="24" viewBox="0 0 512 512" aria-hidden="true" style="display: block; flex: none"><path d="M80 212v236a16 16 0 0 0 16 16h96V328a24 24 0 0 1 24-24h80a24 24 0 0 1 24 24v136h96a16 16 0 0 0 16-16V212" fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32px"></path><path d="M480 256 266.89 52c-5-5.28-16.69-5.34-21.78 0L32 256M400 179V64h-48v69" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32px"></path></svg><span class="t-micro">Trang chủ</span></button>
+      <button type="button" style="height: 56px; border: 0; background: transparent; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; color: var(--muted)"><svg width="24" height="24" viewBox="0 0 512 512" aria-hidden="true" style="display: block; flex: none"><path d="M221.09 64a157.09 157.09 0 1 0 157.09 157.09A157.1 157.1 0 0 0 221.09 64Z" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32px"></path><path d="M338.29 338.29 448 448" fill="none" stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="32px"></path></svg><span class="t-micro">Tìm</span></button>
+      <button type="button" style="height: 60px; border: 0; background: transparent; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 0; color: var(--muted)"><span style="width: 44px; height: 44px; border-radius: 999px; background: var(--accent); color: var(--on-accent); display: flex; align-items: center; justify-content: center"><svg width="24" height="24" viewBox="0 0 512 512" aria-hidden="true" style="display: block; flex: none"><path d="M256 112v288M400 256H112" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32px"></path></svg></span><span class="t-micro">Thêm</span></button>
+      <button type="button" style="height: 56px; border: 0; background: transparent; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; color: var(--muted)"><svg width="24" height="24" viewBox="0 0 512 512" aria-hidden="true" style="display: block; flex: none"><path d="M313.27 124.64 198.73 51.36a32 32 0 0 0-29.28.35L56.51 127.49A16 16 0 0 0 48 141.63v295.8a16 16 0 0 0 23.49 14.14l97.82-63.79a32 32 0 0 1 29.5-.24l111.86 73a32 32 0 0 0 29.27-.11l115.43-75.94a16 16 0 0 0 8.63-14.2V74.57a16 16 0 0 0-23.49-14.14l-98 63.86a32 32 0 0 1-29.24.35M328 128v336M184 48v336" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32px"></path></svg><span class="t-micro">Bản đồ</span></button>
+      <button type="button" style="height: 56px; border: 0; background: transparent; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; color: var(--muted)"><svg width="24" height="24" viewBox="0 0 512 512" aria-hidden="true" style="display: block; flex: none"><path d="m400 304 48 48-48 48M400 112l48 48-48 48M64 352h85.19a80 80 0 0 0 66.56-35.62L256 256" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32px"></path><path d="M64 160h85.19a80 80 0 0 1 66.56 35.62l80.5 120.76A80 80 0 0 0 362.81 352H416M416 160h-53.19a80 80 0 0 0-66.56 35.62L288 208" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32px"></path></svg><span class="t-micro">Chọn giúp</span></button>
+    </nav>
+  </div>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"dark":{"editor":"boolean","default":false,"section":"Giao diện"},"$preview":{"width":1000,"height":1000}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return { mode: (this.props.dark ?? false) ? 'dark' : 'light' };
+  }
+}
+</script>
+</body>
+</html>

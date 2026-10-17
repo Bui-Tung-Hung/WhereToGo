@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<title>Quyền riêng tư và dữ liệu</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;600&amp;family=Newsreader:wght@400;600&amp;family=Roboto:wght@500&amp;display=swap" rel="stylesheet">
+<style>
+/* ===== WTG TOKENS v1 — identical in every artboard, do not edit ===== */
+body{margin:0}
+.wtg{--bg:#F5F2E9;--surface:#FBF9F4;--surface-2:#EDE8DC;--border:#E2DBCC;--border-strong:#8A8072;--text:#1C1917;--muted:#5C554B;--accent:#A8482A;--accent-pressed:#8F3D23;--on-accent:#FFFFFF;--accent-text:#96401F;--accent-soft:#F4E1D7;--success:#2D6E45;--success-bg:#E2EEE2;--warning:#8A5600;--warning-bg:#F5E6C8;--danger:#B3261E;--danger-bg:#F8E0DA;--on-danger:#FFFFFF;--focus:#2F5DA8;--inverse-bg:#1C1917;--inverse-text:#F5F2E9;--inverse-action:#F09D7B;--scrim:rgba(28,25,23,.45);--photo-edge:rgba(28,25,23,.08);--pill:rgba(251,249,244,.92);--dock:rgba(251,249,244,.96);--e1:0 1px 2px rgba(28,25,23,.06);--e2:0 8px 24px -8px rgba(28,25,23,.20);--g-fill:#FFFFFF;--g-stroke:#747775;--g-text:#1F1F1F;--ph-1:#D9C7A7;--ph-2:#C9B8A6;--ph-3:#B9C3AA;--ph-4:#D8B8A4;--ph-5:#C2C9CC;--ph-6:#D3C4A0;--ph-icon:rgba(28,25,23,.32);--viewer-bg:#0C0A09;--sans:'Be Vietnam Pro',system-ui,-apple-system,'Segoe UI',sans-serif;--serif:'Newsreader',Georgia,'Times New Roman',serif;color-scheme:light;background:var(--bg);color:var(--text);font-family:var(--sans);font-size:16px;line-height:24px;-webkit-font-smoothing:antialiased}
+.wtg.dark{--bg:#141311;--surface:#1E1C19;--surface-2:#2A2723;--border:#3A3631;--border-strong:#7D7466;--text:#F2EDE3;--muted:#B3AB9C;--accent:#E58A66;--accent-pressed:#CF7652;--on-accent:#1C1210;--accent-text:#F09D7B;--accent-soft:#3B2720;--success:#86CB9A;--success-bg:#1F3326;--warning:#E9B65E;--warning-bg:#3A2E17;--danger:#F49283;--danger-bg:#3E211D;--on-danger:#1C1210;--focus:#93B6F2;--inverse-bg:#F2EDE3;--inverse-text:#1C1917;--inverse-action:#96401F;--scrim:rgba(0,0,0,.60);--photo-edge:rgba(255,255,255,.06);--pill:rgba(30,28,25,.92);--dock:rgba(30,28,25,.96);--e1:none;--e2:0 8px 24px -8px rgba(0,0,0,.70);--g-fill:#131314;--g-stroke:#8E918F;--g-text:#E3E3E3;--ph-1:#4A4033;--ph-2:#463E37;--ph-3:#3D4436;--ph-4:#4D3A31;--ph-5:#3B4145;--ph-6:#48412F;--ph-icon:rgba(255,255,255,.30);color-scheme:dark}
+.wtg *{box-sizing:border-box}
+.wtg button,.wtg input,.wtg select,.wtg textarea{font:inherit;color:inherit}
+.wtg a{color:var(--accent-text);text-decoration:none}
+.wtg a:hover{color:var(--accent-text)}
+.wtg p a,.wtg li a{text-decoration:underline;text-underline-offset:3px}
+.wtg :focus-visible{outline:2px solid var(--focus);outline-offset:2px}
+.t-display{font-family:var(--serif);font-size:36px;line-height:46px;font-weight:600;letter-spacing:-0.01em;margin:0}
+.t-h1{font-family:var(--serif);font-size:28px;line-height:36px;font-weight:600;margin:0}
+.t-h2{font-family:var(--serif);font-size:22px;line-height:30px;font-weight:600;margin:0}
+.t-name{font-family:var(--serif);font-size:17px;line-height:22px;font-weight:600;margin:0}
+.t-name-lg{font-family:var(--serif);font-size:24px;line-height:32px;font-weight:600;margin:0}
+.t-numeral{font-family:var(--serif);font-size:28px;line-height:36px;font-weight:600}
+.t-story{font-family:var(--serif);font-size:18px;line-height:28px;font-weight:400;margin:0}
+.t-title{font-size:17px;line-height:24px;font-weight:600;margin:0}
+.t-body{font-size:16px;line-height:24px;font-weight:400;margin:0}
+.t-btn{font-size:16px;line-height:24px;font-weight:600}
+.t-body-sm{font-size:15px;line-height:22px;font-weight:400;margin:0}
+.t-label{font-size:14px;line-height:20px;font-weight:600;margin:0}
+.t-caption{font-size:13px;line-height:18px;font-weight:400;margin:0}
+.t-micro{font-size:12px;line-height:16px;font-weight:600;white-space:nowrap}
+.muted{color:var(--muted)}
+/* ===== end WTG TOKENS v1 ===== */
+</style>
+</helmet>
+<div class="wtg {{mode}}" style="width: 390px; height: 1264px; position: relative; overflow: hidden; display: flex; flex-direction: column; background: var(--bg)">
+  <!-- top safe area: leave empty -->
+  <div style="height: 47px; flex: none"></div>
+
+  <header style="height: 56px; flex: none; display: flex; align-items: center; gap: 4px; padding: 0 8px">
+    <a href="TaiKhoan.dc.html" aria-label="Quay lại" style="width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; border-radius: 999px; color: var(--text)"><svg width="24" height="24" viewBox="0 0 512 512" aria-hidden="true" style="display: block; flex: none"><path d="M328 112 184 256l144 144" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="48px"></path></svg></a>
+    <div style="flex: 1; min-width: 0"></div>
+  </header>
+
+  <main style="flex: 1; min-height: 0; display: flex; flex-direction: column; gap: 32px; padding: 4px 16px 58px">
+
+    <!-- Tiêu đề và các đồng ý -->
+    <div style="display: flex; flex-direction: column; gap: 16px">
+      <h1 class="t-h1">Quyền riêng tư &amp; dữ liệu</h1>
+
+      <section aria-labelledby="h-dong-y" style="display: flex; flex-direction: column; gap: 12px">
+        <h2 id="h-dong-y" class="t-h2">Bạn đã đồng ý</h2>
+        <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 16px; box-shadow: var(--e1)">
+
+          <!-- Đồng ý 1: bắt buộc -->
+          <div style="padding: 16px 16px 8px; display: flex; flex-direction: column; gap: 2px">
+            <div class="t-title">Lưu kho địa điểm</div>
+            <p class="t-caption muted">Bắt buộc · 17/10/2026</p>
+            <a href="XoaTaiKhoanDark.dc.html" class="t-label" style="align-self: flex-start; height: 44px; margin-top: 2px; display: inline-flex; align-items: center; color: var(--accent-text); text-decoration: underline; text-underline-offset: 3px">Rút lại = xoá tài khoản</a>
+          </div>
+          <div aria-hidden="true" style="height: 1px; background: var(--border)"></div>
+
+          <!-- Đồng ý 2: Google Drive -->
+          <div style="padding: 16px; display: flex; flex-direction: column; gap: 2px">
+            <div class="t-title">Lưu ảnh vào Google Drive</div>
+            <p class="t-caption muted">17/10/2026</p>
+            <button type="button" class="t-btn" style="align-self: flex-start; height: 44px; margin-top: 10px; padding: 0 16px; border-radius: 12px; background: var(--surface); color: var(--text); border: 1px solid var(--border-strong); display: inline-flex; align-items: center; justify-content: center; gap: 8px">Ngắt kết nối Google Drive</button>
+          </div>
+          <div aria-hidden="true" style="height: 1px; background: var(--border)"></div>
+
+          <!-- Đồng ý 3: sao lưu hằng tuần (công tắc) -->
+          <div style="padding: 16px; display: flex; align-items: flex-start; gap: 16px">
+            <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px">
+              <label for="sw-sao-luu" class="t-title">Sao lưu hằng tuần</label>
+              <p id="sw-sao-luu-ghi-chu" class="t-caption muted">Đang tắt. Mỗi tuần lưu một bản sao vào Google Drive của bạn.</p>
+            </div>
+            <label style="position: relative; width: 51px; height: 44px; margin: -6px 0; flex: none; display: flex; align-items: center; cursor: pointer">
+              <input id="sw-sao-luu" type="checkbox" role="switch" aria-describedby="sw-sao-luu-ghi-chu" style="-webkit-appearance: none; appearance: none; display: block; width: 51px; height: 31px; margin: 0; border-radius: 999px; background: var(--surface-2); border: 1px solid var(--border-strong); cursor: pointer">
+              <span aria-hidden="true" style="position: absolute; left: 3px; top: 50%; width: 25px; height: 25px; margin-top: -12.5px; border-radius: 999px; background: var(--surface); box-shadow: 0 0 0 1px var(--border-strong), 0 1px 3px rgba(28,25,23,.25); pointer-events: none"></span>
+            </label>
+          </div>
+          <div aria-hidden="true" style="height: 1px; background: var(--border)"></div>
+
+          <!-- Bản ghi đồng ý -->
+          <div style="padding: 4px 8px">
+            <button type="button" class="t-btn" style="height: 44px; padding: 0 12px; border-radius: 12px; background: transparent; color: var(--accent-text); border: 0; display: inline-flex; align-items: center; gap: 8px"><svg width="20" height="20" viewBox="0 0 512 512" aria-hidden="true" style="display: block; flex: none"><path d="M336 176h40a40 40 0 0 1 40 40v208a40 40 0 0 1-40 40H136a40 40 0 0 1-40-40V216a40 40 0 0 1 40-40h40" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32px"></path><path d="m176 272 80 80 80-80M256 48v288" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32px"></path></svg>Tải bản ghi đồng ý</button>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Dữ liệu của bạn -->
+    <section aria-labelledby="h-du-lieu" style="display: flex; flex-direction: column; gap: 12px">
+      <h2 id="h-du-lieu" class="t-h2">Dữ liệu của bạn</h2>
+      <div style="display: flex; flex-direction: column; gap: 6px">
+        <button type="button" class="t-btn" style="width: 100%; height: 48px; padding: 0 20px; border-radius: 12px; background: var(--surface); color: var(--text); border: 1px solid var(--border-strong); display: inline-flex; align-items: center; justify-content: center; gap: 8px"><svg width="20" height="20" viewBox="0 0 512 512" aria-hidden="true" style="display: block; flex: none"><path d="M336 176h40a40 40 0 0 1 40 40v208a40 40 0 0 1-40 40H136a40 40 0 0 1-40-40V216a40 40 0 0 1 40-40h40" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32px"></path><path d="m176 272 80 80 80-80M256 48v288" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32px"></path></svg>Tải bảng tính (CSV)</button>
+        <p class="t-caption muted">Bảng tính mở được bằng Excel, giữ đủ dấu tiếng Việt.</p>
+      </div>
+      <button type="button" class="t-btn" style="width: 100%; height: 48px; padding: 0 20px; border-radius: 12px; background: var(--surface); color: var(--text); border: 1px solid var(--border-strong); display: inline-flex; align-items: center; justify-content: center; gap: 8px"><svg width="20" height="20" viewBox="0 0 512 512" aria-hidden="true" style="display: block; flex: none"><path d="M336 176h40a40 40 0 0 1 40 40v208a40 40 0 0 1-40 40H136a40 40 0 0 1-40-40V216a40 40 0 0 1 40-40h40" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32px"></path><path d="m176 272 80 80 80-80M256 48v288" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32px"></path></svg>Tải bản đầy đủ (JSON)</button>
+      <button type="button" class="t-btn" style="width: 100%; height: 48px; padding: 0 20px; border-radius: 12px; background: var(--surface); color: var(--text); border: 1px solid var(--border-strong); display: inline-flex; align-items: center; justify-content: center; gap: 8px">Mở thư mục ảnh<svg width="20" height="20" viewBox="0 0 512 512" aria-hidden="true" style="display: block; flex: none"><path d="M384 224v184a40 40 0 0 1-40 40H104a40 40 0 0 1-40-40V168a40 40 0 0 1 40-40h167.48M336 64h112v112M224 288 440 72" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32px"></path></svg></button>
+    </section>
+
+    <!-- Thiết bị và xoá tài khoản -->
+    <section aria-labelledby="h-thiet-bi" style="display: flex; flex-direction: column; gap: 12px">
+      <h2 id="h-thiet-bi" class="t-h2">Thiết bị</h2>
+      <button type="button" class="t-btn" style="width: 100%; height: 48px; padding: 0 20px; border-radius: 12px; background: var(--surface); color: var(--text); border: 1px solid var(--border-strong); display: inline-flex; align-items: center; justify-content: center; gap: 8px"><svg width="20" height="20" viewBox="0 0 512 512" aria-hidden="true" style="display: block; flex: none"><path d="M304 336v40a40 40 0 0 1-40 40H104a40 40 0 0 1-40-40V136a40 40 0 0 1 40-40h152c22.09 0 48 17.91 48 40v40M368 336l80-80-80-80M176 256h256" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32px"></path></svg>Đăng xuất trên mọi thiết bị</button>
+      <div style="margin-top: 12px">
+        <a href="XoaTaiKhoanDark.dc.html" class="t-btn" style="width: 100%; height: 48px; padding: 0 20px; border-radius: 12px; background: transparent; color: var(--danger); border: 1px solid var(--danger); display: flex; align-items: center; justify-content: center; gap: 8px"><svg width="20" height="20" viewBox="0 0 512 512" aria-hidden="true" style="display: block; flex: none"><path d="m112 112 20 320c.95 18.49 14.4 32 32 32h184c17.67 0 30.87-13.51 32-32l20-320" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32px"></path><path d="M80 112h352" stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="32px"></path><path d="M192 112V72h0a23.93 23.93 0 0 1 24-24h80a23.93 23.93 0 0 1 24 24h0v40M256 176v224M184 176l8 224M328 176l-8 224" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32px"></path></svg>Xoá tài khoản</a>
+      </div>
+    </section>
+
+    <!-- Chân trang -->
+    <footer style="display: flex; flex-direction: column; gap: 4px">
+      <p class="t-caption muted">Yêu cầu khác (xem, sửa, hạn chế xử lý): [EMAIL HỖ TRỢ]. Chúng tôi xác nhận trong 2 ngày làm việc.</p>
+      <div style="display: flex; flex-wrap: wrap; gap: 0 16px">
+        <button type="button" class="t-caption" style="height: 44px; padding: 0; border: 0; background: transparent; color: var(--accent-text); text-decoration: underline; text-underline-offset: 3px">Chính sách quyền riêng tư</button>
+        <button type="button" class="t-caption" style="height: 44px; padding: 0; border: 0; background: transparent; color: var(--accent-text); text-decoration: underline; text-underline-offset: 3px">Điều khoản sử dụng</button>
+      </div>
+    </footer>
+
+  </main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"dark":{"editor":"boolean","default":false,"section":"Giao diện"},"$preview":{"width":390,"height":1264}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return { mode: (this.props.dark ?? false) ? 'dark' : 'light' };
+  }
+}
+</script>
+</body>
+</html>
