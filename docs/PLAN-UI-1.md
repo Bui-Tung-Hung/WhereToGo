@@ -587,8 +587,6 @@ Python: `pytest -q jobs/tests` (test backup cập nhật + `test_supabase_admin.
 57. `[USER][GATE C]` Sau khi CI và deploy xanh, thử trên iPhone (app đã cài): trang chủ sáng/tối, avatar Google, "Hôm nay thử quán này" + bảng trượt lên + "Chỉ đường"; trang vuốt thẻ: kéo từ giữa và **từ sát mép trái** (không được quay về trang chủ), bấm nhanh liên tiếp không ghi hai lần, Hứng thú/Bỏ qua/Sao/Hoàn tác, mở "Xem đầy đủ" rồi quay lại vẫn giữ vị trí, về trang chủ rồi vào lại thì bộ thẻ xáo lại, offline thì bị khoá; form bắt buộc chọn nhóm; Quản lý nhóm; danh sách tạm. Báo kết quả từng mục.
 58. `[USER][GATE D]` Chạy migration 2 rồi phần SAU-2 của file kiểm tra (SETUP.md bước (e)), gửi kết quả; Claude đối chiếu.
 
----
-
 ## 12. Điều chỉnh sau REVIEW (2026-10-17)
 
 REVIEW ngày 2026-10-17 đối chiếu code của commit `ff25e89` với kế hoạch này và ghi nhận 40 lệch (#1–#40). Mục này **thay thế hoặc bổ sung** các câu tương ứng ở các mục trên; chỗ nào khác nhau thì theo mục 12.
@@ -640,10 +638,10 @@ REVIEW ngày 2026-10-17 đối chiếu code của commit `ff25e89` với kế ho
 | 29 | 6.1, P37 | `--ion-color-primary` = `var(--wtg-accent)`, `--ion-color-medium` = `var(--wtg-text-muted)` |
 | 35 | Quy ước Prettier | Đã chạy Prettier trên các file web của phần 1 |
 | 39 | Bước 54 | Claude kiểm ở cỡ di động, sáng và tối, có ảnh chụp (GATE sau REVIEW) |
-| 41 | 4.1, P29 | Chip trong `.wtg-chip-row` không co (`flex-shrink: 0`), chữ không còn xuống 2 dòng; phát hiện ở GATE sau REVIEW |
+| 41 | 4.1, P29 | Chip trong .wtg-chip-row không co (flex-shrink: 0), chữ không còn xuống 2 dòng; phát hiện ở GATE sau REVIEW |
 
 ### 12.3 Thay cho các câu ở trên
 
-- **P29:** bộ thẻ `clamp(280px, 44vh, 380px)`. Tổng chiều cao trang vuốt = header 44 + 2 hàng lọc 104 (mỗi hàng 52 = chip 44 + lề trên/dưới 4) + dòng "Còn N" ~14 + 3 khoảng cách 8 + teaser ~88 + hàng nút 68 + đệm đáy 8. Số đo thật (Chromium giả lập, 2026-10-17): header 50, hai hàng lọc 52 + 52, dòng "Còn N" 16,5, teaser 92,6, hàng nút 68; bộ thẻ 293,6px ở 375×667 (bằng `44vh`) và 380px ở 428×926.
+- **P29:** header 44 + 2 hàng lọc 104 (mỗi hàng 52 = chip 44 + lề 4×2) + dòng 'Còn N' ~14 + 3 khoảng cách 8 + teaser ~88 + hàng nút 68 + đệm đáy 8; bộ thẻ clamp(280px, 44vh, 380px). Số đo thật (Chromium giả lập, 2026-10-17): header 50, hai hàng lọc 52 + 52, dòng "Còn N" 16,5, teaser 92,6, hàng nút 68; bộ thẻ 293,6px ở 375×667 (bằng `44vh`) và 380px ở 428×926.
 - **Mục 3.1 và 4.5:** thêm file `web/src/features/places/queryKeys.ts` (`QUERY_KEYS`); `placeQueries.ts`, `placeCache.ts`, `tagQueries.ts`, `categoryQueries.ts`, `visitQueries.ts`, `AuthProvider.tsx`, `HomePage.tsx`, `PlaceFormPage.tsx` import từ file này.
-- **Mục 4.1:** lớp `.wtg-chip-row` (`theme/global.css`: flex, gap 8px, cuộn ngang, đệm `8px 0`) dùng cho `TagFilterBar` và `CategoryFilterBar`; trang vuốt thẻ bỏ đệm dọc của lớp này (`.wtg-swipe-filters .wtg-chip-row`). Chip trong hàng không co (`flex-shrink: 0`).
+- **Mục 4.1:** lớp `.wtg-chip-row` (`theme/global.css`: flex, gap 8px, cuộn ngang, đệm `8px 0`) dùng cho `TagFilterBar` và `CategoryFilterBar`; trang vuốt thẻ bỏ đệm dọc của lớp này (`.wtg-swipe-filters .wtg-chip-row`); chip trong hàng không co (flex-shrink: 0).
