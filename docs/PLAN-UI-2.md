@@ -54,7 +54,7 @@ Câu chữ giao diện trong ngoặc kép là bản chốt, chép nguyên văn k
 - Trang "chọn cho hai người" và thanh tab chung (mục 2).
 - Nhập dữ liệu từ Google Takeout; đăng nhập bằng nút Google tự dựng (mục 12, dòng cuối của bảng).
 
-**Bản vẽ mẫu:** https://claude.ai/artifact/KGhAgZzQq1ZEp3huRjWz9K — đang để riêng tư, chỉ bạn mở được cho tới khi bạn tự chia sẻ; canvas đang được dựng, danh sách màn ở mục 14 là mục tiêu.
+**Bản vẽ mẫu:** https://claude.ai/artifact/KGhAgZzQq1ZEp3huRjWz9K — đang để riêng tư, chỉ bạn mở được cho tới khi bạn tự chia sẻ. Danh sách màn ở mục 14.
 
 **Từ ngữ hay gặp** (mỗi từ giải thích một lần ở đây)
 
@@ -1650,7 +1650,7 @@ Q1–Q5 cần bạn trả lời sớm (phần việc của P0, mục 12). Với 
 
 **Link:** https://claude.ai/artifact/KGhAgZzQq1ZEp3huRjWz9K
 
-Bản vẽ nằm trên một canvas (trang vẽ giao diện trên claude.ai) **riêng tư**: chỉ bạn mở được cho tới khi bạn tự chia sẻ. Canvas đang được dựng; danh sách màn ở dưới là mục tiêu `[KIỂM TRA]` trước khi giao. Canvas là bản vẽ để duyệt hướng, không phải màn đã dựng; khi làm (P1–P7), chép câu chữ trong ngoặc kép nguyên văn.
+Bản vẽ nằm trên một canvas (trang vẽ giao diện trên claude.ai) **riêng tư**: chỉ bạn mở được cho tới khi bạn tự chia sẻ. Canvas là bản vẽ để duyệt hướng, không phải màn đã dựng; khi làm (P1–P7), chép câu chữ trong ngoặc kép nguyên văn.
 
 **Các trang của canvas** (đối chiếu theo tên trang; nếu không thấy một màn ở trang dự đoán, tìm theo tên màn trong bảng dưới)
 
@@ -1667,8 +1667,8 @@ Bản vẽ nằm trên một canvas (trang vẽ giao diện trên claude.ai) **r
 **Cách xem**
 - **Ảnh quán chỉ là ô màu trơn giữ chỗ**, không phải ảnh thật. Ảnh thật chỉ có trong app.
 - **Mỗi màn có công tắc "dark"** trong bảng Tweaks (bảng chỉnh nhanh của canvas) để đổi giữa sáng và tối. 7 màn đánh dấu **D** trong bảng dưới được vẽ sẵn ở chế độ tối.
-- **Chế độ Play (chạy thử):** `[KIỂM TRA]` bấm chuyển giữa các màn như app thật. Chỉ những chỗ điều hướng rõ ràng (nút quay lại, dock, thẻ mở chi tiết, nút chính) mới chuyển màn; chỗ khác chỉ là hình.
-- **Khung điện thoại** 390×844 có thanh trạng thái và thanh home. Người dùng mẫu: "Nguyễn Minh Anh", `minhanh@example.com`, ảnh đại diện chữ "MA". Ngày mẫu: Thứ Bảy, 17 tháng 10. Nhóm mẫu: Quán ăn 12 · Quán uống 8 · Chỗ chơi 5 · Du lịch 3. Mọi dữ liệu là minh hoạ.
+- **Chế độ Play (chạy thử):** bấm chuyển giữa các màn như app thật. Chỉ những chỗ điều hướng rõ ràng (nút quay lại, dock, thẻ mở chi tiết, nút chính) mới chuyển màn; chỗ khác chỉ là hình.
+- **Khung điện thoại** 390×844, không vẽ thanh trạng thái hay thanh home giả (máy thật tự vẽ hai thanh này); vài màn vẽ dài hơn để thấy trọn nội dung. Người dùng mẫu: "Nguyễn Minh Anh", `minhanh@example.com`, ảnh đại diện chữ "MA". Ngày mẫu: Thứ Bảy, 17 tháng 10. Nhóm mẫu: Quán ăn 12 · Quán uống 8 · Chỗ chơi 5 · Du lịch 3. Mọi dữ liệu là minh hoạ.
 - Khi góp ý, nói theo số màn trong bảng dưới kèm tên màn, ví dụ "màn 7, Trang chủ đang dùng: …".
 
 **Danh sách màn** (số thứ tự theo bản đặc tả; **D** = vẽ ở chế độ tối)
